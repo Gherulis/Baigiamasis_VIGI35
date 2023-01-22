@@ -27,7 +27,7 @@ class UpdatepostsRequest extends FormRequest
             'postName' => 'required',
             'postBody' => 'required',
             'postLink' => 'nullable',
-            'postImage' => 'image|nullable|max:1999'
+
         ];
     }
 }

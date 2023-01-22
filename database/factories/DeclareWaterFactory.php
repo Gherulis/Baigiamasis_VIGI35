@@ -18,13 +18,18 @@ class DeclareWaterFactory extends Factory
     public function definition()
     {
         return [
-            'flat_id' => $this->faker->numberBetween(1,30),
+            'flat_id' => $this->faker->numberBetween(1,5),
             'kitchen_cold' => $this->faker->numberBetween(50,850),
+            'kitchen_cold_usage' => $this->faker->numberBetween(1,15),
             'kitchen_hot' => $this->faker->numberBetween(50,850),
+            'kitchen_hot_usage' => $this->faker->numberBetween(1,15),
             'bath_cold' => $this->faker->numberBetween(50,850),
+            'bath_cold_usage' =>$this->faker-> numberBetween(1,15),
             'bath_hot' => $this->faker->numberBetween(50,850),
+            'bath_hot_usage' => $this->faker->numberBetween(1,15),
             'declaredBy' => $this->faker->firstName(),
-            'created_at'=> $this->faker->date(),
+            'created_at' => $this->faker->dateTimeBetween('-2 months', 'now'),
+
         ];
     }
 }

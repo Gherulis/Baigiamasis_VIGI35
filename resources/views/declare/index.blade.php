@@ -8,31 +8,25 @@
         <table class="lentele">
             <thead>
                 <tr>
-                    <td>Vandens deklaravimas</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                    <th colspan="8">Vandens deklaravimas</th>
 
+                </tr>
+                <tr>
+                    <th>@sortablelink('created_at', 'Mėnuo')</th>
+                    <th>@sortablelink('flat_id', 'Buto Nr.')</th>
+                    <th>@sortablelink('kitchen_cold', 'Virtuvė šaltas')</th>
+                    <th>@sortablelink('kitchen_hot', 'Virtuvė karštas')</th>
+                    <th>@sortablelink('bath_cold', 'Vonia šaltas')</th>
+                    <th>@sortablelink('bath_hot', 'Vonia karštas')</th>
+                    <th>@sortablelink('declaredBy', 'Vartotojas')</th>
+                    <th>Veiksmai</th>
+
+
+                </tr>
 
             </thead>
             <tbody>
-                <tr>
-                    <td>Menuo</td>
-                    <td>Buto Nr.</td>
-                    <td>Virtuvė šaltas</td>
-                    <td>Virtuvė karštas</td>
-                    <td>Vonia šaltas</td>
-                    <td>Vonia karštas</td>
-                    <td>Vartotojas</td>
-                    <td>Veiksmai</td>
 
-
-                </tr>
               @foreach ($declareWater as $declareWater )
                   <tr>
                     <td>{{$declareWater->formatedDate}}</td>
@@ -43,7 +37,11 @@
                     <td>{{$declareWater->bath_hot}} m<sup>3</sup></td>
                     <td>{{$declareWater->declaredBy}}</td>
 
-                    <td> <a href="{{route('declare.edit', $declareWater)}}"><button class="btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button></a></td>
+                    <td>
+                        <a href="{{route('declare.show', $declareWater)}}"><button class="btn_small btn_show"  type="submit"><i class="fa-regular fa-eye"></i></button></a>
+                        <a href="{{route('declare.edit', $declareWater)}}"><button class="btn_small btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
+                        <a href="{{route('declare.destroy', $declareWater)}}"><button class="btn_small btn_delete"  type="submit"><i class="fa-solid fa-trash-can"></i></button></a>
+                    </td>
                   </tr>
               @endforeach
             </tbody>

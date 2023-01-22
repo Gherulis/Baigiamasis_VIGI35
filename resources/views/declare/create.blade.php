@@ -2,6 +2,7 @@
 @section('content')
 
     <div class="table_container tabletransform1 decl">
+
         <h3>Buto Nr. - {{ Auth::user()->flat_id }}</h3>
 
         <table>
@@ -37,9 +38,9 @@
                     <tr>
 
                         <td>Šaltas</td>
-                        <td name="old_value">{{ $lastData->kitchen_cold }}</td>
+                        <td><input type="text" name="kitchen_cold_before" value="{{ $lastData->kitchen_cold }}" hidden>{{ $lastData->kitchen_cold }}</td>
                         <td class="hidn">m<sup>3</sup></td>
-                        <td><input type="number" name="new_kitchen_cold"></td>
+                        <td><input type="number" name="kitchen_cold"></td>
                         <td class="hidn">m<sup>3</sup></td>
                         <td name="result">Hmm</td>
                         <td class="hidn">m<sup>3</sup></td>
@@ -48,7 +49,7 @@
                     </tr>
                     <tr>
                         <td>Karštas</td>
-                        <td>{{ $lastData->kitchen_hot }}</td>
+                        <td><input type="text" name="kitchen_hot_before" value="{{ $lastData->kitchen_hot }}" hidden>{{ $lastData->kitchen_hot }}</td>
                         <td class="hidn">m<sup>3</sup></td>
                         <td><input type="number" name="kitchen_hot"></td>
                         <td class="hidn">m<sup>3</sup></td>
@@ -90,7 +91,7 @@
             <tbody>
                 <tr>
                     <td>Šaltas</td>
-                    <td>{{ $lastData->bath_cold }}</td>
+                    <td><input type="text" name="bath_cold_before" value="{{ $lastData->bath_cold }}" hidden>{{ $lastData->bath_cold }}</td>
                     <td class="hidn">m<sup>3</sup></td>
                     <td><input type="number" name="bath_cold"></td>
                     <td class="hidn">m<sup>3</sup></td>
@@ -99,7 +100,7 @@
                 </tr>
                 <tr>
                     <td>Karštas</td>
-                    <td>{{ $lastData->bath_hot }}</td>
+                    <td><input type="text" name="bath_hot_before" value="{{ $lastData->bath_hot }}" hidden>{{ $lastData->bath_hot }}</td>
                     <td class="hidn">m<sup>3</sup></td>
                     <td><input type="number" name="bath_hot"></td>
                     <td class="hidn">m<sup>3</sup></td>

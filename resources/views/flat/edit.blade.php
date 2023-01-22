@@ -8,7 +8,7 @@
 
 
         <div class="login-text">
-            <input type="number" name="flat_size" value="{{$flat->flat_id}}" readonly  >
+            <input type="text" name="flat_size" value="{{$flat->flat_nr}}"   >
             <label for="flat_nr">Buto Numeris</label>
         </div>
         <div class="login-text">

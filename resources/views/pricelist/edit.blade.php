@@ -7,8 +7,8 @@
         <form action="{{ route('pricelist.update', $pricelist) }}" method="post">
             @csrf
 
-            
-         
+
+
             <div class="login-text">
                 <input type="number" name="saltas_vanduo" value="{{ $pricelist->saltas_vanduo }}">
                 <label for="name">Šaltas vanduo</label>
@@ -45,8 +45,8 @@
                 <input type="number" name="nkf" value="{{ $pricelist->nkf }}">
                 <label for="text">Namo kaupimo fondas</label>
             </div>
-            <div>
-            <a href="{{ route('pricelist.edit', $pricelist) }}"><button class="" type="submit"><i
+            <div class="center">
+            <a href="{{ route('pricelist.edit', $pricelist) }}"><button class="btn_medium btn_edit" type="submit"><i
                         class="fa-solid fa-pen-clip"></i>Redaguoti</button></a>
 
         </form>

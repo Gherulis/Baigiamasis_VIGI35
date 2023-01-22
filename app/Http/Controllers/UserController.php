@@ -58,7 +58,7 @@ public function edit(user $user)
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->role = $request->role;
+
         $user->save();
         return redirect()->route('user.index')->with('mssg_edit', 'Įrašas sėkmingai redaguotas');
     }

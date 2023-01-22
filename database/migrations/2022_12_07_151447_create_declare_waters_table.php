@@ -21,6 +21,10 @@ return new class extends Migration
             $table->integer('kitchen_hot');
             $table->integer('bath_cold');
             $table->integer('bath_hot');
+            $table->integer('kitchen_cold_usage');
+            $table->integer('kitchen_hot_usage');
+            $table->integer('bath_cold_usage');
+            $table->integer('bath_hot_usage');
             $table->string('declaredBy');
             $table->timestamps();
         });

@@ -14,7 +14,7 @@
                 <tr>
                     <th colspan='4'><p class="mssg">{{session('mssg')}}{{session('mssg_edit')}}</p></th>
 
-                    <th><a href="{{route('contacts.create')}}"><button class="btn_new"><i class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
+                    <th><a href="{{route('contacts.create')}}"><button class="btn_medium btn_edit"><i class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
 
 
 
@@ -40,12 +40,12 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>Butas : {{$user->flat_id}}</td>
-                            <td>
-                                <p class="mssg"><a href="{{route('user.edit',$user)}}"><button class="btn btn_edit">Redaguoti</button></a></p>
-                                <form action="{{route('user.destroy',$user)}}" method="POST">
-                                @csrf
-                            <button class="btn btn_delete">Istrinti</button> </form>
-                        </td>
+                            <td >
+
+                                <a href="{{route('user.show', $user)}}"><button class="btn_small btn_show" type="submit"><i class="fa-regular fa-eye"></i></button></a>
+                                <a href="{{route('user.edit', $user)}}"><button class="btn_small btn_edit" type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
+
+                            </td>
 
 
                         </tr>

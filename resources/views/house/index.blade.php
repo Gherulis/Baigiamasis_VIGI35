@@ -3,7 +3,7 @@
 @section('content')
 
 
-<a href="{{ route('house.create') }}"><button type="submit" class="btn">Prideti nauja nama</button></a>
+<a href="{{ route('house.create') }}"><button type="submit" class="btn btn_edit">Prideti nauja nama</button></a>
 @foreach ($house as $house )
 
     <div class="table_container tabletransform1 contact_info">
@@ -17,10 +17,11 @@
                         <p class="mssg">Namo identifikacijos numeris : {{$house->id}}</p>
                     </th>
                     <th colspan='1'>
+
+                        <p class="mssg"><a href="{{route('house.edit',$house)}}"><button class="btn_medium btn_edit">Redaguoti</button></a></p>
                         <form action="{{route('house.destroy',$house)}}" method="POST">
                             @csrf
-                        <button class="btn btn_delete">Istrinti</button> </form>
-                        <p class="mssg"><a href="{{route('house.destroy',$house)}}"><button class="btn btn_edit">Redaguoti</button></a></p>
+                        <button class="btn_medium btn_delete">Istrinti</button> </form>
                     </th>
 
                 </tr>

@@ -9,11 +9,13 @@ use App\Models\pricelist;
 use App\Models\flat;
 use App\Models\house;
 use App\Models\declareWater;
+use App\Models\invoices;
 use App\Http\Requests\StorepricelistRequest;
 use App\Http\Requests\UpdatepricelistRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class PricelistController extends Controller
 {
@@ -22,7 +24,7 @@ class PricelistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
 
         $ltMonths = [
@@ -39,10 +41,17 @@ class PricelistController extends Controller
             'November' => 'Lapkritis',
             'December' => 'Gruodis',
         ];
+        $filter = $request->filter ;
+
+        if(!empty($filter )){
+            $pricelist = pricelist::sortable()->where('house_id', $filter)->paginate(30);
+        }
+             else {$pricelist = pricelist::sortable()->get();};
 
 
 
-        $pricelist = pricelist::orderBy('created_at', 'desc')->get();
+
+
 
         foreach($pricelist as $listitem) {
             $year = Carbon::parse($listitem->created_at)->format('Y');
@@ -51,8 +60,12 @@ class PricelistController extends Controller
             $monthName = $year.'-'.$month;
             $listitem->formatedDate =  $monthName;
         }
+        $houses = house::all();
 
-        return view('pricelist.index',['pricelist' => $pricelist]);
+
+
+
+        return view('pricelist.index',['pricelist' => $pricelist, 'houses'=>$houses]);
 
     }
 
@@ -73,27 +86,82 @@ class PricelistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store()
-    {   $userFlat = Auth::user()->flat_id;
-        $houseNr = flat::where('flat_nr',$userFlat)->get('house_id');
 
-        // dd($houses);
-        // dd( $houseNr);
+    {
+        $house_id = request('house_nr');
+        $saltas_vanduo = request('saltas_vanduo');
+        $karstas_vanduo = request('karstas_vanduo');
+        $sildymas = request('sildymas');
+        $silumos_mazg_prieziura = request('silumos_mazg_prieziura');
+        $gyvatukas = request('gyvatukas');
+        $salto_vandens_abon = request('salto_vandens_abon');
+        $elektra_bendra = request('elektra_bendra');
+        $ukio_islaid = request('ukio_islaid');
+        $nkf = request('nkf');
+
+        $userFlat = Auth::user()->flat_id;
+        $houseNr ='2';//reikes perdaryti i request kuriam namui bus skirta saskaita
+        $flat_count = flat::where('house_id',$houseNr)->count('flat_nr');    //suzinau kiek name yra butu (30);
+        $flat_total_sq_m = flat::where('house_id',$houseNr)->sum('flat_size');   // suzinau bendra butu kvadratura viso namo !!!
+        $gyv_mok_suma_total = flat::where('house_id',$houseNr)->sum('gyv_mok_suma');  //suzinau bendra procenta kiek visi moka uz gyvatuka
+
+        //Menesio pries vandens suvartojimo sumos
+        $startOfLastMonth = Carbon::now()->subMonth()->startOfMonth(); // sugeneruoju paskutinio menesio pradzia
+        $endOfLastMonth = Carbon::now()->subMonth()->endOfMonth();  // sugeneruoju paskutinio menesio pradzia
+
+
+        $kitchen_cold_sum = DeclareWater::whereBetween('created_at', [$startOfLastMonth, $endOfLastMonth])
+                    ->whereHas('forFlat.belongsHouse', function($query) use($houseNr) {
+                        $query->where('id', '=', $houseNr);
+                    })->sum('kitchen_cold_usage');   // susirandu deklaracijas paskutinio menesio kurios priklauso sitam namui ir susumuoju salto virtuvej vandens sunaudojima
+
+                    $bath_cold_sum = DeclareWater::whereBetween('created_at', [$startOfLastMonth, $endOfLastMonth])
+                    ->whereHas('forFlat.belongsHouse', function($query) use($houseNr) {
+                        $query->where('id', '=', $houseNr);
+                    })->sum('bath_cold_usage');   // susirandu deklaracijas paskutinio menesio kurios priklauso sitam namui ir susumuoju salto vonioj vandens sunaudojima
+
+                    $kitchen_hot_sum = DeclareWater::whereBetween('created_at', [$startOfLastMonth, $endOfLastMonth])
+                    ->whereHas('forFlat.belongsHouse', function($query) use($houseNr) {
+                        $query->where('id', '=', $houseNr);
+                    })->sum('kitchen_hot_usage');   // susirandu deklaracijas paskutinio menesio kurios priklauso sitam namui ir susumuoju karsto  virtuves vandens sunaudojima
+
+                    $bath_hot_sum = DeclareWater::whereBetween('created_at', [$startOfLastMonth, $endOfLastMonth])
+                    ->whereHas('forFlat.belongsHouse', function($query) use($houseNr) {
+                        $query->where('id', '=', $houseNr);
+                    })->sum('bath_hot_usage');   // susirandu deklaracijas paskutinio menesio kurios priklauso sitam namui ir susumuoju vonioj karsto vandens sunaudojima
+
+        $totalWater = $kitchen_cold_sum + $bath_cold_sum +  $kitchen_hot_sum +   $bath_hot_sum; // susiskaiciuoju bendra vandens suvartojima
+        $totalHot = $kitchen_hot_sum +   $bath_hot_sum; // susiskaiciuoju bendra karsto vandens suvartojima
+
+
+
+
 
         $pricelist = new pricelist ();
-        $pricelist->house_id = request('house_nr');
-        $pricelist->saltas_vanduo = request('saltas_vanduo');
-        $pricelist->karstas_vanduo = request('karstas_vanduo');
-        $pricelist->sildymas = request('sildymas');
-        $pricelist->silumos_mazg_prieziura = request('silumos_mazg_prieziura');
-        $pricelist->gyvatukas = request('gyvatukas');
-        $pricelist->salto_vandens_abon = request('salto_vandens_abon');
-        $pricelist->elektra_bendra = request('elektra_bendra');
-        $pricelist->ukio_islaid = request('ukio_islaid');
-        $pricelist->nkf = request('nkf');
-
+        $pricelist->house_id = $house_id;
+        $pricelist->saltas_vanduo = $saltas_vanduo;
+        $pricelist->karstas_vanduo =  $karstas_vanduo;
+        $pricelist->sildymas = $sildymas;
+        $pricelist->silumos_mazg_prieziura = $silumos_mazg_prieziura;
+        $pricelist->gyvatukas = $gyvatukas;
+        $pricelist->salto_vandens_abon =  $salto_vandens_abon;
+        $pricelist->elektra_bendra = $elektra_bendra ;
+        $pricelist->ukio_islaid = $ukio_islaid ;
+        $pricelist->nkf =  $nkf;
+        $pricelist->saltas_vanduo_price = $saltas_vanduo/$totalWater;  // padalinu is bendro vandens suvartojimo
+        $pricelist->karstas_vanduo_price  =  $karstas_vanduo/$totalHot; // padalinu is bendro karsto vandens suvartojimo ir suzinau pasildymo kaina
+        $pricelist->sildymas_price  =$sildymas/$flat_total_sq_m ; // padalinu is bendros butu kvadraturos
+        $pricelist->silumos_mazg_prieziura_price  = $silumos_mazg_prieziura/$flat_total_sq_m; // padalinu is bendros butu kvadraturos
+        $pricelist->gyvatukas_price  = $gyvatukas/$gyv_mok_suma_total;  //padalinu is bendro mokamo procento
+        $pricelist->salto_vandens_abon_price  = $salto_vandens_abon/$flat_count; // padalinu is bendro butu skaiciaus
+        $pricelist->elektra_bendra_price  = $elektra_bendra/$flat_count; // padalinu is bendro butu skaiciaus
+        $pricelist->ukio_islaid_price  = $ukio_islaid/$flat_count; // padalinu is bendro butu skaiciaus
+        $pricelist->nkf_price  =  $nkf/$flat_total_sq_m; // padalinu is bendros butu kvadraturos
 
         $pricelist->save();
-        return redirect ('pricelist/index',)->with('mssg', 'Naujos sumos pridetos');
+        return redirect()->route('invoices.create');
+
+
 
     }
 
@@ -107,6 +175,8 @@ class PricelistController extends Controller
     {
         $pricelist = Pricelist::findOrFail($id);
         return view ('pricelist/edit/');}
+
+
 
 
     /**
@@ -219,4 +289,10 @@ class PricelistController extends Controller
 
     return view('declare.indexFlat',['declareWater' => $declareWater]);
 }
-}}
+}
+public function showPrices($id)
+{
+    $pricelist = Pricelist::findOrFail($id);
+    return view ('pricelist.show', ['pricelist'=>$pricelist]);}
+
+}

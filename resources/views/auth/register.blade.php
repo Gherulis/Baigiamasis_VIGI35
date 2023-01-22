@@ -20,10 +20,11 @@
                             @enderror
                             <label for="name" >{{ __('Vardas') }}</label>
                         </div>
-                        <div >
+
+                        {{-- <div >
                             <select  type="text"  id="flat_id" name="flat_id" required class="form-control @error('flat_id') is-invalid @enderror ">
-                                @foreach ($flats as $flat )
-                                <option value="{{ $flat->id }}">{{ $flat->belongsHouse->address}} {{ $flat->belongsHouse->house_nr}} Buto Nr : {{ $flat -> flat_nr }}</option>
+                                @foreach ($flats as $flat)
+                                <option value="{{ $flat->id }}">{{ $flat->belongsHouse->address}} {{ $flat->belongsHouse->house_nr}} Buto Nr : {{ $flat->flat_nr }}</option>
                                 @endforeach
 
                             </select>
@@ -34,7 +35,8 @@
                             </span>
                             @enderror
                             <label for="flat_id">{{ __('Buto numeris')}}</label>
-                        </div>
+                        </div> --}}
+
 
 
                         <div class="login-text">

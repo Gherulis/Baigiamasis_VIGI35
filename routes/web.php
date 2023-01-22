@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FlatController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\InvoicesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -106,13 +107,14 @@ Route::prefix('user')->group(function(){
 });
 Route::prefix('flat')->group(function(){
     Route::get('/index', [FlatController::class, 'index'])->name('flat.index');
-    Route::get('bills/index', [FlatController::class, 'billsIndex'])->name('bills.index');
+
     Route::get('/show', [FlatController::class, 'show'])->name('flat.show');
-    Route::get('/edit/{flat}', [FlatController::class, 'edit'])->name('.flat.edit');
+    Route::get('/edit/{flat}', [FlatController::class, 'edit'])->name('flat.edit');
     Route::get('/create', [FlatController::class, 'create'])->name('flat.create');
     Route::post('/store', [FlatController::class, 'store'])->name('flat.store');
     Route::post('/destroy/{flat}', [FlatController::class, 'destroy'])->name('flat.destroy');
     Route::post('/update/{flat}', [FlatController::class, 'update'])->name('flat.update')->middleware('auth');
+
 
 });
 Route::prefix('house')->group(function(){
@@ -152,6 +154,7 @@ Route::get('/pricelist/index/', [PricelistController::class, 'index',])->name('p
 Route::get('pricelist/create', [PricelistController::class, 'create'])->name('pricelist.create');
 Route::post('/pricelist/create', [PricelistController::class, 'store'])->name('pricelist.store');
 Route::get('pricelist/{pricelist}', [PricelistController::class, 'show']);
+Route::get('pricelist/price/{pricelist}', [PricelistController::class, 'showPrices'])->name('pricelist.showPrices');
 Route::post('/pricelist/{pricelist}', [PricelistController::class, 'update'])->name('pricelist.update');
 Route::get('/pricelist/edit/{pricelist}', [PricelistController::class, 'edit'])->name('pricelist.edit')->middleware('auth');
 Route::get('pricelist/lastbill/{pricelist}', [PricelistController::class, 'lastBill'])->name('pricelist.lastbill');
@@ -165,3 +168,14 @@ Route::get('/post/edit/{posts}', [PostsController::class, 'edit'])->name('post.e
 Route::post('/post/update/{posts}', [PostsController::class, 'update'])->name('post.update');
 Route::post('/post/destroy/{posts}', [PostsController::class, 'destroy'])->name('post.delete');
 Auth::routes();
+
+Route::prefix('invoices')->group(function(){
+
+    Route::get('/index', [InvoicesController::class, 'index'])->name('invoices.index');
+    Route::get('/indexFlat', [InvoicesController::class, 'indexFlat'])->name('invoices.indexFlat');
+    Route::get('/create', [InvoicesController::class, 'create'])->name('invoices.create');
+    Route::post('/store', [InvoicesController::class, 'store'])->name('invoices.store');
+    Route::get('bills/index', [InvoicesController::class, 'show'])->name('bills.index');
+    Route::get('bills/index/last', [InvoicesController::class, 'showLast'])->name('bills.indexLast');
+
+});

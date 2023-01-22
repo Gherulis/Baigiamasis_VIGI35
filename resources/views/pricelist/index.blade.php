@@ -12,32 +12,46 @@
         <table class="lentele">
             <thead>
                 <tr>
-                    <td colspan="9">Paslauga</td>
+                    <td colspan="4">
+                        {{-- <form method="GET" action="{{ route('pricelist.index') }}">
+                            <select class="input" id="filter" >
+                                @foreach ($houses as $house )
+                                <option value="{{ $house -> id }}">Saskaita namui : {{ $house -> address }}g. Nr. {{ $house -> house_nr }}  </option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="button" id="filtras">Filter</button>
+                        </form> --}}
+
+
+
+                    </td>
+                    <td colspan="5"></td>
                     <td colspan="2">Suma su PVM, Eur</td>
                 </tr>
 
-
-            </thead>
-            <tbody>
                 <tr>
-                    <td>Menuo</td>
-                    <td>Šaltas vanduo</td>
-                    <td>Karštas vanduo</td>
-                    <td>Šildymas</td>
-                    <td>Šilumos mazgo priežiūra</td>
-                    <td>Gyvatukas</td>
-                    <td>Šalto vandens abonimentas</td>
-                    <td>Elektra bendroms reikmėms</td>
-                    <td>Ūkio išlaidos</td>
-                    <td>Namo kaupimo fondas</td>
-                    <td></td>
+                    <th>@sortablelink('created_at', 'Mėnuo')</th>
+                    <th>@sortablelink('saltas_vanduo', 'Šaltas vanduo')</th>
+                    <th>@sortablelink('karstas_vanduo', 'Karštas vanduo')</th>
+                    <th>@sortablelink('sildymas', 'Šildymas')</th>
+                    <th>@sortablelink('silumos_mazg_prieziura', 'Šilumos mazgo priežiūra')</th>
+                    <th>@sortablelink('gyvatukas', 'Gyvatukas')</th>
+                    <th>@sortablelink('salto_vandens_abon', 'Šalto vandens abonimentas')</th>
+                    <th>@sortablelink('elektra_bendra', 'Elektra bendroms reikmėms')</th>
+                    <th>@sortablelink('ukio_islaid', 'Ūkio išlaidos')</th>
+                    <th>@sortablelink('nkf', 'Namo kaupimo fondas')</th>
+                    <th></th>
 
 
                 </tr>
+
+            </thead>
+            <tbody>
+
               @foreach ($pricelist as $pricelist )
                   <tr>
                     <td>{{$pricelist->formatedDate}}</td>
-                    {{--<td>{{ \Carbon\Carbon::parse($pricelist->created_at)->format('Y-F')}}--}}
+
                     <td>{{$pricelist->saltas_vanduo}} Eur</td>
                     <td>{{$pricelist->karstas_vanduo}} Eur</td>
                     <td>{{$pricelist->sildymas}} Eur</td>
@@ -47,10 +61,18 @@
                     <td>{{$pricelist->elektra_bendra}} Eur</td>
                     <td>{{$pricelist->ukio_islaid}} Eur</td>
                     <td>{{$pricelist->nkf}} Eur</td>
-                    <td> <a href="{{route('pricelist.edit', $pricelist)}}"><button class="btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button></a></td>
-                  </tr>
+                    <td>
+                        <a href="{{route('pricelist.showPrices', $pricelist)}}"><button class="btn_small btn_show"  type="submit"><i class="fa-regular fa-eye"></i></button></a>
+                        <a href="{{route('pricelist.edit', $pricelist)}}"><button class="btn_small btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
+                    </td>
+                </tr>
               @endforeach
             </tbody>
         </table>
     </div>
+
+
+
+
+
 @endsection

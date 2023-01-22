@@ -21,8 +21,8 @@ class ContactsController extends Controller
     {
 
 
-        $contacts = Contacts::orderBy('vardas')->get();
-        $contacts = Contacts::Paginate(15);
+        $contacts = Contacts::Sortable()->paginate(15);
+
         return view('Contacts/index', ['contacts' => $contacts]);
     }
 

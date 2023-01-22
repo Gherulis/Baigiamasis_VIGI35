@@ -32,7 +32,7 @@ class DeclareWaterController extends Controller
 
         $flatController = new FlatController;
 
-        $declareWater = declareWater::orderBy('created_at', 'desc')->get();
+        $declareWater = declareWater::sortable()->get();
 
         foreach($declareWater as $listitem) {
             // $year = Carbon::parse($listitem->created_at)->format('Y');
@@ -66,13 +66,13 @@ class DeclareWaterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function create()
-    // {
+    public function create()
+    {
 
 
 
-    //     return view('declare.create');
-    // }
+        return view('declare.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -86,10 +86,14 @@ class DeclareWaterController extends Controller
         $declareWater = new declareWater ();
 
         $declareWater->flat_id = request('flat_id');
-        $declareWater->kitchen_cold = request('kitchen_cold');
+        $declareWater->kitchen_cold =request('kitchen_cold');
+        $declareWater->kitchen_cold_usage =request('kitchen_cold') - request('kitchen_cold_before');
         $declareWater->kitchen_hot = request('kitchen_hot');
+        $declareWater->kitchen_hot_usage = request('kitchen_hot') - request('kitchen_hot_before');
         $declareWater->bath_cold = request('bath_cold');
+        $declareWater->bath_cold_usage = request('bath_cold') - request('bath_cold_before');
         $declareWater->bath_hot = request('bath_hot');
+        $declareWater->bath_hot_usage = request('bath_hot') - request('bath_hot_before');
         $declareWater->declaredBy = request('declaredBy');
         $declareWater->save();
 
@@ -152,14 +156,14 @@ class DeclareWaterController extends Controller
     }
     public function calculate(Request $request)
 {
-    // Retrieve the request parameter and the data needed for the calculation
+
     $value1 = $request->input('kitchen_cold');
     $value2 = $lastData->kitchen_cold;
 
-    // Perform the calculation
+
     $result = $value1 - $value2;
 
-    // Pass the result to the view
+
     return view('declare.show', ['result' => $result]);
 }
 
@@ -221,13 +225,13 @@ public function indexFlat()
 
 //     return view('declare.indexByMonth',['declareWater' => $declareWater,'flats' =>$flats, 'houses' => $houses]);
 
-    public function create(Request $request)
-{
-    // $new_kitchen_cold = $request->new_kitchen_cold;
-    $old_value = $lastData->kitchen_cold;
-    $result = $new_kitchen_cold - $old_value;
-    return response()->json($result);
-}
+//     public function create(Request $request)
+// {
+//     // $new_kitchen_cold = $request->new_kitchen_cold;
+//     $old_value = $lastData->kitchen_cold;
+//     $result = $new_kitchen_cold - $old_value;
+//     return response()->json($result);
+// }
 
 
 

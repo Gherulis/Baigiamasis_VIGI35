@@ -8,10 +8,13 @@ use App\Models\User;
 use App\Models\House;
 use App\Models\pricelist;
 use App\Models\declareWater;
+use Kyslik\ColumnSortable\Sortable;
 
 class flat extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
+
+    public $sortable = ['id','house_id','flat_nr','flat_size','gyv_mok_suma','created_at'];
 
 public function flatUsers(){
     return $this->hasMany(User::class,'flat_id','id' );

@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pricelists', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
+
             $table->id();
-            $table->unsignedBigInteger('house_id');
-            $table->foreign('house_id')->references('id')->on('houses');
+            $table->integer('flat_id');
+            $table->string ('data');
             $table->decimal('saltas_vanduo');
             $table->decimal('karstas_vanduo');
             $table->decimal('sildymas');
@@ -26,17 +27,14 @@ return new class extends Migration
             $table->decimal('elektra_bendra');
             $table->decimal('ukio_islaid');
             $table->decimal('nkf');
-            $table->decimal('saltas_vanduo_price');
-            $table->decimal('karstas_vanduo_price');
-            $table->decimal('sildymas_price');
-            $table->decimal('silumos_mazg_prieziura_price');
-            $table->decimal('gyvatukas_price');
-            $table->decimal('salto_vandens_abon_price');
-            $table->decimal('elektra_bendra_price');
-            $table->decimal('ukio_islaid_price');
-            $table->decimal('nkf_price');
+            $table->decimal('Kompensacija')->default('0');
+            $table->decimal('Skola')->default('0');
+            $table->decimal('Permoka')->default('0');
+            $table->decimal('Delspinigiai')->default('0');
+            $table->decimal('Sumoketa')->default('0');
             $table->timestamps();
         });
+
     }
 
     /**
@@ -46,6 +44,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pricelists');
+        Schema::dropIfExists('invoices');
     }
 };

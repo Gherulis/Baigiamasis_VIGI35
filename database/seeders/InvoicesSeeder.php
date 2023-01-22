@@ -4,9 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\DeclareWater;
 
-class DeclareWaterSeeder extends Seeder
+class InvoicesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +14,6 @@ class DeclareWaterSeeder extends Seeder
      */
     public function run()
     {
-        DeclareWater::factory()->count(100)->create();
+        //
     }
 }

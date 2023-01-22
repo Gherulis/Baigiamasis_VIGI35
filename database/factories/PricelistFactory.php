@@ -28,6 +28,16 @@ class PricelistFactory extends Factory
         'ukio_islaid' => $this->faker->numberBetween(10,180),
         'nkf'=> $this->faker->numberBetween(10,180),
         'created_at'=> $this->faker->date(),
+        'saltas_vanduo_price' =>'0',
+        'karstas_vanduo_price' => '0',
+        'sildymas_price' => '0',
+        'silumos_mazg_prieziura_price' =>'0',
+        'gyvatukas_price' => '0',
+        'salto_vandens_abon_price' =>'0',
+        'elektra_bendra_price' => '0',
+        'ukio_islaid_price' =>'0',
+        'nkf_price'=> '0',
+
         ];
     }
 }

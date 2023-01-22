@@ -6,6 +6,67 @@
     --navbar-text-color: rgba(255, 255, 255, 0.8); /* Navigacijos teksto */
     --navbar-text-hover: rgb(30, 251, 255); /* Navigacijos Hover teksto */
     --navbar-box-hover: rgb(60, 255, 30); /* Navigacijos apdailinimas hover */
+    --btn-small: linear-gradient(to right, #87a8b8, #86bcce, #6fbcdd); /* mazo mygtuko spalva background*/
+    --btn_delete_hover:  linear-gradient(to right, #7a3333, #bb3535, #d82f2f); /* delete mygtuko hover */
+    --btn_edit_hover: linear-gradient(to left, #4c9e6c, #37b356, #51ce2b); /* edit mygtuko hover */
+    --btn_show_hover:  linear-gradient(to right, #a89533, #c6ab3d, #f7c500); /* show mygtuko hover */
+}
+
+.btn_small{
+    background:var(--btn-small);
+    height: 2rem;
+    width: 2rem;
+    border-radius: 2rem;
+    border: none;
+    border: 1px solid #4c7785;
+
+}
+.btn_small i {
+    padding-right: 0px;
+    color: #438196;
+}
+.btn_small:hover i {
+    color:#00000093;
+}
+.flex-container{
+    display: flex;
+}
+.flex-container button{
+margin-left: 5px;
+}
+.center {
+
+
+    padding-top:10px ;
+    padding-bottom:10px ;
+
+}
+
+.btn_edit:hover, .btn_create:hover {
+    background: var(--btn_edit_hover);
+
+}
+
+.btn_show:hover  {
+    background: var(--btn_show_hover);
+}
+.btn_delete:hover {
+    background: var(--btn_delete_hover);
+}
+
+.btn_medium {
+    background:var(--btn-small);
+    height: 2rem;
+    width: 10rem;
+    border-radius: 2rem;
+    border: none;
+    border: 1px solid #4c7785;
+    color:  #225465;
+
+}
+.btn_medium i {
+    padding-right: 5px;
+    color: #438196;
 }
 
 
@@ -20,6 +81,14 @@ body {
     background: var(--main-background);
     font-family: "Gill Sans", "Candara";
 
+}
+th a {
+    color: white;
+}
+
+th a:hover{
+    color:#35fddf93;
+    text-decoration: none;
 }
 
 .small-grey {
@@ -66,6 +135,7 @@ a i {
     align-self: center;
 }
 
+
 li {
     list-style: none;
 }
@@ -102,13 +172,19 @@ li {
     padding: 8px;
 
 }
-
-.nav-link:hover {
+select{
+    background: var(--btn-small);
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+.nav-link:hover{
     color:var(--navbar-text-hover);
     padding-bottom: 6px;
     border-bottom: solid 2px var(--navbar-box-hover);
     border-radius: 0 15px 0 15px;
-    /* transition:all 0.3s ease-in-out; */
+
 }
 .nav-link:hover i {
     color:var(--navbar-text-hover);
@@ -140,6 +216,26 @@ ul li ul {
 ul li:hover ul {
     display: block;
     z-index: 999;
+}
+tr th {
+
+    font-size: 14px;
+    vertical-align: top;
+    text-align: center;
+    font-weight: 400;
+
+}
+tr td {
+    font-size: 14px;
+    text-align: center;
+    font-weight: 400;
+}
+.FloatLeft {
+
+    float:left;
+}
+.FloatRight {
+    float:right;
 }
 /* END HEADER IMAGE , NAV BAR  */
 
@@ -612,7 +708,7 @@ hr {
   margin: 3px;
 }
 
-.btn_edit {
+/* .btn_edit {
   margin-top: 5px;
   width: 40%;
   height: 25px;
@@ -647,7 +743,7 @@ float: right;
 margin-left: 1vw;
 }
 
-.btn_edit  {margin-top: 5px;
+/* .btn_edit  {margin-top: 5px;
   width: 80px;
   height: 40px;
   border: 1px solid;
@@ -660,11 +756,11 @@ margin-left: 1vw;
   outline: none;
   margin-bottom: 5px;
   float: right;
-  }
+  } */ */
 
 
 
-.btn_new  {margin-top: 5px;
+/* .btn_new  {margin-top: 5px;
   width: 40%;
   height: 25px;
   border: 1px solid;
@@ -677,7 +773,7 @@ margin-left: 1vw;
   outline: none;
   margin-bottom: 5px;
   align-items: right;
-  }
+  } */
 
   .store-form{
     margin-top: 10vh;
@@ -717,11 +813,11 @@ margin-left: 1vw;
 
 
 
-  .btnNewPost {
+  /* .btnNewPost {
     margin-left: auto;
     margin-right: auto;
       width : 200px;
-    }
+    } */
     .small-grey{
       color : rgb(186, 180, 180);
 

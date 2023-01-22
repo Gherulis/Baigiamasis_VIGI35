@@ -28,13 +28,21 @@
 
                 <ul class="nav-menu">
                     <li id="dropDown" class="nav-item ">
-                        <a href="{{ route('declare.index') }}" class="nav-link"><i class="fa-thin fa-hashtag icon"></i>Pirmininkas</a>
+                        <a href="{{ route('declare.index') }}" class="nav-link "><i class="fa-thin fa-hashtag icon"></i>Pirmininkas</a>
                         <ul class="dropDown">
-                            <li><a class="nav-link" href="{{ route('pricelist.create') }}"><i
+                            <li><a class="nav-link " href="{{ route('pricelist.create') }}"><i
                                 class="fa-solid fa-money-check-dollar icon"></i>N. saskaita</a></li>
                             <li><a class="nav-link" href="{{ route('declare.index') }}"><i class="fa-solid fa-faucet"></i>Deklaravimas</a></li>
                             <li><a class="nav-link" href="{{ route('pricelist.index') }}"><i
-                                class="fa-solid fa-money-check-dollar icon"></i>Saskaitos</a></li>
+                                class="fa-solid fa-money-check-dollar icon"></i>Saskaitos</a>
+
+
+
+
+
+                            </li>
+                            <li><a class="nav-link" href="{{ route('invoices.index') }}"><i
+                                class="fa-solid fa-money-check-dollar icon"></i>B. Saskaitos</a></li>
                             <li><a class="nav-link" href="{{ route('user.index') }}"><i class="fa-solid fa-person"></i>Gyventojai</a></li>
                             <li><a class="nav-link" href="{{ route('flat.index') }}"><i class="fa-solid fa-suitcase"></i>Butai</a></li>
                             <li><a class="nav-link" href="{{ route('house.index') }}"><i class="fa-solid fa-house"></i>Namai</a></li>
@@ -63,7 +71,7 @@
                         <ul class="dropDown">
                             <li><a class="nav-link" href="{{ route('bills.index') }}"><i
                                 class="fa-solid fa-money-check-dollar icon"></i>Naujausia</a></li>
-                            <li><a class="nav-link" href=""><i
+                            <li><a class="nav-link" href="{{ route('invoices.indexFlat') }}"><i
                                 class="fa-solid fa-money-check-dollar icon"></i>Istorija</a></li>
 
                         </ul>
@@ -109,6 +117,11 @@
         <div class="copyright"><small> Copyright &copy;TG 2022 PAGE IS UNDER CONSTRUCTION</small></div>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+
+
 </body>
 
 </html>

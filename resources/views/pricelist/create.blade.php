@@ -3,8 +3,7 @@
 @section('content')
 
     <div class="client">
-        <h4>DNSB "PAPARTIS"</h4>
-        <h3>Buto Nr. - {{ Auth::user()->flat_nr }}</h3>
+
     </div>
 
     <div class="table_container tabletransform1 contact_info">
@@ -16,7 +15,7 @@
                     <td colspan="2">
                         <select name="house_nr" id="" >
                             @foreach ($houses as $house )
-                            <option value="{{ $house -> id }}">Saskaita namui : {{ $house -> house_nr }} Nr.</option>
+                            <option value="{{ $house -> id }}">Saskaita namui : {{ $house -> address }} {{ $house -> house_nr }}  Nr.</option>
                             @endforeach
 
                         </select>

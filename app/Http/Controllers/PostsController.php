@@ -62,11 +62,9 @@ class PostsController extends Controller
         $post->postLink = $urlSave;
         $post->postImage = $fileNameToStore;
         $post->uploadedBy = auth()->user()->id;
-
         $post->save();
         return redirect ('home')->with('mssg', 'Naujas skelbimas sėkmingai išsaugotas');
     }
-
 
 
 
