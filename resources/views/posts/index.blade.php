@@ -4,7 +4,8 @@
 
 @section('content')
     <section>
-        <div ><button class="btn"><a href="{{ route('post.create') }}"> Naujas Skelbimas</a></button></div>
+        <div class="news-container">
+        <button class="btn_medium btn_edit "><a href="{{ route('post.create') }}"> Naujas Skelbimas</a></button></div>
         <div class="news-container">
 
             @foreach($posts as $post)

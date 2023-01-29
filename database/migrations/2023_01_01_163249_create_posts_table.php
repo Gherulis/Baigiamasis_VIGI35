@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('postName');
-            $table->string('postBody');
+            $table->string('postBody','10000');
             $table->string('postLink')->default('nolink');
             $table->string('postImage');
             $table->integer('uploadedBy');

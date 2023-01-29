@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Carbon\Carbon;
-
+use App\Models\User;
 use App\Models\flat;
 use App\Models\declareWater;
 use App\Models\House;
@@ -10,6 +10,7 @@ use App\Models\pricelist;
 use App\Http\Requests\StoreflatRequest;
 use App\Http\Requests\UpdateflatRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FlatController extends Controller
 {
@@ -67,7 +68,7 @@ class FlatController extends Controller
        $flat->gyv_mok_suma=request('gyv_mok_suma');
        $flat-> save();
 
-       return redirect()->route('flat.index')->with('mssg', 'Naujas butas sukurtas');
+       return redirect()->route('flat.index')->with('good_message', 'Dėkui, Jūs sėkmingai sukūrėte naują butą! Linkime gerų kaimynų !');;
     }
 
     /**
@@ -105,7 +106,7 @@ class FlatController extends Controller
         $flat->flat_size = $request ->flat_size;
         $flat->gyv_mok_suma = $request->gyv_mok_suma;
         $flat->save();
-        return redirect()->route('flat.index')->with('mssg_edit', 'Įrašas sėkmingai redaguotas');
+        return redirect()->route('flat.index')->with('good_message', 'Butas sėkmingai redaguotas');
     }
 
     /**
@@ -115,9 +116,17 @@ class FlatController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(flat $flat)
+
     {
-        $flat->delete();
-        return redirect()->route('flat.index');
+       $declarations=DeclareWater::where('flat_id', $flat->id)->get();
+        foreach ($declarations as $declaration)
+        $declaration->softDelete();
+        $users=user::where('flat_id', $flat->id)->get();
+
+        foreach ($users as $user)
+        $user->softDelete();
+        $flat->forceDelete();
+        return redirect()->route('flat.index')->with('good_message', 'Jūs sėkmingai ištrynėte butą!');
         }
 
     public function billsIndex()

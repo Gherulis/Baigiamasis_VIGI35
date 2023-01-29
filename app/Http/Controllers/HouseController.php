@@ -49,7 +49,7 @@ class HouseController extends Controller
                 $house->city = request('city');
                 $house->house_size = request('house_size');
                 $house->save();
-                return redirect()->route('house.index')->with('mssg', 'Naujas namas sėkmingai pridėtas');
+                return redirect()->route('house.index')->with('good_message', 'Naujas namas sėkmingai pridėtas !!! ');
     }
 
     /**
@@ -91,7 +91,7 @@ class HouseController extends Controller
         $house->house_size = $request->house_size;
         $house->save();
 
-        return redirect()->route('house.index')->with('mssg_edit', 'Įrašas sėkmingai redaguotas');
+        return redirect()->route('house.index')->with('good_message', 'Sėkmingai redaguotas namas');
     }
 
     /**
@@ -103,6 +103,6 @@ class HouseController extends Controller
     public function destroy(house $house)
     {
         $house -> delete();
-        return redirect()->route('house.index')->with('mssg_edit', 'Įrašas sėkmingai ištrintas');
+        return redirect()->route('house.index')->with('good_message', 'Dėkui, Jūs sėkmingai ištrynėte namą!');
     }
 }

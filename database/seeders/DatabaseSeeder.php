@@ -20,8 +20,10 @@ class DatabaseSeeder extends Seeder
         ContactsSeeder::class,
         DeclareWaterSeeder::class,
         PricelistSeeder::class,
+        RolesSeeder::class,
+        PermissionSeeder::class,
+        UserSeeder::class,
 
-        // UsersSeeder::class,
 
       ]);
     }

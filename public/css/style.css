@@ -11,6 +11,14 @@
     --btn_edit_hover: linear-gradient(to left, #4c9e6c, #37b356, #51ce2b); /* edit mygtuko hover */
     --btn_show_hover:  linear-gradient(to right, #a89533, #c6ab3d, #f7c500); /* show mygtuko hover */
 }
+#bad_message, #good_message {
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+#bad_message.hide, #good_message.hide {
+    display: none;
+}
 
 .btn_small{
     background:var(--btn-small);
@@ -20,6 +28,9 @@
     border: none;
     border: 1px solid #4c7785;
 
+}
+.active {
+    background-color: #0000;
 }
 .btn_small i {
     padding-right: 0px;
@@ -62,13 +73,30 @@ margin-left: 5px;
     border: none;
     border: 1px solid #4c7785;
     color:  #225465;
+    margin: 5px 0 5px 0;
 
 }
 .btn_medium i {
     padding-right: 5px;
     color: #438196;
 }
+.postShow {padding-top:  20px;}
 
+.btn_large {
+    background:var(--btn-small);
+    height: 3em;
+    width: 50rem;
+    border-radius: 2rem;
+    border: none;
+    border: 1px solid #4c7785;
+    color:  #225465;
+    margin: 5px;
+
+}
+.btn_large i {
+    padding-right: 5px;
+    color: #438196;
+}
 
 * {
     margin: 0;
@@ -179,14 +207,8 @@ select{
     display: flex;
     justify-content: center;
 }
-.nav-link:hover{
-    color:var(--navbar-text-hover);
-    padding-bottom: 6px;
-    border-bottom: solid 2px var(--navbar-box-hover);
-    border-radius: 0 15px 0 15px;
 
-}
-.nav-link:hover i {
+.nav-link:hover i, .active i {
     color:var(--navbar-text-hover);
 }
 /* .right{
@@ -238,7 +260,8 @@ tr td {
     float:right;
 }
 /* END HEADER IMAGE , NAV BAR  */
-
+.left {text-align: left;}
+.right {text-align: right;}
 @media (max-width: 800px) {
 
     /* HEADER NAVBAR, IMG, HAMBURGER */
@@ -299,7 +322,13 @@ tr td {
 /* END HEADER NAVBAR, IMG, HAMBURGER */
 
 
+.nav-link:hover, .active{
+    color:var(--navbar-text-hover);
+    padding-bottom: 6px;
+    border-bottom: solid 2px var(--navbar-box-hover);
+    border-radius: 0 15px 0 15px;
 
+}
 
 
 
@@ -610,7 +639,7 @@ input {
   width: 400px;
   background: white;
   border-radius: 10px;
-  margin-top: 25vh;
+  margin-top: 15vh;
   box-shadow: 5px 5px #23627d47;
 
 

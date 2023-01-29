@@ -1,8 +1,8 @@
 @extends ('includes.layout')
 @section('content')
     <div class="login-form store-form">
-        {{-- <div class="edit-form"> --}}
-        <h3>Redaguoti kainas</h3>
+
+        <h3>Redaguoti sąskaitą : </h3>
 
         <form action="{{ route('pricelist.update', $pricelist) }}" method="post">
             @csrf

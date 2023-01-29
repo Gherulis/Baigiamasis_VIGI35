@@ -27,25 +27,26 @@
             </thead>
             <tbody>
 
-              @foreach ($declareWater as $declareWater )
+              @foreach ($declareWater as $declare )
                   <tr>
-                    <td>{{$declareWater->formatedDate}}</td>
-                    <td> Butas Nr.{{$declareWater->flat_id}}</td>
-                    <td>{{$declareWater->kitchen_cold}} m<sup>3</sup></td>
-                    <td>{{$declareWater->kitchen_hot}} m<sup>3</sup></td>
-                    <td>{{$declareWater->bath_cold}} m<sup>3</sup></td>
-                    <td>{{$declareWater->bath_hot}} m<sup>3</sup></td>
-                    <td>{{$declareWater->declaredBy}}</td>
+                    <td>{{$declare->formatedDate}}</td>
+                    <td> Butas Nr.{{$declare->flat_id}}</td>
+                    <td>{{$declare->kitchen_cold}} m<sup>3</sup></td>
+                    <td>{{$declare->kitchen_hot}} m<sup>3</sup></td>
+                    <td>{{$declare->bath_cold}} m<sup>3</sup></td>
+                    <td>{{$declare->bath_hot}} m<sup>3</sup></td>
+                    <td>{{$declare->declaredBy}}</td>
 
                     <td>
-                        <a href="{{route('declare.show', $declareWater)}}"><button class="btn_small btn_show"  type="submit"><i class="fa-regular fa-eye"></i></button></a>
-                        <a href="{{route('declare.edit', $declareWater)}}"><button class="btn_small btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
-                        <a href="{{route('declare.destroy', $declareWater)}}"><button class="btn_small btn_delete"  type="submit"><i class="fa-solid fa-trash-can"></i></button></a>
+                        <a href="{{route('declare.show', $declare)}}"><button class="btn_small btn_show"  type="submit"><i class="fa-regular fa-eye"></i></button></a>
+                        <a href="{{route('declare.edit', $declare)}}"><button class="btn_small btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
+                        <a href="{{route('declare.destroy', $declare)}}"><button class="btn_small btn_delete"  type="submit"><i class="fa-solid fa-trash-can"></i></button></a>
                     </td>
                   </tr>
               @endforeach
             </tbody>
         </table>
+        <div class="center" >{{$declareWater->appends(\Request::except('page'))->links()}}  </div>
     </div>
 
 @endsection

@@ -14,7 +14,7 @@
                 <tr>
                     <th colspan='6'><p class="mssg">{{session('mssg')}}{{session('mssg_edit')}}</p></th>
 
-                    <th colspan="2"><a href="{{route('contacts.create')}}"><button class="btn_medium btn_create"><i class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
+                    <th colspan="2"><a href="{{route('flat.create')}}"><button class="btn_medium btn_create"><i class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
 
 
 
@@ -46,9 +46,12 @@
                                     <a href="{{route('flat.edit',$butas)}}">
                                         <button class="btn_small btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button>
                                     </a>
+
                                     <form action="{{route('flat.destroy',$butas)}}" method="POST">
                                         @csrf
-                                        <button class="btn_small btn_delete" value="submit"><i class="fa-solid fa-trash-can red"></i></button>
+                                        <button data-title="{{ $butas }}" type="button" class="btn_small btn_delete" data-bs-toggle="modal" data-bs-target="#exampleModal" value="{{ $butas }}">
+                                            <i class="fa-solid fa-trash-can red"></i>
+                                          </button>
                                     </form>
                                 </div>
                             </td>
@@ -67,5 +70,5 @@
         </table>
         <div class="center">{{$flat->appends(\Request::except('page'))->links()}} </div>
     </div>
-
+    @extends('flat.modals')
 @endsection

@@ -12,9 +12,9 @@
             <thead>
 
                 <tr>
-                    <th colspan='4'><p class="mssg">{{session('mssg')}}{{session('mssg_edit')}}</p></th>
+                    <th colspan='6'><p class="mssg">{{session('mssg')}}{{session('mssg_edit')}}</p></th>
 
-                    <th><a href="{{route('contacts.create')}}"><button class="btn_medium btn_edit"><i class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
+
 
 
 
@@ -23,8 +23,9 @@
                 <th>ID</th>
                 <th><i class="fa-solid fa-person"></i>Vardas</th>
                 <th><i class="fa-regular fa-envelope"></i>El.Pastas</th>
-                <th><i class="fa-solid fa-mobile-screen-button"></i>Buto Nr.</th>
-                <th><i class="fa-solid fa-mobile-screen-button"></i>Veiksmai</th>
+                <th><i class="fa-solid fa-house"></i>Adresas</th>
+                <th><i class="fa-solid fa-suitcase"></i>Buto Nr.</th>
+                <th><i class="fa-solid fa-plane"></i>Veiksmai</th>
                 </tr>
 
 
@@ -39,12 +40,18 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
+                            <td>{{ $user->usersFlat->belongsHouse->address }} g. {{ $user->usersFlat->belongsHouse->house_nr }}</td>
                             <td>Butas : {{$user->flat_id}}</td>
                             <td >
-
+                                <div class="flex-container">
                                 <a href="{{route('user.show', $user)}}"><button class="btn_small btn_show" type="submit"><i class="fa-regular fa-eye"></i></button></a>
                                 <a href="{{route('user.edit', $user)}}"><button class="btn_small btn_edit" type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
 
+                                <form action="{{route('user.destroy',$user)}}" method="POST">
+                                    @csrf
+                                    <button class="btn_small btn_delete" value="submit"><i class="fa-solid fa-trash-can red"></i></button>
+                                </form>
+                            </div>
                             </td>
 
 
@@ -61,5 +68,6 @@
         </table>
 
     </div>
+
 
 @endsection

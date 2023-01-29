@@ -12,6 +12,8 @@ use App\Http\Controllers\FlatController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InvoicesController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -90,40 +92,41 @@ Route::post('/contacts/destroy/{contact}', [ContactsController::class, 'destroy'
 Route::prefix('declare')->group(function(){
 Route::get('/index', [DeclareWaterController::class, 'index'])->name('declare.index')->middleware('auth');
 Route::get('/index/month', [DeclareWaterController::class, 'indexByMonth'])->name('month.index')->middleware('auth');
-Route::get('/edit', [DeclareWaterController::class, 'edit'])->name('declare.edit')->middleware('auth');
+Route::get('/edit/{declareWater}', [DeclareWaterController::class, 'edit'])->name('declare.edit')->middleware('auth');
 Route::get('/show', [DeclareWaterController::class, 'show'])->name('declare.show')->middleware('auth');
 Route::get('/create', [DeclareWaterController::class, 'create'])->name('declare.create')->middleware('auth');
 Route::post('/store', [DeclareWaterController::class, 'store'])->name('declare.store')->middleware('auth');
-Route::post('/destroy/{contact}', [DeclareWaterController::class, 'destroy'])->name('declare.destroy')->middleware('auth');
+Route::post('/destroy/{declareWater}', [DeclareWaterController::class, 'destroy'])->name('declare.destroy')->middleware('auth');
 Route::get('/index/flat', [DeclareWaterController::class, 'indexFlat'])->name('declare.indexFlat')->middleware('auth');
+Route::post('/update/{declareWater}', [DeclareWaterController::class, 'update'])->name('declare.update')->middleware('auth');
 });
 
 Route::prefix('user')->group(function(){
     Route::get('/index', [UserController::class, 'index'])->name('user.index')->middleware('auth');
-    Route::get('/show', [UserController::class, 'show'])->name('user.show');
-    Route::get('/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+    Route::get('/show', [UserController::class, 'show'])->name('user.show')->middleware('auth');
+    Route::get('/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware('auth');
     Route::post('/update/{user}', [UserController::class, 'update'])->name('user.update')->middleware('auth');
-    Route::post('/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+    Route::post('/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('auth');
 });
 Route::prefix('flat')->group(function(){
-    Route::get('/index', [FlatController::class, 'index'])->name('flat.index');
+    Route::get('/index', [FlatController::class, 'index'])->name('flat.index')->middleware('auth');
 
-    Route::get('/show', [FlatController::class, 'show'])->name('flat.show');
-    Route::get('/edit/{flat}', [FlatController::class, 'edit'])->name('flat.edit');
-    Route::get('/create', [FlatController::class, 'create'])->name('flat.create');
-    Route::post('/store', [FlatController::class, 'store'])->name('flat.store');
-    Route::post('/destroy/{flat}', [FlatController::class, 'destroy'])->name('flat.destroy');
+    Route::get('/show', [FlatController::class, 'show'])->name('flat.show')->middleware('auth');
+    Route::get('/edit/{flat}', [FlatController::class, 'edit'])->name('flat.edit')->middleware('auth');
+    Route::get('/create', [FlatController::class, 'create'])->name('flat.create')->middleware('auth');
+    Route::post('/store', [FlatController::class, 'store'])->name('flat.store')->middleware('auth');
+    Route::post('/destroy/{flat}', [FlatController::class, 'destroy'])->name('flat.destroy')->middleware('auth');
     Route::post('/update/{flat}', [FlatController::class, 'update'])->name('flat.update')->middleware('auth');
 
 
 });
 Route::prefix('house')->group(function(){
-    Route::get('/index', [HouseController::class, 'index'])->name('house.index');
-    Route::get('/show', [HouseController::class, 'show'])->name('house.show');
-    Route::get('/edit/{house}', [HouseController::class, 'edit'])->name('house.edit');
-    Route::get('/create', [HouseController::class, 'create'])->name('house.create');
-    Route::post('/store', [HouseController::class, 'store'])->name('house.store');
-    Route::post('/destroy/{house}', [HouseController::class, 'destroy'])->name('house.destroy');
+    Route::get('/index', [HouseController::class, 'index'])->name('house.index')->middleware('auth');
+    Route::get('/show', [HouseController::class, 'show'])->name('house.show')->middleware('auth');
+    Route::get('/edit/{house}', [HouseController::class, 'edit'])->name('house.edit')->middleware('auth');
+    Route::get('/create', [HouseController::class, 'create'])->name('house.create')->middleware('auth');
+    Route::post('/store', [HouseController::class, 'store'])->name('house.store')->middleware('auth');
+    Route::post('/destroy/{house}', [HouseController::class, 'destroy'])->name('house.destroy')->middleware('auth');
     Route::post('/update/{house}', [HouseController::class, 'update'])->name('house.update')->middleware('auth');
 
 });
@@ -148,34 +151,54 @@ Route::prefix('house')->group(function(){
 //   <<<   contacts routes >>>
 
 
-Route::get('/main',[PostsController::class, 'index'])->name('home');
+Route::get('/main',[PostsController::class, 'index'])->name('home')->middleware('auth');
 
-Route::get('/pricelist/index/', [PricelistController::class, 'index',])->name('pricelist.index');
-Route::get('pricelist/create', [PricelistController::class, 'create'])->name('pricelist.create');
-Route::post('/pricelist/create', [PricelistController::class, 'store'])->name('pricelist.store');
-Route::get('pricelist/{pricelist}', [PricelistController::class, 'show']);
-Route::get('pricelist/price/{pricelist}', [PricelistController::class, 'showPrices'])->name('pricelist.showPrices');
-Route::post('/pricelist/{pricelist}', [PricelistController::class, 'update'])->name('pricelist.update');
+Route::get('/pricelist/index/', [PricelistController::class, 'index',])->name('pricelist.index')->middleware('auth');
+Route::get('pricelist/create', [PricelistController::class, 'create'])->name('pricelist.create')->middleware('auth');
+Route::post('/pricelist/create', [PricelistController::class, 'store'])->name('pricelist.store')->middleware('auth');
+Route::get('pricelist/{pricelist}', [PricelistController::class, 'show'])->middleware('auth');
+Route::get('pricelist/price/{pricelist}', [PricelistController::class, 'showPrices'])->name('pricelist.showPrices')->middleware('auth');
+Route::post('/pricelist/{pricelist}', [PricelistController::class, 'update'])->name('pricelist.update')->middleware('auth');
 Route::get('/pricelist/edit/{pricelist}', [PricelistController::class, 'edit'])->name('pricelist.edit')->middleware('auth');
-Route::get('pricelist/lastbill/{pricelist}', [PricelistController::class, 'lastBill'])->name('pricelist.lastbill');
+Route::get('pricelist/lastbill/{pricelist}', [PricelistController::class, 'lastBill'])->name('pricelist.lastbill')->middleware('auth');
+Route::post('/pricelist/destroy/{pricelist}', [PricelistController::class, 'destroy'])->name('pricelist.delete')->middleware('auth');
 
-
-Route::get('/home', [PostsController::class, 'index'])->name('posts.index');
-Route::get('posts/newpost', [PostsController::class, 'create'])->name('post.create');
+Route::get('/home', [PostsController::class, 'index'])->name('posts.index')->middleware('auth');
+Route::get('posts/newpost', [PostsController::class, 'create'])->name('post.create')->middleware('auth');
 Route::post('posts/store', [PostsController::class, 'store'])->name('post.store')->middleware('auth');
-Route::get('posts/{posts}', [PostsController::class, 'show'])->name('post.show');
-Route::get('/post/edit/{posts}', [PostsController::class, 'edit'])->name('post.edit');
-Route::post('/post/update/{posts}', [PostsController::class, 'update'])->name('post.update');
-Route::post('/post/destroy/{posts}', [PostsController::class, 'destroy'])->name('post.delete');
+Route::get('posts/{posts}', [PostsController::class, 'show'])->name('post.show')->middleware('auth');
+Route::get('/post/edit/{posts}', [PostsController::class, 'edit'])->name('post.edit')->middleware('auth');
+Route::post('/post/update/{posts}', [PostsController::class, 'update'])->name('post.update')->middleware('auth');
+Route::post('/post/destroy/{posts}', [PostsController::class, 'destroy'])->name('post.delete')->middleware('auth');
 Auth::routes();
 
 Route::prefix('invoices')->group(function(){
 
-    Route::get('/index', [InvoicesController::class, 'index'])->name('invoices.index');
-    Route::get('/indexFlat', [InvoicesController::class, 'indexFlat'])->name('invoices.indexFlat');
-    Route::get('/create', [InvoicesController::class, 'create'])->name('invoices.create');
-    Route::post('/store', [InvoicesController::class, 'store'])->name('invoices.store');
-    Route::get('bills/index', [InvoicesController::class, 'show'])->name('bills.index');
-    Route::get('bills/index/last', [InvoicesController::class, 'showLast'])->name('bills.indexLast');
+    Route::get('/index', [InvoicesController::class, 'index'])->name('invoices.index')->middleware('auth');
+    Route::get('/indexFlat', [InvoicesController::class, 'indexFlat'])->name('invoices.indexFlat')->middleware('auth');
+    Route::get('/create', [InvoicesController::class, 'create'])->name('invoices.create')->middleware('auth');
+    Route::post('/store', [InvoicesController::class, 'store'])->name('invoices.store')->middleware('auth');
+    Route::get('bills/index', [InvoicesController::class, 'show'])->name('bills.index')->middleware('auth');
+    Route::get('bills/index/last', [InvoicesController::class, 'showLast'])->name('bills.indexLast')->middleware('auth');
 
+
+
+});
+Route::prefix('permissions')->group(function(){
+    Route::get('/', [PermissionController::class, 'index'])->name('permissions.index')->middleware('auth');
+    Route::get('/create', [PermissionController::class, 'create'])->name('permissions.create')->middleware('auth');
+    Route::post('/store', [PermissionController::class, 'store'])->name('permissions.store')->middleware('auth');
+    Route::get('/show/{id}', [PermissionController::class, 'show'])->name('permissions.show')->middleware('auth');
+    Route::get('/edit/{id}', [PermissionController::class, 'edit'])->name('permissions.edit')->middleware('auth');
+    Route::post('/update/{id}', [PermissionController::class, 'update'])->name('permissions.update')->middleware('auth');
+    Route::post('/destroy/{id}', [PermissionController::class, 'destroy'])->name('permissions.destroy')->middleware('auth');
+});
+Route::prefix('roles')->group(function(){
+    Route::get('/', [RoleController::class, 'index'])->name('roles.index')->middleware('auth');
+    Route::get('/create', [RoleController::class, 'create'])->name('roles.create')->middleware('auth');
+    Route::post('/store', [RoleController::class, 'store'])->name('roles.store')->middleware('auth');
+    Route::get('/show/{id}', [RoleController::class, 'show'])->name('roles.show')->middleware('auth');
+    Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('roles.edit')->middleware('auth');
+    Route::post('/update/{id}', [RoleController::class, 'update'])->name('roles.update')->middleware('auth');
+    Route::post('/destroy/{id}', [RoleController::class, 'destroy'])->name('roles.destroy')->middleware('auth');
 });

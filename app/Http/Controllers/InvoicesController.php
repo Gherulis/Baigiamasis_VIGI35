@@ -84,7 +84,7 @@ class InvoicesController extends Controller
             $invoice->save();
 
         }
-        return redirect()->route('house.index', ['invoicesData'=>$invoicesData]);
+        return redirect()->route('house.index', ['invoicesData'=>$invoicesData])->with('good_message', 'Dėkui, Jūs sėkmingai pateikėte sąskaitą');
     }
 
 
@@ -110,9 +110,19 @@ class InvoicesController extends Controller
     public function show(invoices $invoices)
     {
         $lastInvoice = invoices::where('flat_id', Auth::user()->flat_id)->orderBy('created_at', 'desc')->first();
-        $suma=$lastInvoice->sum = $lastInvoice->saltas_vanduo + $lastInvoice->karstas_vanduo + $lastInvoice->sildymas + $lastInvoice->silumos_mazg_prieziura+$lastInvoice->gyvatukas+
+
+        if(!$lastInvoice){
+            return redirect()->route('posts.index')->with('bad_message','Paskutinė saskaita nerasta');
+        } else {
+            $suma=$lastInvoice->sum = $lastInvoice->saltas_vanduo + $lastInvoice->karstas_vanduo + $lastInvoice->sildymas + $lastInvoice->silumos_mazg_prieziura+$lastInvoice->gyvatukas+
         $lastInvoice->salto_vandens_abon+$lastInvoice->elektra_bendra+$lastInvoice->ukio_islaid+$lastInvoice->nkf-$lastInvoice->kompensacija+$lastInvoice->skola-$lastInvoice->permoka
         +$lastInvoice->delspinigiai;
+        }
+
+
+
+
+
 
         return view ('flat.bill_index',['lastInvoice'=>$lastInvoice, 'suma'=>$suma]);
     }

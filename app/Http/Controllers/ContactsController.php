@@ -56,7 +56,7 @@ $request->validate([
         $contacts->tel = request('phone');
 
         $contacts->save();
-        return redirect ('contacts/index')->with('mssg', 'Naujas kontaktas sėkmingai pridėtas');
+        return redirect ('contacts/index')->with('good_message', 'Naujas kontaktas sėkmingai pridėtas');
     }
 
     /**
@@ -99,7 +99,7 @@ $request->validate([
         $contacts->pastas = $request->email;
         $contacts->tel = $request->phone;
         $contacts->save();
-        return redirect()->route('contacts.index')->with('mssg_edit', 'Įrašas sėkmingai redaguotas');
+        return redirect()->route('contacts.index')->with('good_message', 'Kontaktas sėkmingai redaguotas');
     }
 
     /**
@@ -114,7 +114,7 @@ $request->validate([
         // $contacts->delete();
         // return redirect ('contacts');
         $contact->delete();
-        return redirect()->route('contacts.index');
+        return redirect()->route('contacts.index')->with('good_message', 'Kontaktas sėkmingai ištrintas');
         }
 
 

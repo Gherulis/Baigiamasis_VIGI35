@@ -9,10 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\flat;
 use Kyslik\ColumnSortable\Sortable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, Sortable;
+    use HasApiTokens, HasFactory, Notifiable, Sortable, HasRoles;
     public $sortable = ['id','name','email','flat_id','created_at',];
 
 

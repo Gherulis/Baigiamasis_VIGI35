@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\House;
 use App\Models\flat;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 //Adresas
 //kai reikia kintamuju
 //use App\Models\Adresas;
@@ -21,7 +23,8 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function index(){
-        $user = User::all();
+
+        $user = User::with('usersFlat.belongsHouse')->get();
 
 
         return view('user.index',['user' => $user ]);
@@ -40,12 +43,30 @@ public function show(){
 
         return view('user.show', ['flats' => $flats]);
     }
+    public function create(){
 
+             return view('user.create');
+    }
+    public function store(){
+
+        $user = new User();
+        $user -> name = $request->name;
+        $user -> email = $request->email;
+        $user -> password = Hash::make($request->password);
+        $user -> save();
+
+        $user->assignRole($request->role);
+        return redirect()->route('user.index');
+
+
+
+        return view('user.show', ['flats' => $flats]);
+    }
     public function destroy(user $user)
     {
 
         $user->delete();
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('good_message', 'Vartotojas sėkmingai ištrintas!');;
 }
 public function edit(user $user)
     {
@@ -60,7 +81,7 @@ public function edit(user $user)
         $user->email = $request->email;
 
         $user->save();
-        return redirect()->route('user.index')->with('mssg_edit', 'Įrašas sėkmingai redaguotas');
+        return redirect()->route('user.index')->with('good_message', 'Vartotojas sėkmingai redaguotas!');;
     }
 
 }

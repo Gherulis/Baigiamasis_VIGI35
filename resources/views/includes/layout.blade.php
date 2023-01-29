@@ -42,7 +42,7 @@
 
                             </li>
                             <li><a class="nav-link" href="{{ route('invoices.index') }}"><i
-                                class="fa-solid fa-money-check-dollar icon"></i>B. Saskaitos</a></li>
+                                class="fa-solid fa-key"></i>B. Saskaitos</a></li>
                             <li><a class="nav-link" href="{{ route('user.index') }}"><i class="fa-solid fa-person"></i>Gyventojai</a></li>
                             <li><a class="nav-link" href="{{ route('flat.index') }}"><i class="fa-solid fa-suitcase"></i>Butai</a></li>
                             <li><a class="nav-link" href="{{ route('house.index') }}"><i class="fa-solid fa-house"></i>Namai</a></li>
@@ -52,11 +52,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('posts.index') }}" class="nav-link"><i class="fa-regular fa-comment icon"></i>Naujienos</a>
+                        <a href="{{ route('posts.index') }}" class="nav-link {{ Request::is('home') ? 'active':'' }}"><i class="fa-regular fa-comment icon"></i>Naujienos</a>
 
                     </li>
                     <li id="dropDown" class="nav-item ">
-                        <a href="{{ route('declare.index') }}" class="nav-link"><i class="fa-solid fa-faucet"></i></i>Deklaravimas</a>
+                        <a href="{{ route('declare.index') }}" class="nav-link {{ Request::is('declare/index') ? 'active':'' }}"><i class="fa-solid fa-faucet"></i></i>Deklaravimas</a>
                         <ul class="dropDown">
                             <li><a class="nav-link" href="{{ route('declare.create') }}"><i class="fa-solid fa-faucet"></i></i>Deklaruok</a></li>
                             <li><a class="nav-link" href="{{ route('declare.indexFlat') }}"><i class="fa-solid fa-faucet"></i></i>Istorija</a></li>
@@ -66,7 +66,7 @@
                     </li>
 
                     <li class="nav-item ">
-                        <a href="{{ route('pricelist.index') }}" class="nav-link"><i
+                        <a href="{{ route('pricelist.index') }}" class="nav-link {{ Request::is('pricelist/index') ? 'active':'' }}"><i
                                 class="fa-solid fa-money-check-dollar icon"></i>Sąskaitos</a>
                         <ul class="dropDown">
                             <li><a class="nav-link" href="{{ route('bills.index') }}"><i
@@ -79,7 +79,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('contacts.index') }}" class="nav-link"><i
+                        <a href="{{ route('contacts.index') }}" class="nav-link {{ Request::is('contacts/index') ? 'active':'' }}"><i
                                 class="fa-solid fa-address-book icon"></i>Kontaktai</a>
 
                     </li>
@@ -92,10 +92,12 @@
                 <ul>
 
                     <li><a href="#" class="nav-link right"><i
-                                class="fa-solid fa-right-from-bracket icon iconDark logout"></i>{{ Auth::user()->name }}</a>
+                                class="fa-solid fa-right-from-bracket icon iconDark logout"></i>{{ Auth::user()->name }} </a>
                         <ul class="dropDown">
                             <li><a class="nav-link" href="{{ route('user.show') }}"><i class="fa-solid fa-face-smile"></i>Apie Mane</a></li>
                             <li><a class="nav-link" href="{{ route('house.index') }}"><i class="fa-solid fa-house"></i>Apie Nama</a></li>
+                            <li><a class="nav-link" href="{{ route('roles.index') }}"><i class="fa-solid fa-palette"></i>Roles</a></li>
+                            <li><a class="nav-link" href="{{ route('permissions.index') }}"><i class="fa-solid fa-scale-balanced"></i>Leidimai</a></li>
                             <li><a class="nav-link" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"><i
@@ -110,13 +112,22 @@
                 <script src="{{ asset('js/hamburger.js') }}" defer></script>
             </nav>
         </div>
+        @if (session()->has('bad_message'))
+        <div id="bad_message" class="message_show alert alert-danger"><i class="fa-regular fa-face-frown-open alert-danger"></i> {{ session()->get('bad_message') }}</div>
+    @endif
+    @if (session()->has('good_message'))
+    <div id="good_message" class="message_show alert alert-success"><i class="fa-regular fa-face-grin-wide alert-success"></i> {{ session()->get('good_message') }}</div>
+@endif
     </header>
+
 
     @yield('content')
     <footer>
         <div class="copyright"><small> Copyright &copy;TG 2022 PAGE IS UNDER CONSTRUCTION</small></div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{{ asset('js/message_show.js') }}"></script>
 
 
 

@@ -12,9 +12,9 @@
             <thead>
 
                 <tr>
-                    <th colspan='3'><p class="mssg">{{session('mssg')}}{{session('mssg_edit')}}</p></th>
 
-                    <th><a href="{{route('contacts.create')}}"><button class="btn_medium btn_create"><i class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
+
+                    <th colspan="4" class="right"><a href="{{route('contacts.create')}}"><button class="btn_medium btn_create"><i class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
 
 
 

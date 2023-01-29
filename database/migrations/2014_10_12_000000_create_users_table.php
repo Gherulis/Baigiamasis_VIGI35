@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->unsignedBigInteger('flat_id')->default('1');
+            $table->unsignedBigInteger('flat_id')->default('1')->nullable();
 
             $table->foreign('flat_id')->references('id')->on('flats');
 

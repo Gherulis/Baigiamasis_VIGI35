@@ -32,7 +32,7 @@ class DeclareWaterController extends Controller
 
         $flatController = new FlatController;
 
-        $declareWater = declareWater::sortable()->get();
+        $declareWater = declareWater::sortable()->orderBy('created_at','desc')->paginate(30);
 
         foreach($declareWater as $listitem) {
             // $year = Carbon::parse($listitem->created_at)->format('Y');
@@ -85,20 +85,24 @@ class DeclareWaterController extends Controller
 
         $declareWater = new declareWater ();
 
-        $declareWater->flat_id = request('flat_id');
-        $declareWater->kitchen_cold =request('kitchen_cold');
-        $declareWater->kitchen_cold_usage =request('kitchen_cold') - request('kitchen_cold_before');
-        $declareWater->kitchen_hot = request('kitchen_hot');
-        $declareWater->kitchen_hot_usage = request('kitchen_hot') - request('kitchen_hot_before');
-        $declareWater->bath_cold = request('bath_cold');
-        $declareWater->bath_cold_usage = request('bath_cold') - request('bath_cold_before');
-        $declareWater->bath_hot = request('bath_hot');
-        $declareWater->bath_hot_usage = request('bath_hot') - request('bath_hot_before');
-        $declareWater->declaredBy = request('declaredBy');
-        $declareWater->save();
 
-        return redirect ('declare/index/flat')->with('mssg', 'Sėkmingai pridėta!');
+        $declareWater->flat_id = request('flat_id');
+        $declareWater->kitchen_cold = $kitchen_cold =request('kitchen_cold');
+        $declareWater->kitchen_cold_usage =$kitchen_cold_usage=$kitchen_cold - request('kitchen_cold_before');
+        $declareWater->kitchen_hot =$kitchen_hot= request('kitchen_hot');
+        $declareWater->kitchen_hot_usage = $kitchen_hot_usage =$kitchen_hot- request('kitchen_hot_before');
+        $declareWater->bath_cold = $bath_cold= request('bath_cold');
+        $declareWater->bath_cold_usage = $bath_cold_usage= $bath_cold - request('bath_cold_before');
+        $declareWater->bath_hot = $bath_hot= request('bath_hot');
+        $declareWater->bath_hot_usage =$bath_hot_usage=$bath_hot - request('bath_hot_before');
+        $declareWater->declaredBy = request('declaredBy');
+        if($kitchen_cold_usage <0 || $kitchen_hot_usage <0 || $bath_hot_usage <0 || $bath_cold_usage <0 ){
+            return redirect (route('declare.create'))->with('bad_message', 'Oooops Skirtumas negali būti neigiamas');
+        } else {
+        $declareWater->save();
+        return redirect ('declare/index/flat')->with('good_message', 'Dėkui, Jūs sėkmingai deklaravote rodmenis!');}
     }
+
 
     /**
      * Display the specified resource.
@@ -129,7 +133,7 @@ class DeclareWaterController extends Controller
      */
     public function edit(declareWater $declareWater)
     {
-        //
+        return view('declare.edit', ['declareWater' => $declareWater]);
     }
 
     /**
@@ -141,7 +145,37 @@ class DeclareWaterController extends Controller
      */
     public function update(UpdatedeclareWaterRequest $request, declareWater $declareWater)
     {
-        //
+        // skaiciuoju skirtumus suvartojimu jei daromas update
+        $kitchen_cold_before = $declareWater->kitchen_cold;
+        $kitchen_cold_now = $request ->kitchen_cold;
+        $kitchen_cold_diference = $kitchen_cold_now - $kitchen_cold_before;
+        $kitchen_cold_usage = $declareWater->kitchen_hot_usage+$kitchen_cold_diference;
+        $kitchen_hot_before = $declareWater->kitchen_hot;
+        $kitchen_hot_now = $request ->kitchen_hot;
+        $kitchen_hot_diference = $kitchen_hot_now - $kitchen_hot_before;
+        $kitchen_hot_usage = $declareWater->kitchen_hot_usage+$kitchen_hot_diference;
+
+        $bath_cold_before = $declareWater->bath_cold;
+        $bath_cold_now = $request ->bath_cold;
+        $bath_cold_diference = $bath_cold_now - $bath_cold_before;
+        $bath_cold_usage = $declareWater->bath_hot_usage+$bath_cold_diference;
+        $bath_hot_before = $declareWater->bath_hot;
+        $bath_hot_now = $request ->bath_hot;
+        $bath_hot_diference = $bath_hot_now - $bath_hot_before;
+        $bath_hot_usage = $declareWater->bath_hot_usage+$bath_hot_diference;
+
+        $declareWater->kitchen_cold =  $kitchen_cold_now;
+        $declareWater->kitchen_hot = $request->kitchen_hot;
+        $declareWater->bath_cold = $request->bath_cold;
+        $declareWater->bath_hot = $request->bath_hot;
+        $declareWater->declaredBy = Auth::user()->name ;
+        $declareWater->kitchen_cold_usage=$kitchen_cold_usage;
+        $declareWater->kitchen_hot_usage=$kitchen_hot_usage;
+        $declareWater->bath_cold_usage=$bath_cold_usage;
+        $declareWater->bath_hot_usage=$bath_hot_usage;
+
+        $declareWater->update();
+        return redirect()->route('declare.indexFlat')->with('good_message', 'Sėkmingai redaguoti rodmenys');
     }
 
     /**
@@ -152,7 +186,8 @@ class DeclareWaterController extends Controller
      */
     public function destroy(declareWater $declareWater)
     {
-        //
+        $declareWater->delete();
+        return view ('declareWater.index')->with('good_message', 'Deklaracija sėkmingai ištrinta');;
     }
     public function calculate(Request $request)
 {
@@ -171,13 +206,11 @@ public function indexFlat()
 {
 
     {    $flatController = new FlatController;
-    $declareWater = declareWater::where('flat_id', Auth::user()->flat_id)
-    ->orderBy('id', 'desc')
-    ->get();
 
-    $declareWater = declareWater::where('flat_id', Auth::user()->flat_id)
+
+    $declareWater = declareWater::sortable()->where('flat_id', Auth::user()->flat_id)
     ->orderBy('created_at', 'desc')
-    ->get();
+    ->paginate(25);
 
     foreach($declareWater as $listitem) {
 

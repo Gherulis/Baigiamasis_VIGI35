@@ -100,7 +100,7 @@ class PricelistController extends Controller
         $nkf = request('nkf');
 
         $userFlat = Auth::user()->flat_id;
-        $houseNr ='2';//reikes perdaryti i request kuriam namui bus skirta saskaita
+        $houseNr =$house_id;//reikes perdaryti i request kuriam namui bus skirta saskaita
         $flat_count = flat::where('house_id',$houseNr)->count('flat_nr');    //suzinau kiek name yra butu (30);
         $flat_total_sq_m = flat::where('house_id',$houseNr)->sum('flat_size');   // suzinau bendra butu kvadratura viso namo !!!
         $gyv_mok_suma_total = flat::where('house_id',$houseNr)->sum('gyv_mok_suma');  //suzinau bendra procenta kiek visi moka uz gyvatuka
@@ -159,7 +159,7 @@ class PricelistController extends Controller
         $pricelist->nkf_price  =  $nkf/$flat_total_sq_m; // padalinu is bendros butu kvadraturos
 
         $pricelist->save();
-        return redirect()->route('invoices.create');
+        return redirect()->route('invoices.create')->with('good_message', 'Jūs sėkmingai sukūrėte saskaitą!');;
 
 
 
@@ -212,7 +212,7 @@ class PricelistController extends Controller
         $pricelist->nkf = $request->nkf;
 
         $pricelist->save();
-        return redirect()->route('pricelist.index')->with('mssg_edit', 'Įrašas sėkmingai redaguotas');
+        return redirect()->route('pricelist.index')->with('good_message', 'Įrašas sėkmingai redaguotas!');;
     }
 
     /**

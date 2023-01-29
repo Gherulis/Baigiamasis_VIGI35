@@ -45,6 +45,8 @@ class PostsController extends Controller
             $extension = $request->file('postImage')->getClientOriginalExtension();
             $fileNameToStore=$fileName.'_'.time().'.'.$extension;
             $path = $request->file('postImage')->storeAs('public/cover_images',$fileNameToStore);
+
+            $name = $fileNameToStore;
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -63,7 +65,7 @@ class PostsController extends Controller
         $post->postImage = $fileNameToStore;
         $post->uploadedBy = auth()->user()->id;
         $post->save();
-        return redirect ('home')->with('mssg', 'Naujas skelbimas sėkmingai išsaugotas');
+        return redirect ('home')->with('good_message', 'Dėkui, Jūs sėkmingai pasidalinote naujiena!');;
     }
 
 
@@ -125,7 +127,7 @@ class PostsController extends Controller
 
         $posts->uploadedBy = auth()->user()->id;
         $posts->save();
-        return redirect ('home')->with('mssg', 'Skelbimas sėkmingai redaguotas');
+        return redirect ('home')->with('good_message', 'Jūs sėkmingai redagavote įrasą!');
     }
 
     /**
@@ -137,7 +139,7 @@ class PostsController extends Controller
     public function destroy(posts $posts)
     {
         $posts->delete();
-        return redirect('home');
+        return redirect('home')->with('good_message', 'Jūs sėkmingai ištrynėte įrasą!');
         }
     }
 
