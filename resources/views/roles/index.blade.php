@@ -41,13 +41,13 @@
 
                             <td >
                                 <div class="flex-container">
-
+                                {{-- @can('role-show') --}}
                                 <a href="{{route('roles.show', $role->id)}}"><button class="btn_small btn_show" type="submit"><i class="fa-regular fa-eye"></i></button></a>
-
-                                {{-- @can('roles-edit') --}}
-                                <a href="{{route('roles.edit', $role->id)}}"><button class="btn_small btn_edit" type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
                                 {{-- @endcan --}}
-                                @can('roles-delete')
+                                @can('role-edit')
+                                <a href="{{route('roles.edit', $role->id)}}"><button class="btn_small btn_edit" type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
+                                @endcan
+                                @can('role-delete')
                                 <form action="{{route('roles.destroy',$role->id)}}" method="POST">
                                     @csrf
                                     <button class="btn_small btn_delete" value="submit"><i class="fa-solid fa-trash-can red"></i></button>

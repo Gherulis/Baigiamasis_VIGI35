@@ -49,7 +49,7 @@
 
                                     <form action="{{route('flat.destroy',$butas)}}" method="POST">
                                         @csrf
-                                        <button data-title="{{ $butas }}" type="button" class="btn_small btn_delete" data-bs-toggle="modal" data-bs-target="#exampleModal" value="{{ $butas }}">
+                                        <button data-title="{{ $butas }}" type="submit" class="btn_small btn_delete" data-bs-toggle="modal" data-bs-target="#exampleModal" value="{{ $butas }}">
                                             <i class="fa-solid fa-trash-can red"></i>
                                           </button>
                                     </form>

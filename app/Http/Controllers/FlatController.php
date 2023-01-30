@@ -130,18 +130,6 @@ class FlatController extends Controller
         }
 
     public function billsIndex()
-    // gauti paskutine vandens deklarcija pagal vartotoja
-    //is jos minusuoti pries paskutines vandens deklaracijos rodmenis pagal vartotoja
-    //pasiimti namo duomenis
-    //suskaiciuoti butus is namo valdiklio
-    //gauti bendra namo kvadratura
-    //pasidaryti mokama procenta kadangi ne visi moka vienodai del kompensaciju
-    //gauti kainas uz kv.m
-    //pasiimti permokas
-    //pasiimti skolas
-    //atvaizduoti kiekviena eilute
-    //visa tai turi veikti pasirenkant menesi
-    //Hmmm ? idomuuuu
 
 
 {

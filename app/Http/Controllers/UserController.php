@@ -8,6 +8,7 @@ use App\Models\House;
 use App\Models\flat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 //Adresas
 //kai reikia kintamuju
@@ -24,7 +25,7 @@ class UserController extends Controller
 {
     public function index(){
 
-        $user = User::with('usersFlat.belongsHouse')->get();
+        $user = User::where('id', '!=', auth()->user()->id)->where('id', '!=',1)->with('usersFlat.belongsHouse')->get();
 
 
         return view('user.index',['user' => $user ]);
@@ -44,19 +45,22 @@ public function show(){
         return view('user.show', ['flats' => $flats]);
     }
     public function create(){
+             $roles = Role::all()->skip(1);
+             $flats = flat::with('belongsHouse')->get();
 
-             return view('user.create');
+             return view('user.create', ['roles'=>$roles,'flats'=>$flats]);
     }
-    public function store(){
+    public function store(request $request){
 
         $user = new User();
         $user -> name = $request->name;
         $user -> email = $request->email;
         $user -> password = Hash::make($request->password);
+        $user -> flat_id = $request->flat_id;
         $user -> save();
 
         $user->assignRole($request->role);
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('good_message', 'Vartotojas sėkmingai sukurtas!');
 
 
 
@@ -66,7 +70,7 @@ public function show(){
     {
 
         $user->delete();
-        return redirect()->route('user.index')->with('good_message', 'Vartotojas sėkmingai ištrintas!');;
+        return redirect()->route('user.index')->with('good_message', 'Vartotojas sėkmingai ištrintas!');
 }
 public function edit(user $user)
     {

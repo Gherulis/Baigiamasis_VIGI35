@@ -106,6 +106,8 @@ Route::prefix('user')->group(function(){
     Route::get('/show', [UserController::class, 'show'])->name('user.show')->middleware('auth');
     Route::get('/edit/{user}', [UserController::class, 'edit'])->name('user.edit')->middleware('auth');
     Route::post('/update/{user}', [UserController::class, 'update'])->name('user.update')->middleware('auth');
+    Route::get('/create', [UserController::class, 'create'])->name('user.create')->middleware('auth');
+    Route::post('/store', [UserController::class, 'store'])->name('user.store')->middleware('auth');
     Route::post('/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy')->middleware('auth');
 });
 Route::prefix('flat')->group(function(){
