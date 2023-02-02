@@ -62,8 +62,8 @@
                     <td>{{$pricelist->ukio_islaid}} Eur</td>
                     <td>{{$pricelist->nkf}} Eur</td>
                     <td>
-                        <a href="{{route('pricelist.showPrices', $pricelist)}}"><button class="btn_small btn_show"  type="submit"><i class="fa-regular fa-eye"></i></button></a>
-                        <a href="{{route('pricelist.edit', $pricelist)}}"><button class="btn_small btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
+                        <a href="{{route('pricelist.showPrices', $pricelist)}}"><button class="btn_small btn_show"  type="submit" title="Peržiūrėti kainas"><i class="fa-regular fa-eye"></i></button></a>
+                        <a href="{{route('pricelist.edit', $pricelist)}}"><button class="btn_small btn_edit"  type="submit" title="Redaguoti sąskaita"><i class="fa-solid fa-pen-clip"></i></button></a>
                     </td>
                 </tr>
               @endforeach

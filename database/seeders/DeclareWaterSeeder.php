@@ -15,6 +15,6 @@ class DeclareWaterSeeder extends Seeder
      */
     public function run()
     {
-        DeclareWater::factory()->count(100)->create();
+        DeclareWater::factory()->count(5)->create();
     }
 }

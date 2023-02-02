@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('flat_nr');
             $table->decimal('flat_size');
             $table->integer('gyv_mok_suma');
+            $table->string('invitation');
             $table->timestamps();
         });
     }

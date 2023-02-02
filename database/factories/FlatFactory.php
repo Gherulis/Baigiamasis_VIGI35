@@ -21,7 +21,7 @@ class FlatFactory extends Factory
             'flat_nr' => $this->faker->unique()->numberBetween(1,30),
             'flat_size' => $this->faker->numberBetween(27,100),
             'gyv_mok_suma' => $this->faker->numberBetween(1,100),
-
+            'invitation' => $this->faker->unique()->numberBetween(1000,1030),
         ];
     }
 }

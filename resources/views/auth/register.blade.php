@@ -21,21 +21,7 @@
                             <label for="name" >{{ __('Vardas') }}</label>
                         </div>
 
-                        {{-- <div >
-                            <select  type="text"  id="flat_id" name="flat_id" required class="form-control @error('flat_id') is-invalid @enderror ">
-                                @foreach ($flats as $flat)
-                                <option value="{{ $flat->id }}">{{ $flat->belongsHouse->address}} {{ $flat->belongsHouse->house_nr}} Buto Nr : {{ $flat->flat_nr }}</option>
-                                @endforeach
 
-                            </select>
-
-                            @error('flat_id')
-                            <span role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                            <label for="flat_id">{{ __('Buto numeris')}}</label>
-                        </div> --}}
 
 
 
@@ -68,11 +54,36 @@
                                 name="password_confirmation" required autocomplete="new-password" class="form-control @error('password') is-invalid @enderror">
                             <label for="password-confirm" >{{ __('Pakartokite slaptažodį') }}</label>
                         </div>
+                        <div class="login-text">
+                            <input id="invitation" type="text" name="invitation" value="{{ old('invitation') }}" required autocomplete="invitation" autofocus class="form-control @error('invitation') is-invalid @enderror">
+
+                            @error('invitation')
+                            <span role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <label for="invitation" >{{ __('Pakvietimas') }}</label>
+                        </div>
 
 
 
 
                         <div >
+                            <div >
+                                {{-- <select  type="text"  id="flat_id" name="flat_id" required class="form-control @error('flat_id') is-invalid @enderror ">
+                                    @foreach ($flats as $flat)
+                                    <option value="{{ $flat->id }}"> {{ $flat->belongsHouse->address}} g. {{ $flat->belongsHouse->house_nr}} Buto Nr : {{ $flat->flat_nr }}</option>
+                                    @endforeach
+
+                                </select>
+
+                                @error('flat_id')
+                                <span role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+
+                            </div> --}}
                             <div >
                                 <button class="btn_reg" type="submit">
                                     {{ __('Registruotis') }}

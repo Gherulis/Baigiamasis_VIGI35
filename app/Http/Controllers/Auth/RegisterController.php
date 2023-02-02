@@ -69,19 +69,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+       $invitation = $data['invitation'];
+       $flat_invitation = Flat::where('invitation', $invitation)->get('id');
 
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            // 'flat_id' => $data['flat_id'],
+       if ($flat_invitation->count() > 0) {
+          $user = new User;
+          $user->name = $data['name'];
+          $user->email = $data['email'];
+          $user->password = Hash::make($data['password']);
+          $user->flat_id = $flat_invitation->first()->id;
 
+          $user->save();
+          $user->assignRole([4]);
 
-
-        ]);
-
-
-
+          return $user;
+       } else {
+        abort(redirect('/register')->with('bad_message', 'Ups, pakvietimas nerastas!'));
+       }
     }
 
+
+
+
+
+
+
+
+
+
+    public function showRegistrationForm()
+    {   $flats=flat::all();
+        return view('auth.register',['flats' =>$flats]);
+    }
 }

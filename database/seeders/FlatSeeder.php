@@ -20,6 +20,7 @@ class FlatSeeder extends Seeder
         $flat->flat_nr = '1';
         $flat->flat_size = '73.59';
         $flat->gyv_mok_suma = '100';
+        $flat->invitation = 'A001';
         $flat->save();
 
         $flat = new Flat();
@@ -27,6 +28,7 @@ class FlatSeeder extends Seeder
         $flat->flat_nr = '2';
         $flat->flat_size = '74.21';
         $flat->gyv_mok_suma = '100';
+        $flat->invitation = 'A002';
         $flat->save();
 
         $flat = new Flat();
@@ -34,6 +36,7 @@ class FlatSeeder extends Seeder
         $flat->flat_nr = '3';
         $flat->flat_size = '87.05';
         $flat->gyv_mok_suma = '100';
+        $flat->invitation = 'A003';
         $flat->save();
 
         $flat = new Flat();
@@ -41,6 +44,7 @@ class FlatSeeder extends Seeder
         $flat->flat_nr = '4';
         $flat->flat_size = '73.59';
         $flat->gyv_mok_suma = '100';
+        $flat->invitation = 'A004';
         $flat->save();
 
         $flat = new Flat();
@@ -48,6 +52,7 @@ class FlatSeeder extends Seeder
         $flat->flat_nr = '5';
         $flat->flat_size = '74.21';
         $flat->gyv_mok_suma = '100';
+        $flat->invitation = 'A005';
         $flat->save();
 
         // $flat = new Flat();

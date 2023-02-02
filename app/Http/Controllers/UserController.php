@@ -23,6 +23,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct() {
+        $this->middleware('permission:user-view',['only' =>['index']]);
+        $this->middleware('permission:user-create',['only' =>['create','store']]);
+        $this->middleware('permission:user-edit',['only' =>['update','edit']]);
+        $this->middleware('permission:user-delete',['only' =>['destroy']]);
+        }
+
     public function index(){
 
         $user = User::where('id', '!=', auth()->user()->id)->where('id', '!=',1)->with('usersFlat.belongsHouse')->get();
@@ -87,5 +94,6 @@ public function edit(user $user)
         $user->save();
         return redirect()->route('user.index')->with('good_message', 'Vartotojas sėkmingai redaguotas!');;
     }
+
 
 }

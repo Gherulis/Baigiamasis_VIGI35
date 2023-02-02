@@ -14,7 +14,7 @@
                 <tr>
 
 
-                    <th colspan="4" class="right"><a href="{{route('contacts.create')}}"><button class="btn_medium btn_create"><i class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
+                    <th colspan="4" class="right"><a href="{{route('contacts.create')}}"><button class="btn_medium btn_create" title="Pridėti naują kontaktą"><i class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
 
 
 
@@ -43,11 +43,11 @@
                             <td>
                                 <div class="flex-container">
                                     <a href="{{route('contact.edit',$contact)}}">
-                                        <button class="btn_small btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button>
+                                        <button class="btn_small btn_edit"  type="submit"  title="Redaguoti kontaktą"><i class="fa-solid fa-pen-clip"></i></button>
                                     </a>
                                     <form action="{{route('contact.destroy',$contact)}}" method="POST">
                                         @csrf
-                                        <button class="btn_small btn_delete" value="submit"><i class="fa-solid fa-trash-can red"></i></button>
+                                        <button class="btn_small btn_delete" value="submit" title="Trinti kontaktą"><i class="fa-solid fa-trash-can red"></i></button>
                                     </form>
                                 </div>
                             </td>

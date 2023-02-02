@@ -37,7 +37,7 @@
                     <td>{{$declare->bath_hot}} m<sup>3</sup></td>
                     <td>{{$declare->declaredBy}}</td>
 
-                    <td> <a href="{{route('declare.edit', $declare)}}"><button class="btn_small btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button></a></td>
+                    <td> <a href="{{route('declare.edit', $declare)}}"><button class="btn_small btn_edit"  type="submit" title="Redaguoti rodmenis"><i class="fa-solid fa-pen-clip"></i></button></a></td>
                   </tr>
               @endforeach
             </tbody>

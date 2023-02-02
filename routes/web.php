@@ -158,7 +158,7 @@ Route::get('/main',[PostsController::class, 'index'])->name('home')->middleware(
 Route::get('/pricelist/index/', [PricelistController::class, 'index',])->name('pricelist.index')->middleware('auth');
 Route::get('pricelist/create', [PricelistController::class, 'create'])->name('pricelist.create')->middleware('auth');
 Route::post('/pricelist/create', [PricelistController::class, 'store'])->name('pricelist.store')->middleware('auth');
-Route::get('pricelist/{pricelist}', [PricelistController::class, 'show'])->middleware('auth');
+Route::get('pricelist/{pricelist}', [PricelistController::class, 'show'])->name('pricelist.show')->middleware('auth');
 Route::get('pricelist/price/{pricelist}', [PricelistController::class, 'showPrices'])->name('pricelist.showPrices')->middleware('auth');
 Route::post('/pricelist/{pricelist}', [PricelistController::class, 'update'])->name('pricelist.update')->middleware('auth');
 Route::get('/pricelist/edit/{pricelist}', [PricelistController::class, 'edit'])->name('pricelist.edit')->middleware('auth');

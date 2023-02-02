@@ -52,11 +52,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('posts.index') }}" class="nav-link {{ Request::is('home') ? 'active':'' }}"><i class="fa-regular fa-comment icon"></i>Naujienos</a>
+                        <a href="{{ route('posts.index') }}" class="nav-link {{ Request::is('home') ? 'active_nav':'' }}"><i class="fa-regular fa-comment icon"></i>Naujienos</a>
 
                     </li>
                     <li id="dropDown" class="nav-item ">
-                        <a href="{{ route('declare.index') }}" class="nav-link {{ Request::is('declare/index') ? 'active':'' }}"><i class="fa-solid fa-faucet"></i></i>Deklaravimas</a>
+                        <a href="{{ route('declare.index') }}" class="nav-link {{ Request::is('declare/index') ? 'active_nav':'' }}"><i class="fa-solid fa-faucet"></i></i>Deklaravimas</a>
                         <ul class="dropDown">
                             <li><a class="nav-link" href="{{ route('declare.create') }}"><i class="fa-solid fa-faucet"></i></i>Deklaruok</a></li>
                             <li><a class="nav-link" href="{{ route('declare.indexFlat') }}"><i class="fa-solid fa-faucet"></i></i>Istorija</a></li>
@@ -66,7 +66,7 @@
                     </li>
 
                     <li class="nav-item ">
-                        <a href="{{ route('pricelist.index') }}" class="nav-link {{ Request::is('pricelist/index') ? 'active':'' }}"><i
+                        <a href="{{ route('pricelist.index') }}" class="nav-link {{ Request::is('pricelist/index') ? 'active_nav':'' }}"><i
                                 class="fa-solid fa-money-check-dollar icon"></i>Sąskaitos</a>
                         <ul class="dropDown">
                             <li><a class="nav-link" href="{{ route('bills.index') }}"><i
@@ -79,7 +79,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('contacts.index') }}" class="nav-link {{ Request::is('contacts/index') ? 'active':'' }}"><i
+                        <a href="{{ route('contacts.index') }}" class="nav-link {{ Request::is('contacts/index') ? 'active_nav':'' }}"><i
                                 class="fa-solid fa-address-book icon"></i>Kontaktai</a>
 
                     </li>

@@ -18,7 +18,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="width: 100%">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                 {{ __('Pagrindinis') }}
@@ -71,8 +71,14 @@
                 </div>
             </div>
         </nav>
-
+        @if (session()->has('bad_message'))
+        <div id="bad_message" class="message_show alert alert-danger"><i class="fa-regular fa-face-frown-open alert-danger"></i> {{ session()->get('bad_message') }}</div>
+    @endif
+    @if (session()->has('good_message'))
+    <div id="good_message" class="message_show alert alert-success"><i class="fa-regular fa-face-grin-wide alert-success"></i> {{ session()->get('good_message') }}</div>
+@endif
         <main class="py-4">
+
             @yield('content')
         </main>
     </div>

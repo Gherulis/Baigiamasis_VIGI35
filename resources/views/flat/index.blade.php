@@ -44,12 +44,12 @@
                             <td colspan="1">
                                 <div class="flex-container">
                                     <a href="{{route('flat.edit',$butas)}}">
-                                        <button class="btn_small btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button>
+                                        <button class="btn_small btn_edit"  type="submit" title="Redaguoti butą"><i class="fa-solid fa-pen-clip"></i></button>
                                     </a>
 
                                     <form action="{{route('flat.destroy',$butas)}}" method="POST">
                                         @csrf
-                                        <button data-title="{{ $butas }}" type="submit" class="btn_small btn_delete" data-bs-toggle="modal" data-bs-target="#exampleModal" value="{{ $butas }}">
+                                        <button data-title="{{ $butas }}" type="submit" class="btn_small btn_delete" title="Ištrinti butą" data-bs-toggle="modal" data-bs-target="#exampleModal" value="{{ $butas }}">
                                             <i class="fa-solid fa-trash-can red"></i>
                                           </button>
                                     </form>

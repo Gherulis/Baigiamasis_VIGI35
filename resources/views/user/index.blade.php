@@ -38,7 +38,11 @@
                             <td>{{$user->email}}</td>
                             <td>{{ $user->usersFlat->belongsHouse->address }} g. {{ $user->usersFlat->belongsHouse->house_nr }}</td>
                             <td>Butas : {{$user->flat_id}}</td>
-                            <td>{{ $user->roles->pluck('name')[0] }}</td>
+
+                            <td>
+                                @if(isset( $user->roles->pluck('name')[0]))
+                                {{ $user->roles->pluck('name')[0] }}</td>
+                                @endif
                             <td >
                                 <div class="flex-container">
                                 <a href="{{route('user.show', $user)}}"><button class="btn_small btn_show" type="submit"><i class="fa-regular fa-eye"></i></button></a>
