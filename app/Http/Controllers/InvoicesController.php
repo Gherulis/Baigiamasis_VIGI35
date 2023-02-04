@@ -154,8 +154,8 @@ class InvoicesController extends Controller
             return redirect()->route('posts.index')->with('bad_message','Paskutinė saskaita nerasta');
         } else {
             $suma=$lastInvoice->sum = $lastInvoice->saltas_vanduo + $lastInvoice->karstas_vanduo + $lastInvoice->sildymas + $lastInvoice->silumos_mazg_prieziura+$lastInvoice->gyvatukas+
-            $lastInvoice->salto_vandens_abon+$lastInvoice->elektra_bendra+$lastInvoice->ukio_islaid+$lastInvoice->nkf-$lastInvoice->kompensacija+$lastInvoice->skola-$lastInvoice->permoka
-            +$lastInvoice->delspinigiai;
+            $lastInvoice->salto_vandens_abon+$lastInvoice->elektra_bendra+$lastInvoice->ukio_islaid+$lastInvoice->nkf-$lastInvoice->Kompensacija+$lastInvoice->Skola-$lastInvoice->Permoka
+            +$lastInvoice->Delspinigiai;
             }
 
 

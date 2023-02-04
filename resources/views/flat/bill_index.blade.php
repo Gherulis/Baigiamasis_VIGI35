@@ -52,19 +52,19 @@
                 </tr>
                 <tr>
                     <th>Kompensacija</th>
-                    <td>{{ $lastInvoice->kompensacija }}</td>
+                    <td>{{ $lastInvoice->Kompensacija }}</td>
                 </tr>
                 <tr>
                     <th>Skola</th>
-                    <td>{{ $lastInvoice->skola }}</td>
+                    <td>{{ $lastInvoice->Skola }}</td>
                 </tr>
                 <tr>
                     <th>Permoka</th>
-                    <td>{{ $lastInvoice->permoka }}</td>
+                    <td>{{ $lastInvoice->Permoka }}</td>
                 </tr>
                 <tr>
                     <th>Delspinigiai</th>
-                    <td>{{ $lastInvoice->delspinigiai }}</td>
+                    <td>{{ $lastInvoice->Delspinigiai }}</td>
                 </tr>
                 <tr>
                     <th> <strong>SUMA</strong> </th>
