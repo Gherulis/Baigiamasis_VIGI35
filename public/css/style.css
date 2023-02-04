@@ -167,6 +167,23 @@ a i {
 li {
     list-style: none;
 }
+.filter {
+    margin-top: 10px;
+    padding: 0;
+    width: 50%;
+    gap: 10px;
+    color: var(--navbar-text-color) ;
+    height: auto;
+    border-radius: 50px;
+}
+.filter label {
+    margin: 0;
+}
+.filter th{
+    vertical-align: middle;
+}
+
+
 
 .navbar a {
     display: block;

@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateuserRequest;
 use App\Models\User;
 use App\Models\House;
 use App\Models\flat;
+use App\Models\Invoices;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -43,13 +44,14 @@ public function show(){
 
         $flat_id = Auth::user()->flat_id;
         $flats = flat::with('belongsHouse')->with('flatUsers')->findorfail($flat_id);
+        $invoices = Invoices::where('flat_id',Auth::user()->flat_id)->get();
 
 
 
 
 
 
-        return view('user.show', ['flats' => $flats]);
+        return view('user.show', ['flats' => $flats, 'invoices'=>$invoices]);
     }
     public function create(){
              $roles = Role::all()->skip(1);
@@ -92,7 +94,7 @@ public function edit(user $user)
         $user->email = $request->email;
 
         $user->save();
-        return redirect()->route('user.index')->with('good_message', 'Vartotojas sėkmingai redaguotas!');;
+        return redirect()->route('user.index')->with('good_message', 'Vartotojas sėkmingai redaguotas!');
     }
 
 

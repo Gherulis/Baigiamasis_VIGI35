@@ -177,11 +177,14 @@ Auth::routes();
 Route::prefix('invoices')->group(function(){
 
     Route::get('/index', [InvoicesController::class, 'index'])->name('invoices.index')->middleware('auth');
+    Route::get('/editInvoices', [InvoicesController::class, 'editInvoices'])->name('invoices.editInvoices')->middleware('auth');
+    Route::get('/editInvoices/{filtravimas}', [InvoicesController::class, 'editfilter'])->name('invoices.editFilter')->middleware('auth');
     Route::get('/indexFlat', [InvoicesController::class, 'indexFlat'])->name('invoices.indexFlat')->middleware('auth');
     Route::get('/create', [InvoicesController::class, 'create'])->name('invoices.create')->middleware('auth');
     Route::post('/store', [InvoicesController::class, 'store'])->name('invoices.store')->middleware('auth');
     Route::get('bills/index', [InvoicesController::class, 'show'])->name('bills.index')->middleware('auth');
     Route::get('bills/index/last', [InvoicesController::class, 'showLast'])->name('bills.indexLast')->middleware('auth');
+    Route::post('/invoicesUpdate', [InvoicesController::class, 'invoicesUpdate'])->name('invoices.Update')->middleware('auth');
 
 
 

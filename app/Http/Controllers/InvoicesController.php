@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\flat;
+use App\Models\House;
 use App\Models\invoices;
 use App\Models\declareWater;
 use App\Models\pricelist;
@@ -28,21 +29,60 @@ class InvoicesController extends Controller
         'November' => 'Lapkritis',
         'December' => 'Gruodis',
     ];
+
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
-        $invoices = invoices::all();
+        $filterDates = invoices::orderBy('created_at', 'desc')->get();//persiduodu visus duomenis i filtra
+        $filterDate = $filterDates->first();
+        $filterData = request ('filter') ? request ('filter') : $filterDate->created_at ;
+        if ($filterData == "*") {
+            $invoices = invoices::all();
+        } else {
+            $filterYear = date('Y',strtotime($filterData));
+            $filterMonth = date('m',strtotime($filterData));
+            $invoices = invoices::whereYear('created_at',$filterYear)
+            ->whereMonth('created_at',$filterMonth)
+            ->get();}
 
+
+
+
+
+
+
+
+
+
+        $totalInvoicesSum = 0;
+        $totalPaidSum = 0;
+        // $invoices = invoices::all();
+        $houses = House::all();
         foreach ($invoices as $invoice){
         $invoice->sum = $invoice->saltas_vanduo + $invoice->karstas_vanduo + $invoice->sildymas + $invoice->silumos_mazg_prieziura+$invoice->gyvatukas+
-        $invoice->salto_vandens_abon+$invoice->elektra_bendra+$invoice->ukio_islaid+$invoice->nkf-$invoice->kompensacija+$invoice->skola-$invoice->permoka
-        +$invoice->delspinigiai;}
+        $invoice->salto_vandens_abon+$invoice->elektra_bendra+$invoice->ukio_islaid+$invoice->nkf+$invoice->Skola
+        +$invoice->Delspinigiai-$invoice->Permoka-$invoice->Kompensacija;
+        $totalInvoicesSum += $invoice->sum;
+        $totalPaidSum += $invoice->Sumoketa; }
+        $totalDifference =  $totalPaidSum - $totalInvoicesSum;
+        if($totalDifference>= 0){
+            $difference = '<i class="fa-regular fa-face-grin-wide text-success"></i>'.'Permokų suma: '.' '.$totalDifference.' '.'Eur';
+        }
+        elseif ($totalDifference >= -0.01 && $totalDifference <= 0.01) {
+            $difference = '<i class="fa-regular fa-face-grin-wide"> Whoop Whoop</i>';}
 
-        return view ('invoices.index ',compact('invoices'));
+        else {
+            $difference = '<i class="fa-regular fa-face-frown-open text-danger"></i>'.'Skolų suma: '.' '.$totalDifference.' '.'Eur';
+        }
+
+
+        return view ('invoices.index ',compact('invoices','filterDates','totalInvoicesSum','totalPaidSum','difference','filterData'));
     }
     public function indexFlat()
 
@@ -54,10 +94,9 @@ class InvoicesController extends Controller
         $invoices = invoices::where('flat_id', Auth::user()->flat_id)->orderBy('created_at','desc')->get();
 
         foreach ($invoices as $invoice){
-        $invoice->sum = $invoice->saltas_vanduo + $invoice->karstas_vanduo + $invoice->sildymas + $invoice->silumos_mazg_prieziura+$invoice->gyvatukas+
-        $invoice->salto_vandens_abon+$invoice->elektra_bendra+$invoice->ukio_islaid+$invoice->nkf-$invoice->kompensacija+$invoice->skola-$invoice->permoka
-        +$invoice->delspinigiai;}
-
+            $invoice->sum = $invoice->saltas_vanduo + $invoice->karstas_vanduo + $invoice->sildymas + $invoice->silumos_mazg_prieziura+$invoice->gyvatukas+
+            $invoice->salto_vandens_abon+$invoice->elektra_bendra+$invoice->ukio_islaid+$invoice->nkf+$invoice->Skola
+            +$invoice->Delspinigiai-$invoice->Permoka-$invoice->Kompensacija;}
         return view ('invoices.index ',compact('invoices'));
     }
 
@@ -114,10 +153,10 @@ class InvoicesController extends Controller
         if(!$lastInvoice){
             return redirect()->route('posts.index')->with('bad_message','Paskutinė saskaita nerasta');
         } else {
-            $suma=$lastInvoice->sum = $lastInvoice->saltas_vanduo + $lastInvoice->karstas_vanduo + $lastInvoice->sildymas + $lastInvoice->silumos_mazg_prieziura+$lastInvoice->gyvatukas+
-        $lastInvoice->salto_vandens_abon+$lastInvoice->elektra_bendra+$lastInvoice->ukio_islaid+$lastInvoice->nkf-$lastInvoice->kompensacija+$lastInvoice->skola-$lastInvoice->permoka
-        +$lastInvoice->delspinigiai;
-        }
+            $invoice->sum = $invoice->saltas_vanduo + $invoice->karstas_vanduo + $invoice->sildymas + $invoice->silumos_mazg_prieziura+$invoice->gyvatukas+
+            $invoice->salto_vandens_abon+$invoice->elektra_bendra+$invoice->ukio_islaid+$invoice->nkf+$invoice->Skola
+            +$invoice->Delspinigiai-$invoice->Permoka-$invoice->Kompensacija;}
+
 
 
 
@@ -133,9 +172,9 @@ class InvoicesController extends Controller
     public function showLast(invoices $invoices)
     {
         $lastInvoice = invoices::where('flat_id', Auth::user()->flat_id)->orderBy('created_at', 'desc')->first();
-        $suma=$lastInvoice->sum = $lastInvoice->saltas_vanduo + $lastInvoice->karstas_vanduo + $lastInvoice->sildymas + $lastInvoice->silumos_mazg_prieziura+$lastInvoice->gyvatukas+
-        $lastInvoice->salto_vandens_abon+$lastInvoice->elektra_bendra+$lastInvoice->ukio_islaid+$lastInvoice->nkf-$lastInvoice->kompensacija+$lastInvoice->skola-$lastInvoice->permoka
-        +$lastInvoice->delspinigiai;
+        $invoice->sum = $invoice->saltas_vanduo + $invoice->karstas_vanduo + $invoice->sildymas + $invoice->silumos_mazg_prieziura+$invoice->gyvatukas+
+        $invoice->salto_vandens_abon+$invoice->elektra_bendra+$invoice->ukio_islaid+$invoice->nkf+$invoice->Skola
+        +$invoice->Delspinigiai-$invoice->Permoka-$invoice->Kompensacija;
 
         return view ('flat.bill_index',['lastInvoice'=>$lastInvoice, 'suma'=>$suma]);
     }
@@ -146,9 +185,28 @@ class InvoicesController extends Controller
      * @param  \App\Models\invoices  $invoices
      * @return \Illuminate\Http\Response
      */
-    public function edit(invoices $invoices)
+
+
+    public function editInvoices(invoices $invoices)
     {
-        //
+        $filterDates = invoices::orderBy('created_at', 'desc')->get();//persiduodu visus duomenis i filtra
+        $filterDate = $filterDates->first();
+        $filterData = request ('filter') ? request ('filter') : $filterDate->created_at ;
+        if ($filterData == "*") {
+            $invoices = invoices::all();
+        } else {
+            $filterYear = date('Y',strtotime($filterData));
+            $filterMonth = date('m',strtotime($filterData));
+            $invoices = invoices::whereYear('created_at',$filterYear)
+            ->whereMonth('created_at',$filterMonth)
+            ->get();}
+
+        foreach ($invoices as $invoice){
+        $invoice->sum = $invoice->saltas_vanduo + $invoice->karstas_vanduo + $invoice->sildymas + $invoice->silumos_mazg_prieziura+$invoice->gyvatukas+
+        $invoice->salto_vandens_abon+$invoice->elektra_bendra+$invoice->ukio_islaid+$invoice->nkf-$invoice->Kompensacija+$invoice->Skola-$invoice->Permoka
+        +$invoice->Delspinigiai;}
+
+        return view ('invoices.editInvoice ',compact('invoices','filterDates'));
     }
 
     /**
@@ -160,7 +218,7 @@ class InvoicesController extends Controller
      */
     public function update(UpdateinvoicesRequest $request, invoices $invoices)
     {
-        //
+
     }
 
     /**
@@ -251,6 +309,37 @@ class InvoicesController extends Controller
         }
         return $invoicesData;
     }
+        public function invoicesUpdate(Request $request){
 
+
+            {
+
+
+
+                $invoiceData = $request->all();
+                // dd($invoiceData);
+                // die();
+                $invoiceIds = $invoiceData['invoice_id'];
+                $kompensacija = $invoiceData['kompensacija'];
+                $skola = $invoiceData['skola'];
+                $permoka = $invoiceData['permoka'];
+                $delspinigiai = $invoiceData['delspinigiai'];
+                $sumoketa = $invoiceData['sumoketa'];
+                foreach ($invoiceIds as $i => $invoiceId) {
+                  $invoice = Invoices::find($invoiceId);
+
+                  $invoice->Kompensacija = $kompensacija[$i] ?? 0;
+                  $invoice->Skola = $skola[$i] ?? 0;
+                  $invoice->Permoka = $permoka[$i] ?? 0;
+                  $invoice->Delspinigiai = $delspinigiai[$i] ?? 0;
+                  $invoice->Sumoketa = $sumoketa[$i] ?? 0;
+
+                  $invoice->save();
+                }
+
+   return redirect(route('invoices.index'))->with('good_message', 'Whoop Whoop Sėkmingai pridėta');
+}
+
+        }
 
 }
