@@ -16,59 +16,59 @@
                 <tbody>
                 <tr>
                     <th>Šaltas vanduo</th>
-                    <td>{{ $lastInvoice->saltas_vanduo }}</td>
+                    <td>{{ $lastInvoice->saltas_vanduo }} Eur</td>
                 </tr>
                 <tr>
                     <th>Karštas vanduo</th>
-                    <td>{{ $lastInvoice->karstas_vanduo }}</td>
+                    <td>{{ $lastInvoice->karstas_vanduo }} Eur</td>
                 </tr>
                 <tr>
                     <th>Šildymas</th>
-                    <td>{{  $lastInvoice->sildymas }}</td>
+                    <td>{{  $lastInvoice->sildymas }} Eur</td>
                 </tr>
                 <tr>
                     <th>Šilumos mazgo priežiūra</th>
-                    <td>{{ $lastInvoice->silumos_mazg_prieziura }}</td>
+                    <td>{{ $lastInvoice->silumos_mazg_prieziura }} Eur</td>
                 </tr>
                 <tr>
                     <th>Gyvatukas</th>
-                    <td>{{ $lastInvoice->gyvatukas }}</td>
+                    <td>{{ $lastInvoice->gyvatukas }} Eur</td>
                 </tr>
                 <tr>
                     <th>Šalto vandens abonimentas</th>
-                    <td>{{ $lastInvoice->salto_vandens_abon }}</td>
+                    <td>{{ $lastInvoice->salto_vandens_abon }} Eur</td>
                 </tr>
                 <tr>
                     <th>Elektra bendroms reikmėms</th>
-                    <td>{{ $lastInvoice->elektra_bendra }}</td>
+                    <td>{{ $lastInvoice->elektra_bendra }} Eur</td>
                 </tr>
                 <tr>
                     <th>Ūkio išlaidos</th>
-                    <td>{{ $lastInvoice->ukio_islaid }}</td>
+                    <td>{{ $lastInvoice->ukio_islaid }} Eur</td>
                 </tr>
                 <tr>
                     <th>Namo kaupimo fondas</th>
-                    <td>{{ $lastInvoice->nkf }}</td>
+                    <td>{{ $lastInvoice->nkf }} Eur</td>
                 </tr>
                 <tr>
                     <th>Kompensacija</th>
-                    <td>{{ $lastInvoice->Kompensacija }}</td>
+                    <td>{{ $lastInvoice->Kompensacija }} Eur</td>
                 </tr>
                 <tr>
                     <th>Skola</th>
-                    <td>{{ $lastInvoice->Skola }}</td>
+                    <td>{{ $lastInvoice->Skola }} Eur</td>
                 </tr>
                 <tr>
                     <th>Permoka</th>
-                    <td>{{ $lastInvoice->Permoka }}</td>
+                    <td>{{ $lastInvoice->Permoka }} Eur</td>
                 </tr>
                 <tr>
                     <th>Delspinigiai</th>
-                    <td>{{ $lastInvoice->Delspinigiai }}</td>
+                    <td>{{ $lastInvoice->Delspinigiai }} Eur</td>
                 </tr>
                 <tr>
                     <th> <strong>SUMA</strong> </th>
-                    <td><strong>{{ $suma }}</strong></td>
+                    <td><strong>{{ $suma }} Eur</strong></td>
                 </tr>
 
             </tbody>
