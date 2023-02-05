@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         RolesSeeder::class,
         PermissionSeeder::class,
         UserSeeder::class,
+        NkfSeeder::class,
+        PostsSeeder::class,
 
 
       ]);

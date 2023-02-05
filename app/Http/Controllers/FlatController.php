@@ -68,7 +68,7 @@ class FlatController extends Controller
        $flat->gyv_mok_suma=request('gyv_mok_suma');
        $flat-> save();
 
-       return redirect()->route('flat.index')->with('good_message', 'Dėkui, Jūs sėkmingai sukūrėte naują butą! Linkime gerų kaimynų !');;
+       return redirect()->route('flat.index')->with('good_message', 'Dėkui, Jūs sėkmingai sukūrėte naują butą! Linkime gerų kaimynų !');
     }
 
     /**

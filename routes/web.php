@@ -14,6 +14,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\NkfController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -178,7 +179,7 @@ Route::prefix('invoices')->group(function(){
 
     Route::get('/index', [InvoicesController::class, 'index'])->name('invoices.index')->middleware('auth');
     Route::get('/editInvoices', [InvoicesController::class, 'editInvoices'])->name('invoices.editInvoices')->middleware('auth');
-    Route::get('/editInvoices/{filtravimas}', [InvoicesController::class, 'editfilter'])->name('invoices.editFilter')->middleware('auth');
+
     Route::get('/indexFlat', [InvoicesController::class, 'indexFlat'])->name('invoices.indexFlat')->middleware('auth');
     Route::get('/create', [InvoicesController::class, 'create'])->name('invoices.create')->middleware('auth');
     Route::post('/store', [InvoicesController::class, 'store'])->name('invoices.store')->middleware('auth');
@@ -206,4 +207,14 @@ Route::prefix('roles')->group(function(){
     Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('roles.edit')->middleware('auth');
     Route::post('/update/{id}', [RoleController::class, 'update'])->name('roles.update')->middleware('auth');
     Route::post('/destroy/{id}', [RoleController::class, 'destroy'])->name('roles.destroy')->middleware('auth');
+});
+Route::prefix('nkf')->group(function(){
+    Route::get('/index', [NkfController::class, 'index'])->name('nkf.index')->middleware('auth');
+    Route::get('/show', [NkfController::class, 'show'])->name('nkf.show')->middleware('auth');
+    Route::get('/edit/{nkf}', [NkfController::class, 'edit'])->name('nkf.edit')->middleware('auth');
+    Route::get('/create', [NkfController::class, 'create'])->name('nkf.create')->middleware('auth');
+    Route::post('/store', [NkfController::class, 'store'])->name('nkf.store')->middleware('auth');
+    Route::post('/destroy/{nkf}', [NkfController::class, 'destroy'])->name('nkf.destroy')->middleware('auth');
+    Route::post('/update/{nkf}', [NkfController::class, 'update'])->name('nkf.update')->middleware('auth');
+
 });

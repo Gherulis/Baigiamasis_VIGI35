@@ -46,7 +46,7 @@ public function show(){
         $flat_id = Auth::user()->flat_id;
         $flats = flat::with('belongsHouse')->with('flatUsers')->findorfail($flat_id);
         $invoices = Invoices::where('flat_id',Auth::user()->flat_id)->orderBy('created_at','desc')->get();
-        $declaration = declareWater::where('flat_id',Auth::user()->flat_id)->orderBy('created_at','desc')->get();
+        $declaration = declareWater::where('flat_id',Auth::user()->flat_id)->orderBy('created_at','desc')->first();
         $totalInvoicesSum = 0;
         $totalPaidSum = 0;
         foreach ($invoices as $invoice) {
@@ -55,9 +55,9 @@ public function show(){
         +$invoice->Delspinigiai-$invoice->Permoka-$invoice->Kompensacija;
         $totalInvoicesSum += $invoice->sum;
         $totalPaidSum += $invoice->Sumoketa; }
-        $totalDifference =  $totalPaidSum - $totalInvoicesSum;
+        $totalDifference = round( $totalPaidSum - $totalInvoicesSum,2);
         if($totalDifference>= 0){
-            $difference ='<i class="fa-regular fa-face-grin-wide text-success"></i>'.'Permokų suma: ';
+            $difference ='<i class="fa-regular fa-face-grin-wide text-success"></i>'.'Permokų suma ';
             $differenceAmount = $totalDifference.' '.'Eur';
         }
         elseif ($totalDifference >= -0.01 && $totalDifference <= 0.01) {
@@ -65,12 +65,16 @@ public function show(){
             $differenceAmount = '0';}
 
         else {
-            $difference ='<i class="fa-regular fa-face-frown-open text-danger"></i>'.'Skolų suma: ';
+            $difference ='<i class="fa-regular fa-face-frown-open text-danger"></i>'.'Skolų suma ';
             $differenceAmount = $totalDifference.' '.'Eur';
         }
         $lastInvoice = $invoices->first();
-        $lastinvoiceCreated=date('Y-m-d',strtotime($lastInvoice->created_at));
-        $declarationLastDate=date('Y-m-d',strtotime( $declaration));
+        if(!empty($lastInvoice->created_at)){
+        $lastinvoiceCreated=date('Y-m-d',strtotime($lastInvoice->created_at));}
+        else{
+            $lastinvoiceCreated='Nėra duomenų';
+        }
+        $declarationLastDate=date('Y-m-d',strtotime( $declaration->created_at));
 
 
         return view('user.show', ['flats' => $flats, 'invoices'=>$invoices, 'lastinvoiceCreated'=>$lastinvoiceCreated,'lastInvoice'=>$lastInvoice,'difference'=>$difference, 'differenceAmount'=>$differenceAmount,'declarationLastDate'=>$declarationLastDate]);

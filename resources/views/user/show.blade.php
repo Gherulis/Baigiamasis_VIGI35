@@ -2,76 +2,62 @@
 
 @section('content')
     <div class="table_container tabletransform1 contact_info">
-{{ $declarationLastDate }}
         <table>
-
             <thead>
-
                 <tr>
                     <th colspan='2'>
                         <p class="mssg">Apie Mane</p>
                     </th>
                 </tr>
             </thead>
-
-
-
             <tbody>
                 </tr>
-                <tr>
-
-                <tr>
                     <th><i class="fa-solid fa-person"></i>Vardas</th>
                     <td>{{ Auth::user()->name }}</td>
                 </tr>
                 <tr>
-                    <th><i class="fa-regular fa-envelope"></i>Pastas</th>
+                    <th><i class="fa-regular fa-envelope"></i>El. Paštas</th>
                     <td>{{ Auth::user()->email }}</td>
                 </tr>
                 <tr>
-
-                    <th><i class="fa-solid fa-mobile-screen-button"></i>Buto Nr.</th>
-                    <td> {{ $flats->flat_nr }}</td>
+                    <th><i class="fa-solid fa-suitcase"></i>Buto Numeris</th>
+                    <td> Nr. {{ $flats->flat_nr }}</td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Buto dydis </th>
+                    <th><i class="fa-solid fa-maximize"></i>Buto kvadratūra </th>
                     <td>{{ $flats->flat_size }} m<sup>2</sup></td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Adresas</th>
-                    <td>{{ $flats->belongsHouse->address }} g. {{ $flats->belongsHouse->house_nr }}</td>
+                    <th><i class="fa-solid fa-car-side"></i>Adresas</th>
+                    <td>{{ $flats->belongsHouse->address }} g. {{ $flats->belongsHouse->house_nr }}, {{ $flats->belongsHouse->city }}</td>
                 </tr>
-
-
-
                 <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Buto vartotoju kiekis : </th>
+                    <th><i class="fa-solid fa-face-smile-beam"></i>Buto vartotojų kiekis </th>
                     <td>{{ $flats->flatUsers->count() }}</td>
                 </tr>
-
                 <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Paskutines saskaitos data:</th>
+                    <th><i class="fa-solid fa-clock"></i>Paskutinės sąskaitos data</th>
                     <td>{{ $lastinvoiceCreated }}</td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Paskutines saskaitos suma:</th>
-                    <td>{{ $lastInvoice->sum }} Eur</td>
+                    <th><i class="fa-solid fa-money-check-dollar"></i>Paskutinės sąskaitos suma</th>
+                    <td>
+                         @if (!empty($lastInvoice->sum))
+                        {{ $lastInvoice->sum }} Eur
+                    @else
+                        Nėra duomenų
+                    @endif
+                    </td>
                 </tr>
                 <tr>
                     <th>{!! $difference !!}</th>
-                    <td>{{ $differenceAmount }}</td>
+                    <td >{{ $differenceAmount }}</td>
                 </tr>
-
                 <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Paskutinis Deklaravimas</th>
-                    <td>???</td>
+                    <th><i class="fa-solid fa-faucet"></i>Paskutinis vandens deklaravimas</th>
+                    <td>{{ $declarationLastDate }}</td>
                 </tr>
-
             </tbody>
-
-
-
         </table>
-
     </div>
 @endsection

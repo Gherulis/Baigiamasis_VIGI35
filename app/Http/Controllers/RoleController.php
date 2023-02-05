@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
-    public function __construct(){
+    public function __construct() {
     $this->middleware('permission:role-view',['only' =>['index']]);
     $this->middleware('permission:role-create',['only' =>['create','store']]);
     $this->middleware('permission:role-edit',['only' =>['update','edit']]);

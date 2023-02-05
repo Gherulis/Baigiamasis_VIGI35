@@ -13,16 +13,17 @@
             <thead>
 
                 <tr>
-                    <th colspan='1'>
-                        <p class="mssg">Namo identifikacijos numeris : {{$house->id}}</p>
+
+
                     </th>
                     <th colspan='1'>
 
                         <p class="mssg"><a href="{{route('house.edit',$house)}}"><button class="btn_medium btn_edit">Redaguoti</button></a></p>
                         <form action="{{route('house.destroy',$house)}}" method="POST">
                             @csrf
-                        <button class="btn_medium btn_delete">Istrinti</button> </form>
+
                     </th>
+                    <th><button class="btn_medium btn_delete">Istrinti</button> </form></th>
 
                 </tr>
 
@@ -40,20 +41,20 @@
                 </tr>
 
                 <tr>
-                    <th><i class="fa-solid fa-mobile-screen-button"></i>Butu skaicius</th>
+                    <th><i class="fa-solid fa-list-ol"></i>Butu skaicius</th>
                     <td>{{$house->houseFlat->count()}}</td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Miestas</th>
+                    <th><i class="fa-solid fa-tree-city"></i>Miestas</th>
                     <td>{{$house->city}}</td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Bendras plotas</th>
+                    <th><i class="fa-solid fa-maximize"></i>Bendras plotas</th>
                     <td>{{$house->house_size}} m<sup>2</sup></td>
                 </tr>
 
                 <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Namo kaupimo fondas : </th>
+                    <th><i class="fa-solid fa-piggy-bank"></i>Namo kaupimo fondas : </th>
                     <td>
                         @if(isset($house->pricelists->last()->nkf))
                         {{$house->pricelists->last()->nkf}}
@@ -67,7 +68,7 @@
                         </td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Paskutines saskaita pateikta:</th>
+                    <th><i class="fa-solid fa-money-bill-wave"></i>Paskutines saskaita pateikta:</th>
                     <td>
                         @if(isset($house->pricelists->last()->created_at))
                         {{$house->pricelists->last()->created_at->format('Y-m-d')}}

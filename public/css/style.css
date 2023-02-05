@@ -10,6 +10,8 @@
     --btn_delete_hover:  linear-gradient(to right, #7a3333, #bb3535, #d82f2f); /* delete mygtuko hover */
     --btn_edit_hover: linear-gradient(to left, #4c9e6c, #37b356, #51ce2b); /* edit mygtuko hover */
     --btn_show_hover:  linear-gradient(to right, #a89533, #c6ab3d, #f7c500); /* show mygtuko hover */
+    --iconColor: #499bdd93;
+
 }
 #bad_message, #good_message {
     text-align: center;
@@ -18,6 +20,13 @@
 }
 #bad_message.hide, #good_message.hide {
     display: none;
+}
+.form-select{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: #ebe3e393;
+    border-radius: 5px;
 }
 
 .btn_small{
@@ -568,12 +577,12 @@ input {
 }
 
 .news-container {
-  height: 100vh;
+
 
 
   margin: 0 auto;
+width: 90%;
 
-  padding: 20px;
   padding-top: 0px;
   display: grid;
   height: 100%;
@@ -621,6 +630,7 @@ input {
 
 .news-item:first-child {
   grid-area: main;
+
 }
 
 .news-item:hover {
@@ -637,6 +647,7 @@ input {
   margin: 0 auto;
   float: left;
   height: auto;
+
   width: 250px;
   margin-right: 10px;
   object-fit: contain;
@@ -647,13 +658,16 @@ input {
 .newsHeader{
 
   font-size: 24px;
+  color: rgba(0, 0, 0, 0.539);
 }
 .newsText {
-
+    height: auto;
   text-align: justify;
   font-size: 16px;
   /* word-break: break-all; */
   overflow-wrap: break-word;
+  color: rgba(2, 107, 160, 0.785);
+  text-decoration: none;
 
 }
 
@@ -718,9 +732,9 @@ form .login-text {
   padding-left: 20px;
 }
 i {
-
-color : #35fddf93;
+color : var(--iconColor);
 }
+
 
 .login-text input:focus~label,
 .login-text input:valid~label {
