@@ -3,7 +3,6 @@
 @section('content')
     <div class="login-form store-form">
         <h3>Naujas Kontaktas</h3>
-
         <form action="{{ route('contacts.store') }}" method="POST">
             @csrf
             <div class="login-text">
@@ -36,9 +35,7 @@
                     </span>
                 @enderror
             </div>
-
             <input class="btn" type="submit" value="Pridėti">
-
         </form>
     </div>
 @endsection

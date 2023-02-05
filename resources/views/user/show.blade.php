@@ -1,12 +1,8 @@
-
 @extends('includes.layout')
 
 @section('content')
-
-
-
     <div class="table_container tabletransform1 contact_info">
-
+{{ $declarationLastDate }}
         <table>
 
             <thead>
@@ -39,7 +35,7 @@
                 </tr>
                 <tr>
                     <th><i class="fa-solid fa-exclamation"></i>Buto dydis </th>
-                    <td>{{ $flats->flat_size }}</td>
+                    <td>{{ $flats->flat_size }} m<sup>2</sup></td>
                 </tr>
                 <tr>
                     <th><i class="fa-solid fa-exclamation"></i>Adresas</th>
@@ -50,25 +46,22 @@
 
                 <tr>
                     <th><i class="fa-solid fa-exclamation"></i>Buto vartotoju kiekis : </th>
-                    <td>{{ $flats->flatUsers->count()}}</td>
+                    <td>{{ $flats->flatUsers->count() }}</td>
                 </tr>
 
                 <tr>
                     <th><i class="fa-solid fa-exclamation"></i>Paskutines saskaitos data:</th>
-                    <td>???</td>
+                    <td>{{ $lastinvoiceCreated }}</td>
                 </tr>
                 <tr>
                     <th><i class="fa-solid fa-exclamation"></i>Paskutines saskaitos suma:</th>
-                    <td>???</td>
+                    <td>{{ $lastInvoice->sum }} Eur</td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Skola:</th>
-                    <td>???</td>
+                    <th>{!! $difference !!}</th>
+                    <td>{{ $differenceAmount }}</td>
                 </tr>
-                <tr>
-                    <th><i class="fa-solid fa-exclamation"></i>Permoka:</th>
-                    <td>???</td>
-                </tr>
+
                 <tr>
                     <th><i class="fa-solid fa-exclamation"></i>Paskutinis Deklaravimas</th>
                     <td>???</td>
@@ -81,6 +74,4 @@
         </table>
 
     </div>
-
-    @endsection
-
+@endsection

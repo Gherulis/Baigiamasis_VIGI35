@@ -1,10 +1,10 @@
 @extends('includes.layout')
 
 @section('content')
-      <div class="client">
+    <div class="client">
 
     </div>
-   <div class="table_container">
+    <div class="table_container">
         <table class="lentele billing_table">
             <thead>
                 <tr>
@@ -12,15 +12,12 @@
                     <td>Suma, Eur</td>
                     <td></td>
                 </tr>
-
-
             </thead>
             <tbody>
                 <tr>
                     <td>Šaltas vanduo</td>
-                    <td>{{$pricelists->saltas_vanduo}}</td>
+                    <td>{{ $pricelists->saltas_vanduo }}</td>
                     <td>Eur</td>
-
                 </tr>
                 <tr>
                     <td>Karštas vanduo</td>
@@ -42,7 +39,7 @@
                     <td>5</td>
                     <td>Eur</td>
                 </tr>
-                <tr >
+                <tr>
                     <td>Šalto vandens abonimentas</td>
                     <td>6</td>
                     <td>Eur</td>

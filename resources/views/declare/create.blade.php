@@ -30,7 +30,7 @@
                                 value="{{ $lastData->kitchen_cold }}" hidden>
                             {{ $lastData->kitchen_cold }} m<sup>3</sup>
                         </td>
-                        <td><input type="number" name="kitchen_cold"
+                        <td><input type="number" name="kitchen_cold" value="{{ $lastData->kitchen_cold }}"
                                 onkeyup="calculateDifference('kitchen_cold', this.value);"></td>
 
                         <td name="kitchen_cold_result" id="kitchen_cold_result">0 m<sup>3</sup></td>
@@ -42,7 +42,7 @@
                                 value="{{ $lastData->kitchen_hot }}" hidden>
                             {{ $lastData->kitchen_hot }} m<sup>3</sup>
                         </td>
-                        <td><input type="number" name="kitchen_hot"
+                        <td><input type="number" name="kitchen_hot" value="{{ $lastData->kitchen_hot }}"
                                 onkeyup="calculateDifference('kitchen_hot', this.value);"></td>
                         <td name="kitchen_hot_result" id="kitchen_hot_result">0 m<sup>3</sup></td>
                     </tr>
@@ -70,7 +70,7 @@
                             value="{{ $lastData->bath_cold }}" hidden>
                         {{ $lastData->bath_cold }} m<sup>3</sup>
                     </td>
-                    <td><input type="number" name="bath_cold" onkeyup="calculateDifference('bath_cold', this.value);"></td>
+                    <td><input type="number" name="bath_cold" value="{{ $lastData->bath_cold }}" onkeyup="calculateDifference('bath_cold', this.value);"></td>
                     <td name="bath_cold_result" id="bath_cold_result">0 m<sup>3</sup></td>
                 </tr>
                 <tr>
@@ -78,7 +78,7 @@
                     <td> <input type="text" id="bath_hot_before" name="bath_hot_before" value="{{ $lastData->bath_hot }}"
                             hidden>
                         {{ $lastData->bath_hot }} m<sup>3</sup></td>
-                    <td><input type="number" name="bath_hot" onkeyup="calculateDifference('bath_hot', this.value);"></td>
+                    <td><input type="number" name="bath_hot" value="{{ $lastData->bath_hot }}" onkeyup="calculateDifference('bath_hot', this.value);"></td>
                     <td name="bath_hot_result" id="bath_hot_result">0 m<sup>3</sup></td>
                 </tr>
                 <input type="number" name="flat_id" value="{{ Auth::user()->flat_id }}" hidden>

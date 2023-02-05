@@ -6,6 +6,7 @@ use App\Http\Requests\UpdateuserRequest;
 use App\Models\User;
 use App\Models\House;
 use App\Models\flat;
+use App\Models\declareWater;
 use App\Models\Invoices;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -44,14 +45,35 @@ public function show(){
 
         $flat_id = Auth::user()->flat_id;
         $flats = flat::with('belongsHouse')->with('flatUsers')->findorfail($flat_id);
-        $invoices = Invoices::where('flat_id',Auth::user()->flat_id)->get();
+        $invoices = Invoices::where('flat_id',Auth::user()->flat_id)->orderBy('created_at','desc')->get();
+        $declaration = declareWater::where('flat_id',Auth::user()->flat_id)->orderBy('created_at','desc')->get();
+        $totalInvoicesSum = 0;
+        $totalPaidSum = 0;
+        foreach ($invoices as $invoice) {
+        $invoice->suma=$invoice->sum = $invoice->saltas_vanduo + $invoice->karstas_vanduo + $invoice->sildymas + $invoice->silumos_mazg_prieziura+$invoice->gyvatukas+
+        $invoice->salto_vandens_abon+$invoice->elektra_bendra+$invoice->ukio_islaid+$invoice->nkf+$invoice->Skola
+        +$invoice->Delspinigiai-$invoice->Permoka-$invoice->Kompensacija;
+        $totalInvoicesSum += $invoice->sum;
+        $totalPaidSum += $invoice->Sumoketa; }
+        $totalDifference =  $totalPaidSum - $totalInvoicesSum;
+        if($totalDifference>= 0){
+            $difference ='<i class="fa-regular fa-face-grin-wide text-success"></i>'.'Permokų suma: ';
+            $differenceAmount = $totalDifference.' '.'Eur';
+        }
+        elseif ($totalDifference >= -0.01 && $totalDifference <= 0.01) {
+            $difference ='<i class="fa-regular fa-face-grin-wide"> Whoop Whoop</i>';
+            $differenceAmount = '0';}
+
+        else {
+            $difference ='<i class="fa-regular fa-face-frown-open text-danger"></i>'.'Skolų suma: ';
+            $differenceAmount = $totalDifference.' '.'Eur';
+        }
+        $lastInvoice = $invoices->first();
+        $lastinvoiceCreated=date('Y-m-d',strtotime($lastInvoice->created_at));
+        $declarationLastDate=date('Y-m-d',strtotime( $declaration));
 
 
-
-
-
-
-        return view('user.show', ['flats' => $flats, 'invoices'=>$invoices]);
+        return view('user.show', ['flats' => $flats, 'invoices'=>$invoices, 'lastinvoiceCreated'=>$lastinvoiceCreated,'lastInvoice'=>$lastInvoice,'difference'=>$difference, 'differenceAmount'=>$differenceAmount,'declarationLastDate'=>$declarationLastDate]);
     }
     public function create(){
              $roles = Role::all()->skip(1);

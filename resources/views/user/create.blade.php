@@ -16,7 +16,7 @@
             </div>
 
             <div class="login-text">
-                <input type="text" name="password">
+                <input type="password" name="password">
                 <label for="password">Slaptažodis : </label>
             </div>
             <div class="">

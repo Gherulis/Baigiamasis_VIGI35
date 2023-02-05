@@ -5,8 +5,6 @@
 
         <form action="{{ route('contact.update', $contacts) }}" method="POST">
             @csrf
-
-
             <div class="login-text">
                 <input type="text" name="name" value="{{ $contacts->vardas }}">
                 <label for="name">Vardas</label>
@@ -19,9 +17,7 @@
                 <input type="text" name="phone" value="{{ $contacts->tel }}">
                 <label for="text">Tel.Nr</label>
             </div>
-
             <input class="btn" type="submit" value="Redaguoti">
-
         </form>
     </div>
 @endsection

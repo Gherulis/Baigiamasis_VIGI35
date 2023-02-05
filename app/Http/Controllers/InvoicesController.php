@@ -85,11 +85,6 @@ class InvoicesController extends Controller
         return view ('invoices.index ',compact('invoices','filterDates','totalInvoicesSum','totalPaidSum','difference','filterData'));
     }
     public function indexFlat()
-
-
-
-
-
     {
         $invoices = invoices::where('flat_id', Auth::user()->flat_id)->orderBy('created_at','desc')->get();
 
@@ -97,7 +92,8 @@ class InvoicesController extends Controller
             $invoice->sum = $invoice->saltas_vanduo + $invoice->karstas_vanduo + $invoice->sildymas + $invoice->silumos_mazg_prieziura+$invoice->gyvatukas+
             $invoice->salto_vandens_abon+$invoice->elektra_bendra+$invoice->ukio_islaid+$invoice->nkf+$invoice->Skola
             +$invoice->Delspinigiai-$invoice->Permoka-$invoice->Kompensacija;}
-        return view ('invoices.index ',compact('invoices'));
+
+        return view ('invoices.indexFlat ',compact('invoices'));
     }
 
     /**
