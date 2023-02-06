@@ -6,6 +6,8 @@ use App\Models\Nkf;
 use App\Models\House;
 use App\Http\Requests\StoreNkfRequest;
 use App\Http\Requests\UpdateNkfRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class NkfController extends Controller
 {
@@ -14,16 +16,24 @@ class NkfController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $nkf = Nkf::sortable()->get();
-        // $nkfHouse = $nkf->house_id;
-        // foreach ($nkfs as $nkf){
-        //     $nkf->houseAddress = House::where('id',$nkf->house_id)->get('address');
-        //     $nkf->houseNr= House::where('id',$nkf->house_id)->get('house_nr');
-        // }
-        // dd($nkf);
-        return view ('nkf.index',['nkf'=>$nkf]);
+    public function index(request $request)
+    {   $filterData = Nkf::join('houses', 'houses.id', '=', 'nkfs.house_id')
+        ->select('nkfs.*', 'houses.address', 'houses.house_nr')
+        ->get();
+        $houseId = request('filter') ? request('filter') : '1' ;
+
+
+        $nkfs = Nkf::sortable()->where('house_id',$houseId)->join('houses', 'houses.id', '=', 'nkfs.house_id')
+        ->select('nkfs.*', 'houses.address', 'houses.house_nr')
+        ->get();
+
+        $totalMoney = Nkf::where('house_id',$houseId)->where('type','iplaukos')->get()->sum('amountPayed'); //susiskaiciuoju visas iplaukas
+        $totalSpendings = Nkf::where('house_id',$houseId)->where('type','islaidos')->get()->sum('amountPayed'); //susiskaiciuoju visas islaidas
+        $nkfs->totalPlanned = Nkf::where('house_id',$houseId)->where('type','Planuojamos išlaidos')->get()->sum('amountPayed'); //susiskaiciuoju visas planuojamas islaidas
+        $nkfs->totalSaved = $totalMoney - $totalSpendings; // susiskaiciuoju likuti is sukauptu atimu islaidas
+
+
+        return view('nkf.index', compact('nkfs','filterData'));
     }
 
     /**

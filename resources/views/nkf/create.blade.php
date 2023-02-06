@@ -24,7 +24,7 @@
             <select class="form-select" name="type" id="" value=''>
                 <option name="" value='Išlaidos'>Išlaidos</option>
                 <option name="" value='Įplaukos'>Įplaukos</option>
-                <option name="" value='Planas'>Planuojama</option>
+                <option name="" value='Planuojamos išlaidos'>Planuojami darbai</option>
 
 
 

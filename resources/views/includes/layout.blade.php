@@ -46,6 +46,7 @@
                             <li><a class="nav-link" href="{{ route('user.index') }}"><i class="fa-solid fa-person"></i>Gyventojai</a></li>
                             <li><a class="nav-link" href="{{ route('flat.index') }}"><i class="fa-solid fa-suitcase"></i>Butai</a></li>
                             <li><a class="nav-link" href="{{ route('house.index') }}"><i class="fa-solid fa-house"></i>Namai</a></li>
+                            <li><a class="nav-link" href="{{ route('nkf.index') }}"><i class="fa-solid fa-piggy-bank"></i>NKF</a></li>
 
                         </ul>
 
