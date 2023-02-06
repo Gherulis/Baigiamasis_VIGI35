@@ -13,8 +13,10 @@ use Kyslik\ColumnSortable\Sortable;
 class flat extends Model
 {
     use HasFactory, Sortable;
-
-    public $sortable = ['id','house_id','flat_nr','flat_size','gyv_mok_suma','created_at'];
+    protected $fillable = [
+        'flat_nr', 'flat_size', 'gyv_mok_suma', 'invitation', 'house_id'
+    ];
+    public $sortable = ['id','house_id','flat_nr','flat_size','gyv_mok_suma','created_at',];
 
 public function flatUsers(){
     return $this->hasMany(User::class,'flat_id','id' );

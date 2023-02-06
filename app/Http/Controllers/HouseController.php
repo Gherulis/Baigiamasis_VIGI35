@@ -49,7 +49,9 @@ class HouseController extends Controller
                 $house->city = request('city');
                 $house->house_size = request('house_size');
                 $house->save();
-                return redirect()->route('house.index')->with('good_message', 'Naujas namas sėkmingai pridėtas !!! ');
+
+
+                return redirect()->route('flat.createFlats')->with('good_message', 'Naujas namas sėkmingai pridėtas !!! ');
     }
 
     /**

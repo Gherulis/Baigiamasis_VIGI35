@@ -11,6 +11,7 @@ use App\Http\Requests\StoreflatRequest;
 use App\Http\Requests\UpdateflatRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Http\Request;
 
 class FlatController extends Controller
 {
@@ -207,7 +208,7 @@ public function dateToLt($date) {
 
 
 
-}
+
 
 // kopija
 // public function billsIndex()
@@ -354,3 +355,18 @@ public function dateToLt($date) {
 // 'test5',
 // 'userFlatBelongs'
 // ));
+
+public function createFlats(){
+    $lastHouse=house::all()->last();
+    $houseID=$lastHouse->id;
+
+    return view ('flat.createFlats',['houseID'=>$houseID]);
+}
+public function storeFlats(Request $request){
+
+    foreach ($request->inputs as $key => $value) {
+        flat::create($value);
+    }
+    return redirect(route('flat.index'))->with('good_message', 'Butai sėkmingai pridėti');
+}
+}
