@@ -18,7 +18,7 @@
                         src="/storage/cover_images/{{$post->postImage}}"
                         alt="IMG"></div>
                 <div >
-                    <p class="newsText">{{$post->postBody}}</p>
+                    <p class="newsText" >{{substr($post->postBody, 0,300 )}}</p>
                 </div>
                 <hr>
                 <div>
