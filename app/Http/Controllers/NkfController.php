@@ -20,20 +20,14 @@ class NkfController extends Controller
     {   $filterData = Nkf::join('houses', 'houses.id', '=', 'nkfs.house_id')
         ->select('nkfs.*', 'houses.address', 'houses.house_nr')
         ->get();
-
-
         $houseId = request('filter') ? request('filter') : '1' ;
-
-
         $nkfs = Nkf::sortable()->where('house_id',$houseId)->join('houses', 'houses.id', '=', 'nkfs.house_id')
         ->select('nkfs.*', 'houses.address', 'houses.house_nr')
         ->get();
-
         $totalMoney = Nkf::where('house_id',$houseId)->where('type','iplaukos')->get()->sum('amountPayed'); //susiskaiciuoju visas iplaukas
         $totalSpendings = Nkf::where('house_id',$houseId)->where('type','islaidos')->get()->sum('amountPayed'); //susiskaiciuoju visas islaidas
         $nkfs->totalPlanned = Nkf::where('house_id',$houseId)->where('type','Planuojamos išlaidos')->get()->sum('amountPayed'); //susiskaiciuoju visas planuojamas islaidas
         $nkfs->totalSaved = $totalMoney - $totalSpendings; // susiskaiciuoju likuti is sukauptu atimu islaidas
-
 
         return view('nkf.index', compact('nkfs','filterData'));
     }
@@ -44,7 +38,10 @@ class NkfController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $houses=House::all();
+    {
+
+
+        $houses=House::all();
         return view('nkf.create',['houses'=>$houses]);
     }
 
@@ -55,7 +52,22 @@ class NkfController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreNkfRequest $request)
-    {
+    {   $request->validate([
+
+        'house_id'=>'required',
+        'description'=>'required|min:4|string|',
+        'type'=>'required',
+        'amountPayed'=>'required|min:1|numeric|between:0,19999.99',
+
+
+        ],[],[
+
+            'house_id'=>'šaltas vanduo',
+            'description'=>'aprašymas',
+            'type'=>'tipas',
+            'amountPayed'=>'pinigų suma',
+
+        ]);
         $nkf = new nkf();
         $nkf->house_id=request('house_id');
         $nkf->description=request('description');
@@ -96,13 +108,29 @@ class NkfController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateNkfRequest $request, Nkf $nkf)
-    {
+    { $request->validate([
+
+        'house_id'=>'required',
+        'description'=>'required|min:4|string|',
+        'type'=>'required',
+        'amountPayed'=>'required|min:1|numeric|between:0,19999.99',
+
+
+        ],[],[
+
+            'house_id'=>'šaltas vanduo',
+            'description'=>'aprašymas',
+            'type'=>'tipas',
+            'amountPayed'=>'pinigų suma',
+
+        ]);
 
         $nkf->house_id=$request->house_id;
         $nkf->description=$request->description;
         $nkf->type=$request->type;
         $nkf->amountPayed=$request->amountPayed;
         $nkf->save();
+
         return redirect()->route('nkf.index')->with('good_message', 'Dėkui, Jūs sėkmingai redagavote įrašą');
     }
 

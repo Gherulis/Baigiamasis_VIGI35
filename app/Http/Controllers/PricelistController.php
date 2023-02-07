@@ -85,9 +85,33 @@ class PricelistController extends Controller
      * @param  \App\Http\Requests\StorepricelistRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
-
+    public function store(StorepricelistRequest $request)
     {
+        $request->validate([
+            'house_nr'=> 'required|min:1|numeric|between:0,19999.99',
+            'saltas_vanduo'=>'required|min:1|numeric|between:0,19999.99',
+            'karstas_vanduo'=>'required|min:1|numeric|between:0,19999.99',
+            'sildymas'=>'required|min:1|numeric|between:0,19999.99',
+            'silumos_mazg_prieziura'=>'required|min:1|numeric|between:0,19999.99',
+            'gyvatukas'=>'required|min:1|numeric|between:0,19999.99',
+            'salto_vandens_abon'=>'required|min:1|numeric|between:0,19999.99',
+            'elektra_bendra'=>'required|min:1|numeric|between:0,19999.99',
+            'ukio_islaid'=>'required|min:1|numeric|between:0,19999.99',
+            'nkf'=>'required|min:1|numeric|between:0,19999.99',
+
+            ],[],[
+                'house_nr'=> 'namo numeris',
+                'saltas_vanduo'=>'šaltas vanduo',
+                'karstas_vanduo'=>'karštas vanduo',
+                'sildymas'=>'šildymas',
+                'silumos_mazg_prieziura'=>'šilumos mazgo priežiūra',
+                'gyvatukas'=>'gyvatukas',
+                'salto_vandens_abon'=>'šalto vandens abonimentas',
+                'elektra_bendra'=>'elektra bendroms reikmėms',
+                'ukio_islaid'=>'ūkio išlaidos',
+                'nkf'=>'namo kaupimo fondas',
+            ]);
+
         $house_id = request('house_nr');
         $saltas_vanduo = request('saltas_vanduo');
         $karstas_vanduo = request('karstas_vanduo');
@@ -198,7 +222,30 @@ class PricelistController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatepricelistRequest $request,pricelist $pricelist)
-    {
+    {   $request->validate([
+
+        'saltas_vanduo'=>'required|min:1|numeric|between:0,19999.99',
+        'karstas_vanduo'=>'required|min:1|numeric|between:0,19999.99',
+        'sildymas'=>'required|min:1|numeric|between:0,19999.99',
+        'silumos_mazg_prieziura'=>'required|min:1|numeric|between:0,19999.99',
+        'gyvatukas'=>'required|min:1|numeric|between:0,19999.99',
+        'salto_vandens_abon'=>'required|min:1|numeric|between:0,19999.99',
+        'elektra_bendra'=>'required|min:1|numeric|between:0,19999.99',
+        'ukio_islaid'=>'required|min:1|numeric|between:0,19999.99',
+        'nkf'=>'required|min:1|numeric|between:0,19999.99',
+
+        ],[],[
+
+            'saltas_vanduo'=>'šaltas vanduo',
+            'karstas_vanduo'=>'karštas vanduo',
+            'sildymas'=>'šildymas',
+            'silumos_mazg_prieziura'=>'šilumos mazgo priežiūra',
+            'gyvatukas'=>'gyvatukas',
+            'salto_vandens_abon'=>'šalto vandens abonimentas',
+            'elektra_bendra'=>'elektra bendroms reikmėms',
+            'ukio_islaid'=>'ūkio išlaidos',
+            'nkf'=>'namo kaupimo fondas',
+        ]);
 
 
         $pricelist->saltas_vanduo = $request->saltas_vanduo;

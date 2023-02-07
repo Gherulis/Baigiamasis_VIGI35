@@ -80,12 +80,32 @@ public function show(){
         return view('user.show', ['flats' => $flats, 'invoices'=>$invoices, 'lastinvoiceCreated'=>$lastinvoiceCreated,'lastInvoice'=>$lastInvoice,'difference'=>$difference, 'differenceAmount'=>$differenceAmount,'declarationLastDate'=>$declarationLastDate]);
     }
     public function create(){
-             $roles = Role::all()->skip(1);
+
+
+             $roles = Role::all()->skip(1)->sortByDesc('id');
              $flats = flat::with('belongsHouse')->get();
 
              return view('user.create', ['roles'=>$roles,'flats'=>$flats]);
     }
     public function store(request $request){
+        $request->validate([
+            'name'=>'required|regex:/^[A-Z][a-zA-Z]+$/',
+            'email'=>'required|email|min:4',
+            'password'=>'required|min:8',
+
+            ],[],[
+                'name'=>'vartotojo vardas',
+                'email'=>'vartotojo elektroninis paštas',
+                'password'=>'slaptažodis',
+
+            ]);
+            $emailExists = User::where('email', $request->email)
+            ->exists();
+
+            if ($emailExists) {
+            return redirect()->back()
+                ->with('bad_message','Toks elektroninis paštas egzistuoja');
+        } else {
 
         $user = new User();
         $user -> name = $request->name;
@@ -99,7 +119,7 @@ public function show(){
 
 
 
-        return view('user.show', ['flats' => $flats]);
+        return view('user.show', ['flats' => $flats]);}
     }
     public function destroy(user $user)
     {
@@ -114,7 +134,17 @@ public function edit(user $user)
 
 
     public function update(UpdateuserRequest $request,user $user)
-    {
+    {    $request->validate([
+        'name'=>'required|regex:/^[A-Z][a-zA-Z]+$/',
+        'email'=>'required|email|min:4',
+
+        ],[],[
+            'name'=>'vartotojo vardas',
+            'email'=>'vartotojo elektroninis paštas',
+
+        ]);
+
+
 
         $user->name = $request->name;
         $user->email = $request->email;

@@ -24,15 +24,7 @@ class UpdatepricelistRequest extends FormRequest
     public function rules()
     {
         return [
-            'saltas_vanduo' => 'required|integer',
-            'karstas_vanduo' => 'required|integer',
-             'sildymas' => 'required|integer',
-            'silumos_mazg_prieziura' => 'required|integer',
-             'gyvatukas' => 'required|integer',
-            'salto_vandens_abon' =>'required|integer',
-             'elektra_bendra' => 'required|integer',
-            'ukio_islaid' =>'required|integer',
-             'nkf' => 'required|integer',
+
         ];
     }
 }

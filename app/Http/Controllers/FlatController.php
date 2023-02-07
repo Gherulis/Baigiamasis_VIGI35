@@ -65,7 +65,15 @@ class FlatController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreflatRequest $request)
-    {
+    {  $request->validate([
+        'flat_nr'=>'required|min:1|string|',
+        'flat_size'=>'required',
+        'gyv_mok_suma'=>'required|min:1|integer|between:0,100',
+        ],[],[
+            'flat_nr'=>'buto numeris',
+            'flat_size'=>'buto kvadratūra',
+            'gyv_mok_suma'=>'gyvatuko mokamas procentas',
+        ]);
         $random_number = mt_rand(100,999);
         $random_invitation = 'A'.$random_number;
        $flat = new flat;
@@ -109,9 +117,14 @@ class FlatController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateflatRequest $request, flat $flat)
-    {
-
-        $flat->flat_size = $request ->flat_size;
+    {   $request->validate([
+        'flat_size'=>'required',
+        'gyv_mok_suma'=>'required|min:1|integer|between:0,100',
+        ],[],[
+            'flat_size'=>'buto kvadratūra',
+            'gyv_mok_suma'=>'gyvatuko mokamas procentas',
+        ]);
+        $flat->flat_size=request('flat_size');
         $flat->gyv_mok_suma = $request->gyv_mok_suma;
         $flat->save();
         return redirect()->route('flat.index')->with('good_message', 'Butas sėkmingai redaguotas');

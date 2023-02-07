@@ -1,23 +1,18 @@
 @extends ('includes.layout')
 @section('content')
     <div class="login-form store-form">
-        <h3>Redaguoti butą : </h3>
+        <h3>Redaguoti butą : Nr {{ $flat->flat_nr }}</h3>
 
         <form action="{{route('flat.update',$flat)}}" method="POST">
         @csrf
 
-
         <div class="login-text">
-            <input type="text" name="flat_size" value="{{$flat->flat_nr}}"   >
-            <label for="flat_nr">Buto Numeris</label>
-        </div>
-        <div class="login-text">
-            <input type="number" name="flat_size" value="{{$flat->flat_size}}" >
-            <label for="email">Buto Dydis</label>
+            <input type="number" name="flat_size" step="0.01" value="{{$flat->flat_size}}" >
+            <label for="flat_size">Buto Dydis (m<sup>2</sup>)</label>
         </div>
         <div class="login-text">
             <input type="text" name="gyv_mok_suma" value="{{$flat->gyv_mok_suma}}" >
-            <label for="text">Gyvatuko Mokama Suma (%)</label>
+            <label for="gyv_mok_suma">Gyvatuko Mokama Suma (%)</label>
         </div>
 
         <input class="btn" type="submit" value="Redaguoti">

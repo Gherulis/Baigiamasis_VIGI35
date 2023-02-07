@@ -89,7 +89,9 @@
 .textCenter{
     text-align: center;
 }
-
+.invalid{
+    border: 1px solid red;
+}
 .btn_edit:hover,
 .btn_create:hover {
     background: var(--btn_edit_hover);

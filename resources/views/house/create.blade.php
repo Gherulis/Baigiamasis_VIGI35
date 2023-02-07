@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="login-form store-form">
-        <h3>Naujas namas</h3>
+        <h3>Pridėti nauja namas</h3>
 
         <form action="{{route('house.store')}}" method="POST">
         @csrf
         <div class="login-text">
-            <input type="text" name="address" value="{{ old('address') }}" class="form-control @error('address') is-invalid @enderror" >
-            <label for="address">Adresas</label>
+            <input type="text" name="address" value="{{ old('address') }} " class="form-control @error('address') is-invalid @enderror" >
+            <label for="address">Gatvės pavadinimas</label>
             @error('address')
             <span class="invalid-feedback" role="alert" >
                 <strong>{{ $message }}</strong>
@@ -34,7 +34,7 @@
             @enderror
         </div>
         <div class="login-text">
-            <input type="number" name="house_size" value="{{ old('house_size') }}" class="form-control @error('house_size') is-invalid @enderror">
+            <input type="number" name="house_size" value="{{ old('house_size') }}" step="0.01" class="form-control @error('house_size') is-invalid @enderror">
             <label for="house_size">Namo plotas m<sup>2</sup></label>
             @error('house_size')
             <span class="invalid-feedback" role="alert">

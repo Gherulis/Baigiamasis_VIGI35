@@ -122,8 +122,8 @@
     @if ($errors->any())
     <div class="w-4/8 m-auto text-center">
         @foreach ($errors->all() as $error )
-        <li class="text-red-500 list-none">
-            {{ $error }}
+        <li class="text-red-500 list-none text-warning">
+            <i class="fa-solid fa-pencil text-info"></i> {{ $error }}</i>
         </li>
 
         @endforeach

@@ -40,7 +40,17 @@ class HouseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StorehouseRequest $request)
-    {
+    {           $request->validate([
+                'address'=> 'required|min:4|string',
+                'house_nr'=>'required|min:1|max:999|integer',
+                'city'=>'required|min:3|string',
+                'house_size'=>'required|numeric|between:0,19999.99',
+                ],[],[
+                    'address'=>'gatvės pavadinimas',
+                    'house_nr'=>'namo numeris',
+                    'city'=>'miestas',
+                    'house_size'=>'namo kvadratūra',
+                ]);
 
 
                 $house = new house ();
@@ -85,7 +95,17 @@ class HouseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatehouseRequest $request, house $house)
-    {
+    {      $request->validate([
+        'address'=> 'required|min:4|string',
+        'house_nr'=>'required|min:1|max:999|integer',
+        'city'=>'required|min:3|string',
+        'house_size'=>'required|numeric|between:0,19999.99',
+        ],[],[
+            'address'=>'gatvės pavadinimas',
+            'house_nr'=>'namo numeris',
+            'city'=>'miestas',
+            'house_size'=>'namo kvadratūra',
+        ]);
 
         $house->address = $request->address;
         $house->house_nr= $request->house_nr;

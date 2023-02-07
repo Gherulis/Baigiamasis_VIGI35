@@ -31,7 +31,7 @@
             </select>
         </div>
         <div class="login-text">
-            <input type="text" name="amountPayed" value="{{ old('amountPayed') }}" class="form-control @error('amountPayed') is-invalid @enderror">
+            <input type="text" name="amountPayed" value="{{ old('amountPayed') }}" placeholder="Eur su PVM"class="form-control @error('amountPayed') is-invalid @enderror">
             <label for="amountPayed">Suma</label>
             @error('amountPayed')
             <span class="invalid-feedback" role="alert">
@@ -40,7 +40,7 @@
             @enderror
         </div>
 
-        <input class="btn" type="submit" value="Pridėti">
+        <input class="btn" type="submit" value="Pridėti įrašą">
 
         </form>
     </div>

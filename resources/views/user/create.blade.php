@@ -7,21 +7,21 @@
         <form action="{{ route('user.store') }}" method="POST">
             @csrf
             <div class="login-text">
-                <input type="text" name="name">
-                <label for="name">Vardas : </label>
+                <input type="text" name="name" placeholder="Pirma didžioji raidė">
+                <label for="name">Vardas</label>
             </div>
             <div class="login-text">
-                <input type="text" name="email">
-                <label for="email">Elektroninis paštas : </label>
+                <input type="text" name="email" placeholder="Elektroninis paštas">
+                <label for="email">Elektroninis paštas</label>
             </div>
 
             <div class="login-text">
                 <input type="password" name="password">
-                <label for="password">Slaptažodis : </label>
+                <label for="password">Slaptažodis</label>
             </div>
             <div class="">
 
-                <label for="flat_id">Gyvenamoji vieta : </label>
+                <label for="flat_id">Gyvenamoji vieta</label>
 
                 <select name="flat_id" class="form-control" id="">
                     @foreach ($flats as $flat)
@@ -32,7 +32,7 @@
             <div class="">
 
 
-                <label for="role">Rolė : </label>
+                <label for="role">Rolė</label>
                 <select name="role" class="form-control" id="">
                     @foreach ($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->name }}</option>
