@@ -4,7 +4,7 @@
     <div class="login-form store-form">
         <h3>Naujas butas</h3>
 
-        <form action="{{route('contacts.store')}}" method="POST">
+        <form action="{{route('flat.store')}}" method="POST">
         @csrf
         <div class="login-text">
             <input type="text" name="flat_nr" value="{{ old('flat_nr') }}" class="form-control @error('flat_nr') is-invalid @enderror" >
@@ -32,6 +32,7 @@
                 <strong>{{ $message }}</strong>
             </span>
             @enderror
+            <input type="number" name="house_id" value='{{ $flat }}' hidden>
         </div>
 
         <input class="btn" type="submit" value="Pridėti">

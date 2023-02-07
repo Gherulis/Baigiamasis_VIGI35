@@ -20,6 +20,8 @@ class NkfController extends Controller
     {   $filterData = Nkf::join('houses', 'houses.id', '=', 'nkfs.house_id')
         ->select('nkfs.*', 'houses.address', 'houses.house_nr')
         ->get();
+
+
         $houseId = request('filter') ? request('filter') : '1' ;
 
 

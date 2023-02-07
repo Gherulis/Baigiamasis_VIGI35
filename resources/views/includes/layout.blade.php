@@ -119,6 +119,16 @@
     @if (session()->has('good_message'))
     <div id="good_message" class="message_show alert alert-success"><i class="fa-regular fa-face-grin-wide alert-success"></i> {{ session()->get('good_message') }}</div>
 @endif
+    @if ($errors->any())
+    <div class="w-4/8 m-auto text-center">
+        @foreach ($errors->all() as $error )
+        <li class="text-red-500 list-none">
+            {{ $error }}
+        </li>
+
+        @endforeach
+    </div>
+    @endif
     </header>
 
 
@@ -129,6 +139,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/message_show.js') }}"></script>
+    <script src="{{ asset('js/createFlats.js') }}"></script>
 
 
 

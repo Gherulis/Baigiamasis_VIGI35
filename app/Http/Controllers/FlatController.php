@@ -39,9 +39,13 @@ class FlatController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $flat=flat::sortable()->paginate(10);
-        return view ('flat.index',['flat' =>$flat]);
+    {   $filterData = house::all();
+        $houseId = request('filter') ? request('filter') : '1' ;
+        $flatCount=flat::where('house_id', $houseId )->count();
+        $house=house::where('id', $houseId)->first();
+
+        $flat=flat::sortable()->where('house_id',$houseId)->paginate(10);
+        return view ('flat.index',['flat' =>$flat, 'filterData'=>$filterData, 'flatCount'=>$flatCount,'house'=>$house]);
     }
 
     /**
@@ -49,9 +53,9 @@ class FlatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($flat)
     {
-        return view('flat.create');
+        return view('flat.create',['flat'=>$flat]);
     }
 
     /**
@@ -62,11 +66,14 @@ class FlatController extends Controller
      */
     public function store(StoreflatRequest $request)
     {
+        $random_number = mt_rand(100,999);
+        $random_invitation = 'A'.$random_number;
        $flat = new flat;
        $flat->house_id=request('house_id');
        $flat->flat_nr=request('flat_nr');
        $flat->flat_size=request('flat_size');
        $flat->gyv_mok_suma=request('gyv_mok_suma');
+       $flat->invitation=$random_invitation;
        $flat-> save();
 
        return redirect()->route('flat.index')->with('good_message', 'Dėkui, Jūs sėkmingai sukūrėte naują butą! Linkime gerų kaimynų !');
@@ -358,9 +365,11 @@ public function dateToLt($date) {
 
 public function createFlats(){
     $lastHouse=house::all()->last();
+    $random_number = mt_rand(1000,9999);
+
     $houseID=$lastHouse->id;
 
-    return view ('flat.createFlats',['houseID'=>$houseID]);
+    return view ('flat.createFlats',['houseID'=>$houseID, 'random_number'=>$random_number ]);
 }
 public function storeFlats(Request $request){
 

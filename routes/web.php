@@ -116,7 +116,7 @@ Route::prefix('flat')->group(function(){
 
     Route::get('/show', [FlatController::class, 'show'])->name('flat.show')->middleware('auth');
     Route::get('/edit/{flat}', [FlatController::class, 'edit'])->name('flat.edit')->middleware('auth');
-    Route::get('/create', [FlatController::class, 'create'])->name('flat.create')->middleware('auth');
+    Route::get('/create/{flat}', [FlatController::class, 'create'])->name('flat.create')->middleware('auth');
     Route::post('/store', [FlatController::class, 'store'])->name('flat.store')->middleware('auth');
     Route::post('/destroy/{flat}', [FlatController::class, 'destroy'])->name('flat.destroy')->middleware('auth');
     Route::post('/update/{flat}', [FlatController::class, 'update'])->name('flat.update')->middleware('auth');

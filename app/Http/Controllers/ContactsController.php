@@ -44,11 +44,11 @@ class ContactsController extends Controller
      */
     public function store(StorecontactsRequest $request)
     {
-$request->validate([
-    'name' => 'required|min:3',
-    'email' => 'required|email',
-    'phone' => 'required',
-]);
+        $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email|min:7',
+            'phone' => 'required|integer|min:9',
+        ]);
 
         $contacts = new Contacts ();
         $contacts->vardas = request('name');

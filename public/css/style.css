@@ -83,6 +83,12 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.tablerow_bg {
+    background-color: #f3f3f3;
+}
+.textCenter{
+    text-align: center;
+}
 
 .btn_edit:hover,
 .btn_create:hover {
