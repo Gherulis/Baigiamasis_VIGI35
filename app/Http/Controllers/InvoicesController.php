@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Auth;
 
 class InvoicesController extends Controller
 {    public function __construct(){
-    $this->middleware('permission:invoices-view', ['only'=>['index',"showLast"]]);
+    $this->middleware('permission:invoices-view', ['only'=>['index']]);
     $this->middleware('permission:invoices-indexFlat', ['only'=>['indexFlat']]);
     $this->middleware('permission:invoices-create', ['only'=>['create','store']]);
     $this->middleware('permission:invoices-edit', ['only'=>['edit','update','editInvoices','invoicesUpdate']]);
     $this->middleware('permission:invoices-delete', ['only'=>['destroy']]);
-    $this->middleware('permission:invoices-show', ['only'=>["show"]]);
+    $this->middleware('bills-indexLast', ['only'=>["showLast"]]);
+
 
 }
 
@@ -105,6 +106,7 @@ class InvoicesController extends Controller
         // Sitas metodas ivyksta automatiskai pateikus saskaita namui.Pricelist create !!!  Atskirai saskaitu butui kurti negalima !!!
 
         $invoicesData = $this->calculateInvoices();
+
         foreach ($invoicesData as $index =>$invoice) {
             $invoice = new invoices();
             $invoice->flat_id=$invoicesData[$index]['flatId']  ;
@@ -120,8 +122,10 @@ class InvoicesController extends Controller
             $invoice->nkf= $invoicesData[$index]['houseSavingBill']  ;
             $invoice->save();
 
+
         }
-        return redirect()->route('house.index', ['invoicesData'=>$invoicesData])->with('good_message', 'Dėkui, Jūs sėkmingai pateikėte sąskaitą');
+        return redirect()->route('invoices.index')->with('good_message', 'Jūs sėkmingai sukūrėte saskaitą!');
+        // return redirect()->route('house.index', ['invoicesData'=>$invoicesData])->with('good_message', 'Dėkui, Jūs sėkmingai pateikėte sąskaitą');
     }
 
 

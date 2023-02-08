@@ -91,9 +91,13 @@
                 @enderror
             </div>
             <div class="center">
-            <a href="{{ route('pricelist.edit', $pricelist) }}"><button class="btn_medium btn_edit" type="submit"><i
-                        class="fa-solid fa-pen-clip"></i>Redaguoti</button></a>
-
+            @can('pricelist-edit')
+                <a href="{{ route('pricelist.edit', $pricelist) }}">
+                    <button class="btn_medium btn_edit" type="submit">
+                        <i class="fa-solid fa-pen-clip"></i>Redaguoti
+                    </button>
+                </a>
+            @endcan
         </form>
     </div>
     </div>

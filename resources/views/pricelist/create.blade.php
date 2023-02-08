@@ -56,7 +56,9 @@
                 </tbody>
         </table>
         <div>
-            <input class="btn" type="submit" value="Pridėti">
+            @can('pricelist-create')
+                <input class="btn" type="submit" value="Pridėti">
+            @endcan
         </div>
     </div>
 @endsection

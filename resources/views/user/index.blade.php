@@ -11,7 +11,16 @@
 
             <thead>
                 <tr>
-                <th colspan="7" class="right"><a href="{{route('user.create')}}"><button class="btn_medium btn_create"><i class="fa-regular fa-pen-to-square"></i>Sukurti vartotoją</button></a></th>
+                <th colspan="7" class="right">
+                    <a href="{{route('user.create')}}">
+                        @can('user-create')
+                        <button class="btn_medium btn_create">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                            Sukurti vartotoją
+                        </button>
+                        @endcan
+                    </a>
+                </th>
                 </tr>
 
                 <tr>
@@ -45,12 +54,18 @@
                                 @endif
                             <td >
                                 <div class="flex-container">
+                                @can('user-show')
                                 <a href="{{route('user.show', $user)}}"><button class="btn_small btn_show" type="submit"><i class="fa-regular fa-eye"></i></button></a>
+                                @endcan
+                                @can('user-edit')
                                 <a href="{{route('user.edit', $user)}}"><button class="btn_small btn_edit" type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
-
+                                @endcan
+                                @can('user-delete')
                                 <form action="{{route('user.destroy',$user)}}" method="POST">
                                     @csrf
+
                                     <button class="btn_small btn_delete" value="submit"><i class="fa-solid fa-trash-can red"></i></button>
+                                    @endcan
                                 </form>
                             </div>
                             </td>

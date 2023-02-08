@@ -5,7 +5,9 @@
 @section('content')
     <section>
         <div class="news-button">
-            <a href="{{ route('post.create') }}"><button class="btn_medium btn_edit FloatRight"> Naujas Skelbimas</button></a>
+            @can('post-create')
+                <a href="{{ route('post.create') }}"><button class="btn_medium btn_edit FloatRight"> Naujas Skelbimas</button></a>
+            @endcan
         </div>
         <div class="news-container">
 
@@ -22,7 +24,9 @@
                             <small><a href="{{ $post->postLink }}">Šaltinis {{substr( $post->postLink,0,35) }}</a></small>
                             <br>
                             <small>Ikelta {{ $post->created_at }}</small>
-                            <a  href="{{ route('post.show', $post) }}"><button class="btn_medium btn_edit FloatRight">Skaityti</button></a>
+                            @can('post-show')
+                                <a  href="{{ route('post.show', $post) }}"><button class="btn_medium btn_edit FloatRight">Skaityti</button></a>
+                            @endcan
                         </div>
 
                 </div>

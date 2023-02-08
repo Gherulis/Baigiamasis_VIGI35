@@ -26,8 +26,10 @@
         <div>
            <input type="file" id="postImage" name="postImage" value="{{$posts->postImage}}">
         </div>
-
+        @can('post-edit')
         <input class="btn" type="submit" value="Pridėti">
+        @endcan
+
 
         </form>
     </div>

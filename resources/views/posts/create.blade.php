@@ -23,9 +23,9 @@
            <input type="file" id="postImage" name="postImage" >
         </div>
 
-
+        @can('post-create')
         <input class="btn" type="submit" value="Įkelti skelbima">
-
+        @endcan
         </form>
     </div>
 

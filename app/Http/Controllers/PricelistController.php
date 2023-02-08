@@ -10,6 +10,7 @@ use App\Models\flat;
 use App\Models\house;
 use App\Models\declareWater;
 use App\Models\invoices;
+use App\Models\Nkf;
 use App\Http\Requests\StorepricelistRequest;
 use App\Http\Requests\UpdatepricelistRequest;
 use Carbon\Carbon;
@@ -24,7 +25,7 @@ class PricelistController extends Controller
     $this->middleware('permission:pricelist-edit', ['only'=>['edit','update']]);
     $this->middleware('permission:pricelist-delete', ['only'=>['destroy']]);
     $this->middleware('permission:pricelist-lastbill', ['only'=>['lastbill']]);
-    $this->middleware('permission:pricelist-showPrices', ['only'=>['showPrices','show']]);
+    $this->middleware('permission:pricelist-showPrices', ['only'=>['showPrices','showPrices']]);
 }
     /**
      * Display a listing of the resource.
@@ -121,6 +122,8 @@ class PricelistController extends Controller
         $elektra_bendra = request('elektra_bendra');
         $ukio_islaid = request('ukio_islaid');
         $nkf = request('nkf');
+        $nkfForNkf=$nkf;
+        $house_idForNkf=$house_id;
 
         $userFlat = Auth::user()->flat_id;
         $houseNr =$house_id;//reikes perdaryti i request kuriam namui bus skirta saskaita
@@ -182,6 +185,14 @@ class PricelistController extends Controller
         $pricelist->nkf_price  =  $nkf/$flat_total_sq_m; // padalinu is bendros butu kvadraturos
 
         $pricelist->save();
+
+        $nkf = new Nkf();
+        $nkf->house_id=$house_idForNkf;
+        $nkf->description="Mėnesinė namo kaupimo iplauka";
+        $nkf->type="Įplaukos";
+        $nkf->amountPayed=$nkfForNkf;
+        $nkf->save();
+
         return redirect()->route('invoices.create')->with('good_message', 'Jūs sėkmingai sukūrėte saskaitą!');;
 
 

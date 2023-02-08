@@ -10,10 +10,7 @@
             <input type="text" name="name"  >
             <label for="name">Pavadinimas</label>
         </div>
-
-
         <input class="btn" type="submit" value="Sukurti teisę">
-
         </form>
     </div>
 

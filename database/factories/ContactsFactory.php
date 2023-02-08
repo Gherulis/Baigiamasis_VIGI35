@@ -19,7 +19,7 @@ class ContactsFactory extends Factory
         return [
             'vardas' => $this->faker->firstName(),
             'pastas' => $this->faker->unique()->email,
-            'tel' => $this->faker->numberBetween(67011111,67999999),
+            'tel' => $this->faker->numberBetween(867011111,867999999),
         ];
     }
 }

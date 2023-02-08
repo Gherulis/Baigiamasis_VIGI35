@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\house;
+use App\Models\flat;
 use App\Http\Requests\StorehouseRequest;
 use App\Http\Requests\UpdatehouseRequest;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +15,7 @@ class HouseController extends Controller
     $this->middleware('permission:house-edit', ['only'=>['edit','update']]);
     $this->middleware('permission:house-delete', ['only'=>['destroy']]);
     $this->middleware('permission:house-show', ['only'=>['show']]);
+    $this->middleware('permission:house-showUserHouse', ['only'=>['showUserHouse']]);
 }
     /**
      * Display a listing of the resource.
@@ -81,7 +83,12 @@ class HouseController extends Controller
         $house =house::where('id',$house)->get();
         return view ('house.show', ['house' => $house]);
     }
+    public function showUserHouse(house $house)
+    {   $userFlat=flat::where('id',auth::user()->flat_id)->first();
+         $house=house::where('id',$userFlat->house_id)->with('houseFlat')->with('pricelists')->first();
 
+        return view ('house.userHouse', ['house' => $house]);
+    }
     /**
      * Show the form for editing the specified resource.
      *

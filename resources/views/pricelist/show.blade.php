@@ -47,8 +47,11 @@
                     <td>{{$pricelist->elektra_bendra_price}} Eur</td>
                     <td>{{$pricelist->ukio_islaid_price}} Eur</td>
                     <td>{{$pricelist->nkf_price}} Eur</td>
-                    <td> <a href="{{route('pricelist.edit', $pricelist)}}"><button class="btn_small btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button></a></td>
-
+                    <td>
+                    @can('pricelist-edita')
+                    <a href="{{route('pricelist.edit', $pricelist)}}"><button class="btn_small btn_edit"  type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
+                    @endcan
+                    </td>
                   </tr>
 
             </tbody>

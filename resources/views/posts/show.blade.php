@@ -17,10 +17,15 @@
 
             <small class="created_at "><a href="{{$posts->postLink}}">Šaltinis : {{$posts->postLink}}</a> <br> Ikelta {{$posts->created_at}} </small>
            <div class="FloatRight">
+            @can('post-edit')
             <a href="{{route('post.edit',$posts)}}"><button class="btn_medium btn_edit">Redaguoti</button></a>
+            @endcan
+            @can('post-delete')
             <form action="{{route('post.delete',$posts)}}" method="POST">
                 @csrf
             <button class="btn_medium btn_delete ">Istrinti</button> </form>
+            @endcan
+
         </div>
         </div>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nkf;
 use App\Models\House;
+use App\Models\pricelist;
 use App\Http\Requests\StoreNkfRequest;
 use App\Http\Requests\UpdateNkfRequest;
 use Illuminate\Support\Facades\DB;
@@ -150,5 +151,17 @@ class NkfController extends Controller
     {
         $nkf->delete();
         return redirect()->route('nkf.index')->with('good_message', 'Sėkmingai ištrynėte įrašą');
+    }
+    public function addAmount(StoreNkfRequest $request){
+        $lastRecord=PriceList::latest('created_at')->first();
+        $iplauka = $lastRecord->nkf;
+
+        $nkf = new nkf();
+        $nkf->house_id=$lastRecord->house_id;
+        $nkf->description="Mėnesinė namo kaupimo iplauka";
+        $nkf->type="Įplaukos";
+        $nkf->amountPayed=$iplauka;
+        $nkf->save();
+        return redirect()->route('invoices.index')->with('good_message', 'Dėkui, Jūs sėkmingai sukūrėte namo sąskaita ir butams sąskaitas.Sėkmingai papildėte NKF $iplauka fondą');
     }
 }

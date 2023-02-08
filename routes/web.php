@@ -128,6 +128,7 @@ Route::prefix('flat')->group(function(){
 Route::prefix('house')->group(function(){
     Route::get('/index', [HouseController::class, 'index'])->name('house.index')->middleware('auth');
     Route::get('/show', [HouseController::class, 'show'])->name('house.show')->middleware('auth');
+    Route::get('/show/userHouse', [HouseController::class, 'showUserHouse'])->name('house.showUserHouse')->middleware('auth');
     Route::get('/edit/{house}', [HouseController::class, 'edit'])->name('house.edit')->middleware('auth');
     Route::get('/create', [HouseController::class, 'create'])->name('house.create')->middleware('auth');
     Route::post('/store', [HouseController::class, 'store'])->name('house.store')->middleware('auth');
@@ -218,5 +219,5 @@ Route::prefix('nkf')->group(function(){
     Route::post('/store', [NkfController::class, 'store'])->name('nkf.store')->middleware('auth');
     Route::post('/destroy/{nkf}', [NkfController::class, 'destroy'])->name('nkf.destroy')->middleware('auth');
     Route::post('/update/{nkf}', [NkfController::class, 'update'])->name('nkf.update')->middleware('auth');
-
+    Route::post('/store/addAmount', [NkfController::class, 'addAmount'])->name('nkf.addAmount')->middleware(['auth', 'csrf']);
 });

@@ -39,8 +39,13 @@
                     <th colspan='8'>
                         <p class="mssg">{{ session('mssg') }}{{ session('mssg_edit') }}</p>
                     </th>
-                    <th colspan="2"><a href="{{ route('nkf.create') }}"><button class="btn_medium btn_create"><i
-                                    class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
+                    <th colspan="2">
+                        @can('nkf-create')
+                        <a href="{{ route('nkf.create') }}">
+                            <button class="btn_medium btn_create"><iclass="fa-regular fa-pen-to-square"></i>Pridėti</button>
+                        </a>
+                        @endcan
+                    </th>
                 </tr>
                 <tr>
                     <th colspan="1"><i class="fa-thin fa-hashtag"></i>@sortablelink('id', 'ID')</th>
@@ -64,10 +69,13 @@
                             <td colspan="1">{{ $nkf->amountPayed }} Eur</td>
                             <td colspan="1">
                                 <div class="flex-container">
+                                    @can('nkf-edit')
                                     <a href="{{ route('nkf.edit', $nkf) }}">
                                         <button class="btn_small btn_edit" type="submit" title="Redaguoti butą"><i
                                                 class="fa-solid fa-pen-clip"></i></button>
                                     </a>
+                                    @endcan
+                                    @can('nkf-delete')
                                     <form action="{{ route('nkf.destroy', $nkf) }}" method="POST">
                                         @csrf
                                         <button data-title="{{ $nkf }}" type="submit"
@@ -75,6 +83,7 @@
                                             data-bs-target="#exampleModal" value="{{ $nkf }}">
                                             <i class="fa-solid fa-trash-can red"></i>
                                         </button>
+                                    @endcan
                                     </form>
                                 </div>
                             </td>

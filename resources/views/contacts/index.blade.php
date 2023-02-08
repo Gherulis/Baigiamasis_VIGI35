@@ -26,10 +26,13 @@
                             <td>{{ $contact->tel }}</td>
                             <td>
                                 <div class="flex-container">
+                                    @can('contact-edit')
                                     <a href="{{ route('contact.edit', $contact) }}">
                                         <button class="btn_small btn_edit" type="submit" title="Redaguoti kontaktą"><i
                                                 class="fa-solid fa-pen-clip"></i></button>
                                     </a>
+                                    @endcan
+
                                     <form action="{{ route('contact.destroy', $contact) }}" method="POST">
                                         @csrf
                                         <button class="btn_small btn_delete" value="submit" title="Trinti kontaktą"><i
