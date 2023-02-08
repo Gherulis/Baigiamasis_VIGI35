@@ -8,7 +8,13 @@ use App\Http\Requests\UpdatehouseRequest;
 use Illuminate\Support\Facades\Auth;
 
 class HouseController extends Controller
-{
+{    public function __construct(){
+    $this->middleware('permission:house-view', ['only'=>['index']]);
+    $this->middleware('permission:house-create', ['only'=>['create','store']]);
+    $this->middleware('permission:house-edit', ['only'=>['edit','update']]);
+    $this->middleware('permission:house-delete', ['only'=>['destroy']]);
+    $this->middleware('permission:house-show', ['only'=>['show']]);
+}
     /**
      * Display a listing of the resource.
      *

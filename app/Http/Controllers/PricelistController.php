@@ -18,7 +18,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PricelistController extends Controller
-{
+{    public function __construct(){
+    $this->middleware('permission:pricelist-view', ['only'=>['index',"showLast"]]);
+    $this->middleware('permission:pricelist-create', ['only'=>['create','store']]);
+    $this->middleware('permission:pricelist-edit', ['only'=>['edit','update']]);
+    $this->middleware('permission:pricelist-delete', ['only'=>['destroy']]);
+    $this->middleware('permission:pricelist-lastbill', ['only'=>['lastbill']]);
+    $this->middleware('permission:pricelist-showPrices', ['only'=>['showPrices','show']]);
+}
     /**
      * Display a listing of the resource.
      *
@@ -48,11 +55,6 @@ class PricelistController extends Controller
         }
              else {$pricelist = pricelist::sortable()->get();};
 
-
-
-
-
-
         foreach($pricelist as $listitem) {
             $year = Carbon::parse($listitem->created_at)->format('Y');
             $month = Carbon::parse($listitem->created_at)->format('F');
@@ -61,9 +63,6 @@ class PricelistController extends Controller
             $listitem->formatedDate =  $monthName;
         }
         $houses = house::all();
-
-
-
 
         return view('pricelist.index',['pricelist' => $pricelist, 'houses'=>$houses]);
 

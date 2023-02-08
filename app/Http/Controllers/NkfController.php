@@ -10,7 +10,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class NkfController extends Controller
-{
+{     public function __construct(){
+    $this->middleware('permission:nkf-view', ['only'=>['index',]]);
+    $this->middleware('permission:nkf-create', ['only'=>['create','store']]);
+    $this->middleware('permission:nkf-edit', ['only'=>['edit','update']]);
+    $this->middleware('permission:nkf-delete', ['only'=>['destroy']]);
+    $this->middleware('permission:nkf-show', ['only'=>['show']]);
+}
     /**
      * Display a listing of the resource.
      *

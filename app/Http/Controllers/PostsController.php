@@ -8,7 +8,13 @@ use App\Http\Requests\UpdatepostsRequest;
 
 
 class PostsController extends Controller
-{
+{     public function __construct(){
+    $this->middleware('permission:post-view', ['only'=>['index',"showLast"]]);
+    $this->middleware('permission:post-create', ['only'=>['create','store']]);
+    $this->middleware('permission:post-edit', ['only'=>['edit','update']]);
+    $this->middleware('permission:post-delete', ['only'=>['destroy']]);
+    $this->middleware('permission:post-show', ['only'=>['show']]);
+}
     /**
      * Display a listing of the resource.
      *
@@ -65,13 +71,10 @@ class PostsController extends Controller
         }
         $url = request('postLink');
         $urlsplit = parse_url($url);
-        // $urlHost = $urlsplit['host'];
         $urlPath = $urlsplit['path'];
-
         $urlSave ="https://".$urlPath;
 
         $post = new Posts ();
-
         $post->postName = request('postName');
         $post->postBody = request('postBody');
         $post->postLink = $urlSave;
@@ -91,7 +94,6 @@ class PostsController extends Controller
      */
     public function show(posts $posts)
     {
-
         $posts = Posts::findOrFail($posts->id);
         return view ('posts/show',['posts' => $posts]);
     }
@@ -134,9 +136,6 @@ class PostsController extends Controller
             $fileNameToStore=$fileName.'_'.time().'.'.$extension;
             $path = $request->file('postImage')->storeAs('public/cover_images',$fileNameToStore);
         }
-
-
-
 
         $posts->postName = $request->postName;
         $posts->postBody = $request->postBody;

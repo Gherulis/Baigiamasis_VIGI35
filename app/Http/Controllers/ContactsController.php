@@ -11,7 +11,13 @@ use Illuminate\Http\Request;
 
 
 class ContactsController extends Controller
-{
+{    public function __construct(){
+    $this->middleware('permission:contacts-view', ['only'=>['index']]);
+    $this->middleware('permission:contacts-create', ['only'=>['create','store']]);
+    $this->middleware('permission:contacts-edit', ['only'=>['edit','update']]);
+    $this->middleware('permission:contacts-delete', ['only'=>['destroy']]);
+    $this->middleware('permission:contacts-show', ['only'=>['show']]);
+}
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +25,6 @@ class ContactsController extends Controller
      */
     public function index()
     {
-
-
         $contacts = Contacts::Sortable()->paginate(15);
 
         return view('Contacts/index', ['contacts' => $contacts]);
@@ -70,7 +74,6 @@ class ContactsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-
     {
        $contact = Contacts::findOrFail($id);
         return view ('Contacts/edit/',['contact' => $contact]);}
@@ -122,9 +125,6 @@ class ContactsController extends Controller
      */
     public function destroy(contacts $contact)
     {
-        // $contacts = Contacts::findOrFail($id);
-        // $contacts->delete();
-        // return redirect ('contacts');
         $contact->delete();
         return redirect()->route('contacts.index')->with('good_message', 'Kontaktas sėkmingai ištrintas');
         }

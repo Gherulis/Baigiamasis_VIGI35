@@ -75,6 +75,11 @@ class PermissionSeeder extends Seeder
         'invoices-store',
         'bills-index',
         'bills-indexLast',
+        'nkf-index',
+        'nkf-create',
+        'nkf-edit',
+        'nkf-view',
+        'nkf-show',
 
       ];
       foreach ($permissions as $permission){

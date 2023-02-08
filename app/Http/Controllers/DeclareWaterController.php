@@ -18,7 +18,14 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class DeclareWaterController extends Controller
-{
+{   public function __construct(){
+    $this->middleware('permission:declare-view', ['only'=>['index']]);
+    $this->middleware('permission:declare-indexFlat', ['only'=>['indexFlat']]);
+    $this->middleware('permission:declare-create', ['only'=>['create','store']]);
+    $this->middleware('permission:declare-edit', ['only'=>['edit','update']]);
+    $this->middleware('permission:declare-delete', ['only'=>['destroy']]);
+    $this->middleware('permission:declare-show', ['only'=>['show']]);
+}
     /**
      * Display a listing of the resource.
      *
@@ -39,11 +46,7 @@ class DeclareWaterController extends Controller
             // $month = Carbon::parse($listitem->created_at)->format('F');
             // $month = str_replace(array_keys($ltMonths), array_values($ltMonths), $month);
             // $monthName = $year.'-'.$month;
-
-
             $listitem->formatedDate =  $flatController->dateToLt($listitem->created_at);
-
-
             //i skliaustelius pasiduoda pilna data kuria gauni is duombazes!!!
             //grizta paversta pagal tavo formatavima
             //pratestuok dabar pratestuok
@@ -95,7 +98,6 @@ class DeclareWaterController extends Controller
 
         $declareWater = new declareWater ();
 
-
         $declareWater->flat_id = request('flat_id');
         $declareWater->kitchen_cold = $kitchen_cold =request('kitchen_cold');
         $declareWater->kitchen_cold_usage =$kitchen_cold_usage=$kitchen_cold - request('kitchen_cold_before');
@@ -125,8 +127,6 @@ class DeclareWaterController extends Controller
             $lastData = declareWater::where('flat_id', Auth::user()->flat_id)
                 ->orderBy('id', 'desc')
                 ->first();
-
-
 
             return view('declare.create', [
                 'declareWater' => $declareWater,
@@ -211,20 +211,15 @@ class DeclareWaterController extends Controller
     }
     public function calculate(Request $request)
 {
-
     $value1 = $request->input('kitchen_cold');
     $value2 = $lastData->kitchen_cold;
-
-
     $result = $value1 - $value2;
-
 
     return view('declare.show', ['result' => $result]);
 }
 
 public function indexFlat()
 {
-
     {    $flatController = new FlatController;
 
 
@@ -239,53 +234,5 @@ public function indexFlat()
 
     return view('declare.indexFlat',['declareWater' => $declareWater]);
 }
-
-
-
-// public function indexByMonth()
-// {
-//     {$houses = house::all(); // pasiemu visus namus
-//     $house = '1';
-//     $flats = flat::where('house_id', $house)->get();
-
-
-//         $ltMonths = [
-//         'January' => 'Sausis',
-//         'February' => 'Vasaris',
-//         'March' => 'Kovas',
-//         'April' => 'Balandis',
-//         'May' => 'Gegužė',
-//         'June' => 'Birželis',
-//         'July' => 'Liepa',
-//         'August' => 'Rugpjūtis',
-//         'September' => 'Rugsėjis',
-//         'October' => 'Spalis',
-//         'November' => 'Lapkritis',
-//         'December' => 'Gruodis',
-//     ];
-
-
-
-//     $declareWater = declareWater::orderBy('created_at', 'desc')->get();
-
-//     foreach($declareWater as $listitem) {
-//         $year = Carbon::parse($listitem->created_at)->format('Y');
-//         $month = Carbon::parse($listitem->created_at)->format('F');
-//         $month = str_replace(array_keys($ltMonths), array_values($ltMonths), $month);
-//         $monthName = $year.'-'.$month;
-//         $listitem->formatedDate =  $monthName;
-//     }}
-
-//     return view('declare.indexByMonth',['declareWater' => $declareWater,'flats' =>$flats, 'houses' => $houses]);
-
-//     public function create(Request $request)
-// {
-//     // $new_kitchen_cold = $request->new_kitchen_cold;
-//     $old_value = $lastData->kitchen_cold;
-//     $result = $new_kitchen_cold - $old_value;
-//     return response()->json($result);
-// }
-
-
 
 }
