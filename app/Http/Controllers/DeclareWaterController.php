@@ -81,7 +81,17 @@ class DeclareWaterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoredeclareWaterRequest $request)
-    {
+    {    $request->validate([
+        'kitchen_cold'=>'required|integer|min:0',
+        'kitchen_hot'=>'required|integer|min:0',
+        'bath_cold'=>'required|integer|min:0',
+        'bath_hot'=>'required|integer|min:0',
+        ],[],[
+            'kitchen_cold'=>'virtuvės šaltas vanduo',
+            'kitchen_hot'=>'virtuvės karštas vanduo',
+            'bath_cold'=>'vonios šaltas vanduo',
+            'bath_hot'=>'vonios karštas vanduo',
+        ]);
 
         $declareWater = new declareWater ();
 
@@ -144,7 +154,17 @@ class DeclareWaterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatedeclareWaterRequest $request, declareWater $declareWater)
-    {
+    {   $request->validate([
+        'kitchen_cold'=>'required|integer|min:0',
+        'kitchen_hot'=>'required|integer|min:0',
+        'bath_cold'=>'required|integer|min:0',
+        'bath_hot'=>'required|integer|min:0',
+        ],[],[
+            'kitchen_cold'=>'virtuvės šaltas vanduo',
+            'kitchen_hot'=>'virtuvės karštas vanduo',
+            'bath_cold'=>'vonios šaltas vanduo',
+            'bath_hot'=>'vonios karštas vanduo',
+        ]);
         // skaiciuoju skirtumus suvartojimu jei daromas update
         $kitchen_cold_before = $declareWater->kitchen_cold;
         $kitchen_cold_now = $request ->kitchen_cold;

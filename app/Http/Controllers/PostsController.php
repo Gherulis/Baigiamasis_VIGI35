@@ -17,6 +17,11 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Posts::orderBy('created_at', 'desc')->get();
+        foreach ($posts as $item){
+            $urlHost = parse_url($item->postLink);
+            $item->base_url = $urlHost;
+        }
+
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -37,7 +42,15 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StorepostsRequest $request)
-    {
+    {   $request->validate([
+        'postName'=>'required|min:4|string',
+        'postBody'=>'required|min:30|string',
+        'postImage'=>'required|image|mimes:jpeg,png,jpg,gif|max:2500',
+      ],[],[
+        'postName'=>'antraštė',
+        'postBody'=>'skelbimo tekstas',
+        'postImage'=>'nuotrauka',
+      ]);
 
         if($request->hasFile('postImage')){
             $originalFileName = $request->file('postImage')->getClientOriginalName();
@@ -102,7 +115,15 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatepostsRequest $request, posts $posts)
-    {
+    {   $request->validate([
+            'postName'=>'required|min:4|string',
+            'postBody'=>'required|min:30|string',
+            'postImage'=>'required|image|mimes:jpeg,png,jpg,gif|max:2500',
+        ],[],[
+            'postName'=>'antraštė',
+            'postBody'=>'skelbimo tekstas',
+            'postImage'=>'nuotrauka',
+        ]);
 
         if($request->hasFile('postImage')){
             // Pasiemam originalu failo pavadinima. Isskaidom i pavadinima ir galune. Sugeneruojam originalu pavadinima

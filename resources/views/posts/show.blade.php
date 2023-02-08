@@ -12,14 +12,16 @@
         <div >
             <p class="newsText">{{$posts->postBody}}</p>
         </div>
-        <div class="flex-container ">
-            <hr>
+        <hr>
+        <div>
+
             <small class="created_at "><a href="{{$posts->postLink}}">Šaltinis : {{$posts->postLink}}</a> <br> Ikelta {{$posts->created_at}} </small>
+           <div class="FloatRight">
             <a href="{{route('post.edit',$posts)}}"><button class="btn_medium btn_edit">Redaguoti</button></a>
             <form action="{{route('post.delete',$posts)}}" method="POST">
                 @csrf
             <button class="btn_medium btn_delete ">Istrinti</button> </form>
-
+        </div>
         </div>
 
     </div>

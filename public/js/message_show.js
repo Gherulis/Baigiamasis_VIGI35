@@ -12,6 +12,6 @@
 
 
         $('#exampleModal1').modal('show');
-        $('#invitation').val(butasInvitation);
+        $('#invitation').html(butasInvitation);
     });});
 

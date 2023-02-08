@@ -2,13 +2,13 @@
 
 @section('content')
     <div class="login-form store-form">
-        <h3>Naujas Skelbimas</h3>
+        <h3>Naujas skelbimas</h3>
 
         <form action="{{route('post.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="login-text">
             <input type="text" name="postName"  >
-            <label for="postName">Pavadinimas</label>
+            <label for="postName">Antraštė</label>
         </div>
         <div >
 
@@ -20,8 +20,9 @@
             <label for="postLink">Nuoroda</label>
         </div>
         <div>
-           <input type="file" id="postImage" name="postImage">
+           <input type="file" id="postImage" name="postImage" >
         </div>
+
 
         <input class="btn" type="submit" value="Įkelti skelbima">
 

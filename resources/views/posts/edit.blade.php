@@ -11,7 +11,7 @@
 
         <div class="login-text">
             <input type="text" name="postName" value="{{$posts->postName}}" >
-            <label for="postName">Pavadinimas</label>
+            <label for="postName">Antraštė</label>
         </div>
         <div >
 

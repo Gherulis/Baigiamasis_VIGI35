@@ -43,11 +43,15 @@ class ContactsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StorecontactsRequest $request)
-    {
-        $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email|min:7',
-            'phone' => 'required|integer|min:9',
+    {      $request->validate([
+        'name'=>'required|regex:/^[A-Z][a-zA-Z]+$/',
+        'email'=>'email|min:8',
+        'phone'=>'required|min:9',
+        ],[],[
+            'name'=>'vartotojo vardas',
+            'email'=>'vartotojo elektroninis paštas',
+            'phone'=>'telefono numeris',
+
         ]);
 
         $contacts = new Contacts ();
@@ -93,7 +97,15 @@ class ContactsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatecontactsRequest $request,contacts $contacts)
-    {
+    {    $request->validate([
+        'name'=>'required|regex:/^[A-Z][a-zA-Z]+$/',
+        'email'=>'email|min:8',
+        'phone'=>'required|min:9',
+        ],[],[
+            'name'=>'vartotojo vardas',
+            'email'=>'vartotojo elektroninis paštas',
+            'phone'=>'telefono numeris',
+        ]);
 
         $contacts->vardas = $request->name;
         $contacts->pastas = $request->email;

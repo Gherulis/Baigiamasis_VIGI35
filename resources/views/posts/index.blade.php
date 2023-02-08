@@ -4,13 +4,13 @@
 
 @section('content')
     <section>
-        <div class="news-container">
-            <button class="btn_medium btn_edit "><a href="{{ route('post.create') }}"> Naujas Skelbimas</a></button>
+        <div class="news-button">
+            <a href="{{ route('post.create') }}"><button class="btn_medium btn_edit FloatRight"> Naujas Skelbimas</button></a>
         </div>
         <div class="news-container">
 
             @foreach ($posts as $post)
-                <div class="news-item"><a href="{{ route('post.show', $post) }}">
+                <div class="news-item">
                         <p class="newsHeader">{{ $post->postName }}</p>
                         <hr>
                         <div> <img class="newsPhoto" src="/storage/cover_images/{{ $post->postImage }}" alt="IMG"></div>
@@ -19,12 +19,13 @@
                         </div>
                         <hr>
                         <div>
-                            <small><a href="{{ $post->postLink }}">Šaltinis : {{ $post->postLink }}</a></small>
+                            <small><a href="{{ $post->postLink }}">Šaltinis {{substr( $post->postLink,0,35) }}</a></small>
                             <br>
                             <small>Ikelta {{ $post->created_at }}</small>
+                            <a  href="{{ route('post.show', $post) }}"><button class="btn_medium btn_edit FloatRight">Skaityti</button></a>
                         </div>
 
-                </div></a>
+                </div>
             @endforeach
 
 

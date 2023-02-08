@@ -369,6 +369,7 @@ td a {
     .dropDown li {
         margin-left: 0px;
     }
+
 }
 
 /* END HEADER NAVBAR, IMG, HAMBURGER */
@@ -490,7 +491,23 @@ input {
     height: 100%;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 15px 15px;
-    grid-template-areas: "main main ." ". . .";
+    grid-template-areas:
+    "main main ." ". . .";
+
+
+}
+.news-button {
+    margin: 0 auto;
+    width: 90%;
+    padding-top: 0px;
+    display: grid;
+    height: 100%;
+    grid-gap: 15px 15px;
+
+}
+a{color: #003a52;}
+a:hover {
+    text-decoration: none;
 }
 
 .news-item {
@@ -506,6 +523,7 @@ input {
 .postShowContainer {
     width: 90%;
     margin: 0 auto;
+    margin-top: 16px;
     height: auto;
 }
 
@@ -544,13 +562,19 @@ input {
     font-size: 24px;
     color: rgba(0, 0, 0, 0.539);
 }
+.newsText:hover {
+    text-decoration: none;
+
+}
 .newsText {
     height: auto;
     text-align: justify;
     font-size: 16px;
-    /* word-break: break-all; */
+    word-break: break-all;
     overflow-wrap: break-word;
-    color: rgba(2, 107, 160, 0.785);
+    color: rgba(0, 0, 0, 0.49);
+    text-decoration: none;
+    min-height: 160px;
     text-decoration: none;
 }
 
@@ -776,4 +800,5 @@ hr {
         max-width: 40%;
         min-width: 200px;
     }
+
 }

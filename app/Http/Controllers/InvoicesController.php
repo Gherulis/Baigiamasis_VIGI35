@@ -51,15 +51,6 @@ class InvoicesController extends Controller
             ->whereMonth('created_at',$filterMonth)
             ->get();}
 
-
-
-
-
-
-
-
-
-
         $totalInvoicesSum = 0;
         $totalPaidSum = 0;
         // $invoices = invoices::all();
@@ -102,6 +93,9 @@ class InvoicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
+
+        // Sitas metodas ivyksta automatiskai pateikus saskaita namui.Pricelist create !!!  Atskirai saskaitu butui kurti negalima !!!
+
         $invoicesData = $this->calculateInvoices();
         foreach ($invoicesData as $index =>$invoice) {
             $invoice = new invoices();
@@ -145,7 +139,6 @@ class InvoicesController extends Controller
     public function show(invoices $invoices)
     {
         $lastInvoice = invoices::where('flat_id', Auth::user()->flat_id)->orderBy('created_at', 'desc')->first();
-
         if(!$lastInvoice){
             return redirect()->route('posts.index')->with('bad_message','Paskutinė saskaita nerasta');
         } else {
@@ -228,10 +221,8 @@ class InvoicesController extends Controller
         //
     }
     public function dateToLt($date) {
-
         //menesius isverstus tiesiog nukeliau i virsu kad jie globaliai matytusi visoje klaseje
         //suprtau dekui man pasirode kad visa funkcija ten nukelet ir po to apacioj raset vel . Aciu
-
         $year = Carbon::parse($date)->format('Y');
         $month = Carbon::parse($date)->format('F');
         $month = str_replace(array_keys($this->ltMonths), array_values($this->ltMonths), $month);
@@ -250,25 +241,16 @@ class InvoicesController extends Controller
         foreach ($flats as $flat) {
             $flatData = $flat;
             $flatSize = $flat->flat_size;
-            // $userHouse = $flat->house_id;
             $flatId = $flat->id;
             $bathHeaterPayable = $flat->gyv_mok_suma;
             $flatWater_declaration = declareWater::where('flat_id', $flatId)->orderBy('created_at','desc')->first(); // passiemu paskutines vandens deklaracija
             $lastFlat_Declatarion_Date = new Carbon ($flatWater_declaration->created_at); //pasidarau carbon objekta
             $startOfNextMonth = $lastFlat_Declatarion_Date->copy()->addMonth()->startOfMonth(); //susigeneruoju kito menesio pradzia pagal kuria ieskoti
             $endOfNextMonth = $lastFlat_Declatarion_Date->copy()->addMonth()->endOfMonth(); //susigeneruoju kito menesio gala pagal kuri ieskoti
-            // if(  $nextMonthBill = PriceList::whereBetween('created_at', [$startOfNextMonth, $endOfNextMonth])->orderBy('created_at','desc')->first()){
-            // $nextMonthBill = PriceList::whereBetween('created_at', [$startOfNextMonth, $endOfNextMonth])->orderBy('created_at','desc')->first();} // pasiimu paskutine to menesio saskaita nors ji turi but viena bet del vias pikto
-            // else { $nextMonthBill=PriceList::where('house_id',$userHouse)->orderBy('created_at','desc')->first(); }
 
             $nextMonthBill=PriceList::where('house_id',$userHouse)->orderBy('created_at','desc')->first();
             $hotAll = $flatWater_declaration->kitchen_hot_usage+$flatWater_declaration->bath_hot_usage;   // SUsiskaiciuoju bendra karsto vandens suvartota kieki bute
             $waterAll = $flatWater_declaration->kitchen_cold_usage+$flatWater_declaration->bath_cold_usage + $hotAll; // Susiskaiciuoju bendra salto vandens suvartota kieki bute
-            // dd($flatWater_declaration);
-
-
-
-            // $date = date('Y-m');
 
             // //Saskaitos skaiciavimai
             $date = $nextMonthBill->created_at;
@@ -306,15 +288,8 @@ class InvoicesController extends Controller
         return $invoicesData;
     }
         public function invoicesUpdate(Request $request){
-
-
             {
-
-
-
                 $invoiceData = $request->all();
-                // dd($invoiceData);
-                // die();
                 $invoiceIds = $invoiceData['invoice_id'];
                 $kompensacija = $invoiceData['kompensacija'];
                 $skola = $invoiceData['skola'];
@@ -323,7 +298,6 @@ class InvoicesController extends Controller
                 $sumoketa = $invoiceData['sumoketa'];
                 foreach ($invoiceIds as $i => $invoiceId) {
                   $invoice = Invoices::find($invoiceId);
-
                   $invoice->Kompensacija = $kompensacija[$i] ?? 0;
                   $invoice->Skola = $skola[$i] ?? 0;
                   $invoice->Permoka = $permoka[$i] ?? 0;

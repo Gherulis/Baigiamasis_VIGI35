@@ -35,12 +35,16 @@
 
         </div>
         <div class="modal-body">
-         <h5 id='invitation'></h5>
+        <h3>Pakvietimo kodas:</h3>
+         <h3 id='invitation'></h3>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn_edit" data-bs-dismiss="modal">Uždaryti</button>
 
           </form>
+
+          {{-- input val. --}}
+          {{-- betkoks kitas elemntas html() --}}
         </div>
       </div>
     </div>
