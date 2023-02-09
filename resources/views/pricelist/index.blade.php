@@ -8,7 +8,7 @@
 
 
 
-   <div class="table_container tabletransform1 contact_info">
+   <div class="table_container tabletransform1 pricelistInfo">
         <table class="lentele">
             <thead>
                 <tr>
@@ -49,7 +49,7 @@
             <tbody>
 
               @foreach ($pricelist as $pricelist )
-                  <tr>
+                <tr>
                     <td>{{$pricelist->formatedDate}}</td>
 
                     <td>{{$pricelist->saltas_vanduo}} Eur</td>

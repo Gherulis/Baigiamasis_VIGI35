@@ -30,7 +30,7 @@
 </div>
 
 
-   <div class="table_container tabletransform1 contact_info">
+   <div class="table_container tabletransform1 flatInfo">
 
         <table >
 
@@ -39,7 +39,7 @@
                 <tr>
                     <th colspan='8'><p class="mssg">{{session('mssg')}}{{session('mssg_edit')}}</p></th>
 
-                    <th colspan="2"><a href="{{route('flat.create',$flat['1']->house_id)}}"><button class="btn_medium btn_create" value="{{ $flat['1']->house_id }}"><i class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
+                    <th colspan="2"><a href="{{route('flat.create', request()->input('filter','1'))}}"><button class="btn_medium btn_create" value="{{ request()->input('filter','1') }}"><i class="fa-regular fa-pen-to-square"></i>Pridėti</button></a></th>
 
 
 

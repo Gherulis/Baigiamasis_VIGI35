@@ -1,7 +1,7 @@
 @extends('includes.layout')
 
 @section('content')
-    <div class="table_container tabletransform1 contact_info">
+    <div class="table_container tabletransform1 permissionInfo">
         <table>
             <thead>
                 <tr>

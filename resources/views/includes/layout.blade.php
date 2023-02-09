@@ -163,7 +163,7 @@
                                 </a>
                             </li>
                             @endcan
-                            @can('roles-view')
+                            @can('role-view')
                             <li>
                                 <a class="nav-link" href="{{ route('roles.index') }}">
                                     <i class="fa-solid fa-palette"></i>Roles

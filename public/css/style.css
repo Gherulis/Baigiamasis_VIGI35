@@ -318,7 +318,7 @@ td a {
 .right {
     text-align: right;
 }
-@media (max-width: 800px) {
+@media (max-width: 880px) {
     /* HEADER NAVBAR, IMG, HAMBURGER */
 
     .hamburger {
@@ -437,7 +437,9 @@ tbody tr {
 tr:last-child {
     border-bottom: none;
 }
-
+.bg-thead{
+    background-color: #467180;
+}
 td,
 th {
     width: auto;
@@ -746,7 +748,7 @@ hr {
     }
 
     .contact_info td:nth-of-type(2)::before {
-        content: "Pavarde";
+        content: "El.paštas";
     }
 
     .contact_info td:nth-of-type(3)::before {
@@ -765,11 +767,11 @@ hr {
         content: "Nuo ";
     }
 
-    .decl td:nth-of-type(4)::before {
+    .decl td:nth-of-type(3)::before {
         content: "Iki";
     }
 
-    .decl td:nth-of-type(6)::before {
+    .decl td:nth-of-type(4)::before {
         content: "Skirtumas";
         border-bottom: none;
     }
@@ -800,5 +802,188 @@ hr {
         max-width: 40%;
         min-width: 200px;
     }
+    .pricelistInfo td:nth-of-type(1)::before {
+        content: "Mėnuo";
+    }
+    .pricelistInfo td:nth-of-type(2)::before {
+        content: "Šaltas vanduo";
+    }
+    .pricelistInfo td:nth-of-type(3)::before {
+        content: "Karštas vanduo";
+    }
+    .pricelistInfo td:nth-of-type(4)::before {
+        content: "Šildymas";
+    }
+    .pricelistInfo td:nth-of-type(5)::before {
+        content: "Šil. mazgo priežiūra";
+    }
+    .pricelistInfo td:nth-of-type(6)::before {
+        content: "Gyvatukas";
+    }
+    .pricelistInfo td:nth-of-type(7)::before {
+        content: "Šalto vand. abonimentas";
+    }
+    .pricelistInfo td:nth-of-type(8)::before {
+        content: "Elektra bendroms reikmėms";
+    }
+    .pricelistInfo td:nth-of-type(9)::before {
+        content: "Ūkio išlaidos";
+    }
+    .pricelistInfo td:nth-of-type(10)::before {
+        content: "Namo kaupimo fondas ";
+    }
+    .pricelistIndexFlat td:nth-of-type(1)::before {
+        content: "Butas";
+    }
+    .pricelistIndexFlat td:nth-of-type(2)::before {
+        content: "Mėnuo";
+    }
+    .pricelistIndexFlat td:nth-of-type(3)::before {
+        content: "Šaltas vanduo";
+    }
+    .pricelistIndexFlat td:nth-of-type(4)::before {
+        content: "Karštas vanduo";
+    }
+    .pricelistIndexFlat td:nth-of-type(5)::before {
+        content: "Šildymas";
+    }
+    .pricelistIndexFlat td:nth-of-type(6)::before {
+        content: "Šil. mazgo priežiūra";
+    }
+    .pricelistIndexFlat td:nth-of-type(7)::before {
+        content: "Gyvatukas";
+    }
+    .pricelistIndexFlat td:nth-of-type(8)::before {
+        content: "Šalto vand. abonimentas";
+    }
+    .pricelistIndexFlat td:nth-of-type(9)::before {
+        content: "Elektra bendroms reikmėms";
+    }
+    .pricelistIndexFlat td:nth-of-type(10)::before {
+        content: "Ūkio išlaidos";
+    }
+    .pricelistIndexFlat td:nth-of-type(11)::before {
+        content: "Kompensacija";
+    }
+    .pricelistIndexFlat td:nth-of-type(12)::before {
+        content: "Skola";
+    }
+    .pricelistIndexFlat td:nth-of-type(13)::before {
+        content: "Permoka";
+    }
+    .pricelistIndexFlat td:nth-of-type(14)::before {
+        content: "Delspinigiai";
+    }
+    .pricelistIndexFlat td:nth-of-type(15)::before {
+        content: "Namo kaupimo fondas ";
+    }
+    .pricelistIndexFlat td:nth-of-type(16)::before {
+        content: "Sąskaitos suma";
+    }
+    .pricelistIndexFlat td:nth-of-type(17)::before {
+        content: "Apmokėta suma";
+    }
+    .declareInfo td:nth-of-type(1)::before {
+        content: "Mėnuo";
+    }
+    .declareInfo td:nth-of-type(2)::before {
+        content: "Butas";
+    }
+    .declareInfo td:nth-of-type(3)::before {
+        content: "Virtuvė šaltas";
+    }
+    .declareInfo td:nth-of-type(4)::before {
+        content: "Virtuvė karštas";
+    }
+    .declareInfo td:nth-of-type(5)::before {
+        content: "Vonia šaltas";
+    }
+    .declareInfo td:nth-of-type(6)::before {
+        content: "Vonia karštas";
+    }
+    .declareInfo td:nth-of-type(7)::before {
+        content: "Vartotojas";
+    }
+    .declareInfo td:nth-of-type(8)::before {
+        content: "Veiksmai";
+    }
+    .pricelistCreate td {
+        padding-left: 0;
 
+    }
+    .userInfo td:nth-of-type(1)::before {
+        content: "ID";
+    }
+    .userInfo td:nth-of-type(2)::before {
+        content: "Vardas";
+    }
+    .userInfo td:nth-of-type(3)::before {
+        content: "El.paštas";
+    }
+    .userInfo td:nth-of-type(4)::before {
+        content: "Adresas";
+    }
+    .userInfo td:nth-of-type(5)::before {
+        content: "Buto nr.";
+    }
+    .userInfo td:nth-of-type(6)::before {
+        content: "Rolė";
+    }
+    .userInfo td:nth-of-type(7)::before {
+        content: "Veiksmai";
+    }
+    .flatInfo td:nth-of-type(1)::before {
+        content: "ID";
+    }
+    .flatInfo td:nth-of-type(2)::before {
+        content: "Buto nr.";
+    }
+    .flatInfo td:nth-of-type(3)::before {
+        content: "Buto kvadratūra";
+    }
+    .flatInfo td:nth-of-type(4)::before {
+        content: "Gyvatuko mokamas procentas";
+    }
+    .flatInfo td:nth-of-type(5)::before {
+        content: "Veiksmai";
+    }
+    .nkfInfo td:nth-of-type(1)::before {
+        content: "ID";
+    }
+    .nkfInfo td:nth-of-type(2)::before {
+        content: "Namas";
+    }
+    .nkfInfo td:nth-of-type(3)::before {
+        content: "Aprašymas";
+    }
+    .nkfInfo td:nth-of-type(4)::before {
+        content: "Tipas";
+    }
+    .nkfInfo td:nth-of-type(5)::before {
+        content: "Suma";
+    }
+    .nkfInfo td:nth-of-type(6)::before {
+        content: "Veiksmai";
+    }
+    .permissionInfo td:nth-of-type(1)::before {
+        content: "ID";
+    }
+    .permissionInfo td:nth-of-type(2)::before {
+        content: "Pavadinimas";
+    }
+    .permissionInfo td:nth-of-type(3)::before {
+        content: "Guard";
+    }
+    .permissionInfo td:nth-of-type(4)::before {
+        content: "Veiksmai";
+    }
+    .roleInfo td:nth-of-type(1)::before {
+        content: "ID";
+    }
+    .roleInfo td:nth-of-type(2)::before {
+        content: "Pavadinimas";
+    }
+    .roleInfo td:nth-of-type(3)::before {
+        content: "Veiksmai";
+    }
 }

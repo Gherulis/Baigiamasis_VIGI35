@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="table_container tabletransform1 contact_info">
+    <div class="table_container">
         <table class="lentele">
 
             <form action="#" method="POST">

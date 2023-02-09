@@ -13,9 +13,10 @@
 
                             <th><label for="filter">Adresas : </label>
                                 <select name="filter" id="" value="{{ request()->input('filter') }}">
-                                    @foreach ($filterData->unique('house_id') as $filter)
-                                        <option value="{{ $filter->house_id}}"
-                                            {{ request()->input('filter') == $filter->house_id ? 'selected' : '' }}>
+                                    @foreach ($filterData as $filter)
+
+                                        <option value="{{ $filter->id}}"
+                                            {{ request()->input('filter') == $filter->id ? 'selected' : '' }}>
                                             {{ $filter->address }} g. {{ $filter->house_nr }}
 
                                         </option>
@@ -31,7 +32,7 @@
 
 
 
-    <div class="table_container tabletransform1 contact_info">
+    <div class="table_container tabletransform1 nkfInfo">
 
         <table>
             <thead>
@@ -58,7 +59,7 @@
             </thead>
             <tbody>
 
-
+                @if ($nkfs->count() > 0)
                 @foreach ($nkfs as $nkf)
                     <div>
                         <tr>
@@ -90,6 +91,11 @@
                         </tr>
                     </div>
                 @endforeach
+                @else
+                <tr>
+                    <td colspan="10">Įrašų nėra</td>
+                </tr>
+                @endif
             </tbody>
         </table>
         {{-- <div class="center">{{$nkf->appends(\Request::except('page'))->links()}} </div> --}}

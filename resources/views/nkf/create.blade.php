@@ -9,24 +9,20 @@
         <div >
         <select class="form-select" name="house_id" id="" value='$house->id'>
             @foreach ($houses as $house )
-            <option name="" value='{{ $house->id }}'>Namas : {{ $house->address }} g. {{ $house->house_nr }}</option>
+            <option name="" value='{{ $house->id }}' {{ old('house_id') ==  $house->id  ? 'selected' : '' }}>Namas : {{ $house->address }} g. {{ $house->house_nr }}</option>
 
             @endforeach
 
         </select>
         </div>
         <div class="login-text" style="border: none">
-            <textarea type="text" name="description" placeholder='Aprašymas' value="{{ old('description') }}" class="form-control @error('description') is-invalid @enderror"></textarea>
-
-
+            <textarea type="text" name="description" placeholder='Aprašymas' class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
         </div>
         <div class="login-text" style="border: none">
-            <select class="form-select" name="type" id="" value=''>
-                <option name="" value='Išlaidos'>Išlaidos</option>
-                <option name="" value='Įplaukos'>Įplaukos</option>
-                <option name="" value='Planuojamos išlaidos'>Planuojami darbai</option>
-
-
+            <select class="form-select" name="type" id="" value="{{ old('type') }}">
+                <option name="" value='Išlaidos' {{ old('type') == 'Išlaidos' ? 'selected' : '' }}>Išlaidos</option>
+                <option name="" value='Įplaukos' {{ old('type') == 'Įplaukos' ? 'selected' : '' }}>Įplaukos</option>
+                <option name="" value='Planuojamos išlaidos' {{ old('type') == 'Planuojamos išlaidos' ? 'selected' : '' }} >Planuojami darbai</option>
 
             </select>
         </div>
@@ -39,9 +35,7 @@
             </span>
             @enderror
         </div>
-
         <input class="btn" type="submit" value="Pridėti įrašą">
-
         </form>
     </div>
 

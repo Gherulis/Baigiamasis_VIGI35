@@ -24,9 +24,9 @@ class NkfController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(request $request)
-    {   $filterData = Nkf::join('houses', 'houses.id', '=', 'nkfs.house_id')
-        ->select('nkfs.*', 'houses.address', 'houses.house_nr')
-        ->get();
+    {  $filterData=house::all();
+
+
         $houseId = request('filter') ? request('filter') : '1' ;
         $nkfs = Nkf::sortable()->where('house_id',$houseId)->join('houses', 'houses.id', '=', 'nkfs.house_id')
         ->select('nkfs.*', 'houses.address', 'houses.house_nr')

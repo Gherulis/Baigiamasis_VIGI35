@@ -2,10 +2,10 @@
 
 @section('content')
 
-    <div class="table_container tabletransform1 contact_info">
+    <div class="table_container">
         <table>
             <thead>
-
+                <th colspan="2">Mano namas</th>
             </thead>
 
 
