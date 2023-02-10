@@ -93,12 +93,13 @@ public function show(){
             'name'=>'required|regex:/^[A-Z][a-zA-Z]+$/',
             'email'=>'required|email|min:4',
             'password'=>'required|min:8',
+            'phone'=>'min:9',
 
             ],[],[
                 'name'=>'vartotojo vardas',
                 'email'=>'vartotojo elektroninis paštas',
                 'password'=>'slaptažodis',
-
+                'phone'=>'vartotojo telefono numeris'
             ]);
             $emailExists = User::where('email', $request->email)
             ->exists();
@@ -111,6 +112,7 @@ public function show(){
         $user = new User();
         $user -> name = $request->name;
         $user -> email = $request->email;
+        $user -> phone = $request->phone;
         $user -> password = Hash::make($request->password);
         $user -> flat_id = $request->flat_id;
         $user -> save();
@@ -138,20 +140,22 @@ public function edit(user $user)
     {    $request->validate([
         'name'=>'required|regex:/^[A-Z][a-zA-Z]+$/',
         'email'=>'required|email|min:4',
-
+        'phone'=>'min:9',
         ],[],[
             'name'=>'vartotojo vardas',
             'email'=>'vartotojo elektroninis paštas',
-
+            'phone'=>'vartotojo telefono numeris'
         ]);
 
 
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->color = $request->color;
 
         $user->save();
-        return redirect()->route('user.index')->with('good_message', 'Vartotojas sėkmingai redaguotas!');
+        return redirect()->route('user.show')->with('good_message', 'Vartotojas sėkmingai redaguotas!');
     }
 
 

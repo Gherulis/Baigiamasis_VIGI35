@@ -2,15 +2,15 @@
 :root {
     --main-background: linear-gradient(
         to right,
-        #87a8b8,
-        #86bcce,
-        #6094aa
+        #d4e4eb,
+        #8da0a6,
+        #43575f
     ); /* Viso Puslapio */
-    --navbar-background: #438196; /* Navigacijos backgroundas */
-    --hamburger-menu-background: #438196; /* Hamburgerio backgroundas islendantis */
+    --navbar-background: #647b86; /* Navigacijos backgroundas */
+    --hamburger-menu-background: #4a4c4d; /* Hamburgerio backgroundas islendantis */
     --navbar-text-color: rgba(255, 255, 255, 0.8); /* Navigacijos teksto */
-    --navbar-text-hover: rgb(30, 251, 255); /* Navigacijos Hover teksto */
-    --navbar-box-hover: rgb(60, 255, 30); /* Navigacijos apdailinimas hover */
+    --navbar-text-hover: rgb(18, 18, 19); /* Navigacijos Hover teksto */
+    --navbar-box-hover: rgb(18, 18, 19); /* Navigacijos apdailinimas hover */
     --btn-small: linear-gradient(
         to right,
         #87a8b8,
@@ -36,6 +36,7 @@
         #f7c500
     ); /* show mygtuko hover */
     --iconColor: #499bdd93;
+    --theadBGcolor: #5d6d73;
 }
 #bad_message,
 #good_message {
@@ -422,7 +423,7 @@ table {
 
 thead,
 tfoot {
-    background-color: #467180;
+    background-color: var(--theadBGcolor);
     color: white;
     text-align: left;
 }
@@ -439,7 +440,7 @@ tr:last-child {
     border-bottom: none;
 }
 .bg-thead{
-    background-color: #467180;
+    background-color: var(--theadBGcolor);
 }
 td,
 th {
@@ -816,9 +817,6 @@ hr {
         max-width: 40%;
         min-width: 200px;
     }
-
-    /* Suspaustu lenteliu teksto pakeitimai */
-
     .pricelistInfo td:nth-of-type(1)::before {
         content: "Mėnuo";
     }

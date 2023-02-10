@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="table_container">
-        <table class="lentele">
+        <table id="tablePrint" class="lentele">
 
             <form action="#" method="POST">
                 @csrf
@@ -76,7 +76,7 @@
 
         </table>
         <div>
-            <input class="btn" type="submit" value="Spausdinti">
+            <input class="btn" id="print-button" value="Spausdinti">
         </div>
 
 

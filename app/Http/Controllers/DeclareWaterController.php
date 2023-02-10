@@ -71,11 +71,16 @@ class DeclareWaterController extends Controller
      */
     public function create()
     {
+        $deklaruotaCreated = declareWater::where('flat_id',auth::user()->flat_id)->orderBy('created_at','desc')->pluck('created_at')->first();
+        $deklaruota=$deklaruotaCreated->format('Y-m');
+        $today = date('Y-m');
+        if($deklaruota!=$today){
+        return view('declare.create',['deklaruota'=>$deklaruota]);}
+        else{
+            return redirect()->route('declare.indexFlat')->with('bad_message','Šio mėnesio rodmenys jau buvo pateikti sėkmingai');}
 
+        }
 
-
-        return view('declare.create');
-    }
 
     /**
      * Store a newly created resource in storage.

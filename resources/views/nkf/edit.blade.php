@@ -20,9 +20,9 @@
         </div>
         <div class="login-text" style="border: none">
             <select class="form-select" name="type">
-                <option value='Išlaidos' {{  old('type', $nkf->type) == 'Išlaidos' ? 'selected' : '' }}>Išlaidos</option>
-                <option value='Įplaukos' {{  old('type', $nkf->type) == 'Įplaukos' ? 'selected' : '' }}>Įplaukos</option>
-                <option value='Planas' {{  old('type', $nkf->type) == 'Planas' ? 'selected' : '' }}>Planuojamos išlaidos</option>
+                <option value='islaidos' {{  old('type', $nkf->type) == 'islaidos' ? 'selected' : '' }}>Išlaidos</option>
+                <option value='iplaukos' {{  old('type', $nkf->type) == 'iplaukos' ? 'selected' : '' }}>Įplaukos</option>
+                <option value='planas' {{  old('type', $nkf->type) == 'planas' ? 'selected' : '' }}>Planuojamos išlaidos</option>
               </select>
 
         </div>

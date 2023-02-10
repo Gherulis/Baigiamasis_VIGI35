@@ -2,14 +2,17 @@
 :root {
     --main-background: linear-gradient(
         to right,
-        #87a8b8,
-        #86bcce,
-        #6094aa
+        #1996d4,
+        #2b3d42,
+        #0f2f3c
     ); /* Viso Puslapio */
-    --navbar-background: #438196; /* Navigacijos backgroundas */
-    --hamburger-menu-background: #438196; /* Hamburgerio backgroundas islendantis */
+    --navbar-background:to right,
+    #1996d4,
+    #2b3d42,
+    #0f2f3c; /* Navigacijos backgroundas */
+    --hamburger-menu-background: #a03c15; /* Hamburgerio backgroundas islendantis */
     --navbar-text-color: rgba(255, 255, 255, 0.8); /* Navigacijos teksto */
-    --navbar-text-hover: rgb(30, 251, 255); /* Navigacijos Hover teksto */
+    --navbar-text-hover: rgba(83, 255, 30, 0.774); /* Navigacijos Hover teksto */
     --navbar-box-hover: rgb(60, 255, 30); /* Navigacijos apdailinimas hover */
     --btn-small: linear-gradient(
         to right,
@@ -816,9 +819,6 @@ hr {
         max-width: 40%;
         min-width: 200px;
     }
-
-    /* Suspaustu lenteliu teksto pakeitimai */
-
     .pricelistInfo td:nth-of-type(1)::before {
         content: "Mėnuo";
     }

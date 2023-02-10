@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class InvoicesController extends Controller
 {    public function __construct(){
-    $this->middleware('permission:invoices-view', ['only'=>['index']]);
+    $this->middleware('permission:invoices-view', ['only'=>['index','show']]);
     $this->middleware('permission:invoices-indexFlat', ['only'=>['indexFlat']]);
     $this->middleware('permission:invoices-create', ['only'=>['create','store']]);
     $this->middleware('permission:invoices-edit', ['only'=>['edit','update','editInvoices','invoicesUpdate']]);

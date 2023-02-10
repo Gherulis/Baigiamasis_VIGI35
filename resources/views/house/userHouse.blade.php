@@ -34,16 +34,14 @@
                 <tr>
                     <th><i class="fa-solid fa-piggy-bank"></i>Namo kaupimo fondas : </th>
                     <td>
-                        @if(isset($house->pricelists->last()->nkf))
-                        {{$house->pricelists->last()->nkf}}
-                    @else
-                        Nera duomenu
-                    @endif
-
-
-
-
-                        </td>
+                        {{ number_format($house->nkfSukaupta,2) }} Eur,
+                    </td>
+                </tr>
+                <tr>
+                    <th><i class="fa-solid fa-hammer"></i>Namo planuojamų darbų už : </th>
+                    <td>
+                        {{ $house->nkfPlanuSuma }} Eur,
+                    </td>
                 </tr>
                 <tr>
                     <th><i class="fa-solid fa-money-bill-wave"></i>Paskutines saskaita pateikta:</th>

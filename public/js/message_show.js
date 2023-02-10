@@ -15,3 +15,10 @@
         $('#invitation').html(butasInvitation);
     });});
 
+
+    // Print mygtukas
+    document.querySelector('#print-button').addEventListener('click',function(){
+        window.print();
+    });
+
+

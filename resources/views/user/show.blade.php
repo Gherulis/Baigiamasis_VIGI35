@@ -20,6 +20,13 @@
                     <td>{{ Auth::user()->email }}</td>
                 </tr>
                 <tr>
+                    <th><i class="fa-regular fa-envelope"></i>Tel. numeris</th>
+                    @if(!empty( Auth::user()->phone))
+                    <td>{{ Auth::user()->phone }}</td>
+                    @else <td>Nenurodytas</td>
+                    @endif
+                </tr>
+                <tr>
                     <th><i class="fa-solid fa-suitcase"></i>Buto Numeris</th>
                     <td> Nr. {{ $flats->flat_nr }}</td>
                 </tr>
@@ -57,7 +64,20 @@
                     <th><i class="fa-solid fa-faucet"></i>Paskutinis vandens deklaravimas</th>
                     <td>{{ $declarationLastDate }}</td>
                 </tr>
+                <tr>
+                    <th><i class="fa-solid fa-faucet"></i>Spalvu tema</th>
+                    <td>{{ auth::user()->color }}</td>
+
+
+                </tr>
             </tbody>
+
         </table>
+        <div >
+            @can('user-edit')
+            <a href="{{route('user.edit', auth::user()) }}"><button class="btn btn_edit" type="submit"><i class="fa-solid fa-pen-clip"></i>Redaguoti</button></a>
+            @endcan
+        </div>
     </div>
+
 @endsection

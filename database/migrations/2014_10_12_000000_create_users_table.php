@@ -28,8 +28,9 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedBigInteger('flat_id')->default('1')->nullable();
-
+            $table->string('color')->default('Standartinė');
             $table->foreign('flat_id')->references('id')->on('flats');
+            $table->integer('phone')->nullable();
 
         });
     }

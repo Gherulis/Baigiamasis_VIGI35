@@ -2,7 +2,7 @@
 
 @section('content')
     <a href="{{ route('house.create') }}"><button type="submit" class="btn btn_edit">Prideti nauja nama</button></a>
-    @foreach ($house as $house)
+    @foreach ($houses as $house)
         <div class="table_container  ">
             <table class="lentele">
                 <thead>
@@ -11,7 +11,7 @@
                 <tbody>
                     <tr>
                         <td><i class="fa-solid fa-house"></i>Namo identifikacijos numeris</td>
-                        <td>{{ $house->id }}</td>
+                        <td>Nr. {{ $house->id }}</td>
                     </tr>
 
                     <tr>
@@ -33,11 +33,14 @@
                     <tr>
                         <td><i class="fa-solid fa-piggy-bank"></i>Namo kaupimo fondas : </td>
                         <td>
-                            @if (isset($house->pricelists->last()->nkf))
-                                {{ $house->pricelists->last()->nkf }}
-                            @else
-                                Nera duomenu
-                            @endif
+                            {{ number_format($house->nkfSukaupta,2) }} Eur,
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><i class="fa-solid fa-hammer"></i>Namo planuojamų darbų už: </td>
+                        <td>
+
+                            {{ $house->nkfPlanuSuma }} Eur,
                         </td>
                     </tr>
                     <tr>

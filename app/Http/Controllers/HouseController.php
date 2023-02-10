@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\house;
+use App\Models\Nkf;
 use App\Models\flat;
 use App\Http\Requests\StorehouseRequest;
 use App\Http\Requests\UpdatehouseRequest;
@@ -22,13 +23,23 @@ class HouseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
 
-        $house=house::with('houseFlat')->with('pricelists')->get();
-        // $getData=$house->pricelists->last()->created_at;
-        // $last_house_bill = Carbon::parse($getData)->format('Y', 'F');
-        return view ('house.index',['house' =>$house,]);
+
+
+
+    public function index()
+    {   $title='Visi namai';
+        $houses=house::with('houseFlat')->with('pricelists')->get();
+        foreach ($houses as $house){
+
+            $house->nkfIplaukuSuma = Nkf::where('house_id', $house->id)->where('type','iplaukos')->sum('amountPayed');
+            $house->nkfIslaiduSuma = Nkf::where('house_id', $house->id)->where('type','islaidos')->sum('amountPayed');
+            $house->nkfPlanuSuma = Nkf::where('house_id', $house->id)->where('type','planas')->sum('amountPayed');
+            $house->nkfSukaupta = $house->nkfIplaukuSuma-$house->nkfIslaiduSuma;
+
+        };
+
+        return view ('house.index',['houses' =>$houses, 'title'=>$title]);
     }
 
     /**
@@ -37,8 +48,8 @@ class HouseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('house.create');
+    {   $title='Sukurti nama';
+        return view('house.create',['title'=>$title]);
     }
 
     /**
@@ -48,7 +59,8 @@ class HouseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StorehouseRequest $request)
-    {           $request->validate([
+    {           $title='Sukurti butus';
+                $request->validate([
                 'address'=> 'required|min:4|string',
                 'house_nr'=>'required|min:1|max:999|integer',
                 'city'=>'required|min:3|string',
@@ -69,7 +81,7 @@ class HouseController extends Controller
                 $house->save();
 
 
-                return redirect()->route('flat.createFlats')->with('good_message', 'Naujas namas sėkmingai pridėtas !!! ');
+                return redirect()->route('flat.createFlats',['title'=>$title])->with('good_message', 'Naujas namas sėkmingai pridėtas !!! ');
     }
 
     /**
@@ -81,13 +93,23 @@ class HouseController extends Controller
     public function show(house $house)
     {
         $house =house::where('id',$house)->get();
+        $house->nkfIplaukuSuma = Nkf::where('house_id', $house->id)->where('type','iplaukos')->sum('amountPayed');
+        $house->nkfIslaiduSuma = Nkf::where('house_id', $house->id)->where('type','islaidos')->sum('amountPayed');
+        $house->nkfPlanuSuma = Nkf::where('house_id', $house->id)->where('type','planas')->sum('amountPayed');
+        $house->nkfSukaupta = $house->nkfIplaukuSuma-$house->nkfIslaiduSuma;
         return view ('house.show', ['house' => $house]);
     }
+
     public function showUserHouse(house $house)
     {   $userFlat=flat::where('id',auth::user()->flat_id)->first();
          $house=house::where('id',$userFlat->house_id)->with('houseFlat')->with('pricelists')->first();
+         $house->nkfIplaukuSuma = Nkf::where('house_id', $house->id)->where('type','iplaukos')->sum('amountPayed');
+         $house->nkfIslaiduSuma = Nkf::where('house_id', $house->id)->where('type','islaidos')->sum('amountPayed');
+         $house->nkfPlanuSuma = Nkf::where('house_id', $house->id)->where('type','planas')->sum('amountPayed');
+         $house->nkfSukaupta = $house->nkfIplaukuSuma-$house->nkfIslaiduSuma;
+        $title='Vartotojo namas';
 
-        return view ('house.userHouse', ['house' => $house]);
+        return view ('house.userHouse', ['house' => $house, 'title'=>$title]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -96,8 +118,8 @@ class HouseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(house $house)
-    {
-        return view ('house.edit',['house'=>$house]);
+    {   $title = 'Redaguoti nama';
+        return view ('house.edit',['house'=>$house, 'title'=>$title]);
     }
 
     /**

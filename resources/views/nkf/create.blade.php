@@ -20,9 +20,9 @@
         </div>
         <div class="login-text" style="border: none">
             <select class="form-select" name="type" id="" value="{{ old('type') }}">
-                <option name="" value='Išlaidos' {{ old('type') == 'Išlaidos' ? 'selected' : '' }}>Išlaidos</option>
-                <option name="" value='Įplaukos' {{ old('type') == 'Įplaukos' ? 'selected' : '' }}>Įplaukos</option>
-                <option name="" value='Planuojamos išlaidos' {{ old('type') == 'Planuojamos išlaidos' ? 'selected' : '' }} >Planuojami darbai</option>
+                <option name="" value='islaidos' {{ old('type') == 'islaidos' ? 'selected' : '' }}>Išlaidos</option>
+                <option name="" value='iplaukos' {{ old('type') == 'iplaukos' ? 'selected' : '' }}>Įplaukos</option>
+                <option name="" value='planas' {{ old('type') == 'planas' ? 'selected' : '' }} >Planuojami darbai</option>
 
             </select>
         </div>
