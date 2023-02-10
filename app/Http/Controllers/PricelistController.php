@@ -27,6 +27,8 @@ class PricelistController extends Controller
     $this->middleware('permission:pricelist-lastbill', ['only'=>['lastbill']]);
     $this->middleware('permission:pricelist-showPrices', ['only'=>['showPrices','showPrices']]);
 }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -74,9 +76,48 @@ class PricelistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {   $houses = house::all();
-        return view('pricelist.create',['houses' => $houses]);
+    public function create(request $request)
+    {   //pasiimu namo id,
+        $house_id =request('house_id');
+
+        //pasiemu siandienos metus
+        $todaysYear = date('Y');
+        //pasiemu siandienos menesi ir minusuoju viena menesi nes saskaita teikiama uz praeita menesi
+        $todaysMonth = date('m')-1;
+        //pasitikrinu data ir susitvarkau, nes jei sausis ir minusuojamas menuo turi buti gruodis ir metai -1
+        if($todaysMonth <= 0){
+            $todaysMonth = '12';
+            $todaysYear = $todaysYear-'1';
+        }
+        // susirandu deklaracijas kurios buvo pateiktos tam namui praeita menesi ir susiskaiciuoju ju kieki kad sulyginti su butu kiekiu name
+        $flatsDeclaredCount = Flat::whereHas('flatDeclarations', function($query) use ($house_id, $todaysMonth, $todaysYear) {
+            $query->where('house_id', $house_id)
+                ->whereMonth('created_at', $todaysMonth)
+                ->whereYear('created_at', $todaysYear);
+        })
+        ->with('flatDeclarations')
+        ->count();
+        //susiskaiciuoju bendra butu kieki pasirinktame name
+        $flatCount = Flat::where('house_id',$house_id)->count();
+        $house = house::where('id',$house_id)->first();
+
+        $errorCheck= $flatCount == $flatsDeclaredCount;
+        $errorMessage = '';
+        $errorCode = '';
+
+        if($errorCheck === false){
+            $errorMessage = '!!! NE VISI BUTAI PATEIKĘ VANDENS DEKLARACIJAS !!! SĄSKAITOS PATEIKTI NEGALIMA !!!';
+            $errorCode = '1';
+        } else {
+            $errorMessage = 'Visi butai pateikę deklaracijas, galima pateikti sąskaitą';
+            $errorCode = '0';
+        }
+
+        // dd($errorCheck);
+        // jei pateiktu saskaitu kiekis sutampa su butu kiekiu reiskias visi deklaracijas pateike gaunam sekminga zinute jei ne bloga zinute
+        return view('pricelist.create',['house' => $house, 'errorMessage'=>$errorMessage, 'errorCode'=>$errorCode]);
+
+        // return view('pricelist.create',['houses' => $houses])->with('bad_message', 'Ne visi butai pateikę vandens deklaracijas !!!');
     }
 
     /**

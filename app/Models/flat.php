@@ -26,7 +26,7 @@ public function belongsHouse(){
     return $this->belongsTo(House::class,'house_id','id');
 }
 public function flatDeclarations(){
-    return $this->hasMany(declareWater::class,'id','flat_id' );
+    return $this->hasMany(declareWater::class,'flat_id','id' );
 
 }
 

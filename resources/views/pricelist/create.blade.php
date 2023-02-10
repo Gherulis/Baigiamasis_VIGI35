@@ -1,18 +1,20 @@
 @extends('includes.layout')
 
 @section('content')
+@if( $errorCode === '1' )
+<div id="bad_message" class="message_show alert alert-danger"><i
+    class="fa-regular fa-face-frown-open alert-danger"></i> {{ ($errorMessage) }}</div>
+ @else <div id="good_message" class="message_show alert alert-success"><i
+        class="fa-regular fa-face-grin-wide alert-success"></i>{{ ($errorMessage) }}</div>
+@endif
+
     <div class="table_container tabletransform1 pricelistCreate">
         <table class="lentele">
             <form action="{{ route('pricelist.store') }}" method="POST">
                 @csrf
                 <thead>
                     <td colspan="2">
-                        <select name="house_nr" id="">
-                            @foreach ($houses as $house)
-                                <option value="{{ $house->id }}">Saskaita namui : {{ $house->address }}
-                                    {{ $house->house_nr }} Nr.</option>
-                            @endforeach
-                        </select>
+                        Saskaita namui : {{ $house->address }} g. {{ $house->house_nr }}
                     </td>
                 </thead>
                 <tbody>
@@ -56,9 +58,17 @@
                 </tbody>
         </table>
         <div>
-            @can('pricelist-create')
-                <input class="btn" type="submit" value="Pridėti">
+            @if( $errorCode=='1')
+                 @can('pricelist-create')
+                <input id="error_button" class="btn btn_delete" type="" value="Sąskaitos pateikti negalima!" >
             @endcan
+            @else
+                @can('pricelist-create')
+                <input class="btn" type="submit" value="Pateikti sąskaita">
+                @endcan
+            @endif
+
+
         </div>
     </div>
 @endsection

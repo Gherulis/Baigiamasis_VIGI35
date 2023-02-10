@@ -41,13 +41,6 @@
                                     class="fa-thin fa-hashtag icon"></i>Pirmininkas</a>
 
                             <ul class="dropDown">
-                                @can('pricelist-create')
-                                    <li>
-                                        <a class="nav-link " href="{{ route('pricelist.create') }}">
-                                            <i class="fa-solid fa-money-check-dollar icon"></i>N. saskaita
-                                        </a>
-                                    </li>
-                                @endcan
                                 @can('declare-view')
                                     <li>
                                         <a class="nav-link" href="{{ route('declare.index') }}">
@@ -170,7 +163,7 @@
                             @can('house-showUserHouse')
                             <li>
                                 <a class="nav-link" href="{{ route('house.showUserHouse') }}">
-                                    <i class="fa-solid fa-house"></i>Apie Nama
+                                    <i class="fa-solid fa-house"></i>Mano namas
                                 </a>
                             </li>
                             @endcan

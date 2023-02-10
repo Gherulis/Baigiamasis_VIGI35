@@ -70,16 +70,21 @@ class DeclareWaterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   $todaysDay = date('d');
+
+        if($todaysDay<24||$todaysDay>31){
+            return redirect()->route('declare.indexFlat')->with('bad_message','Rodmenis galima deklaruoti nuo 24 dienos iki mėnesio pabaigos!');}
+         else{
         $deklaruotaCreated = declareWater::where('flat_id',auth::user()->flat_id)->orderBy('created_at','desc')->pluck('created_at')->first();
+        $deklaruotaCreator = declareWater::where('flat_id',auth::user()->flat_id)->orderBy('created_at','desc')->pluck('declaredBy')->first();
         $deklaruota=$deklaruotaCreated->format('Y-m');
         $today = date('Y-m');
         if($deklaruota!=$today){
         return view('declare.create',['deklaruota'=>$deklaruota]);}
         else{
-            return redirect()->route('declare.indexFlat')->with('bad_message','Šio mėnesio rodmenys jau buvo pateikti sėkmingai');}
+            return redirect()->route('declare.indexFlat')->with('good_message','Vartotojas'.' '.$deklaruotaCreator.' '.'jau deklaravęs šio mėnesio rodmenis. Gražios dienos!');}
 
-        }
+        }}
 
 
     /**

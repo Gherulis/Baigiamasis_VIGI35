@@ -55,16 +55,23 @@
                     </tr>
                     <tr class="bg-thead">
 
-                        <td class="bg-thead"></td>
+                        <td class="bg-thead"><p class="mssg"><a href="{{ route('pricelist.create', ['house_id'=>$house->id]) }}"><button
+                            class="btn_medium btn_edit">Pateikti Sąskaitą</button></a></p>
+                        </td>
+
                         <td colspan='1'class="bg-thead">
                             <p class="mssg"><a href="{{ route('house.edit', $house) }}"><button
                                         class="btn_medium btn_edit">Redaguoti</button></a></p>
-                            <form action="{{ route('house.destroy', $house) }}" method="POST">
-                                @csrf
-                        <button class="btn_medium btn_delete">Istrinti</button> </form>
                         </td>
                     </tr>
-
+                    <tr>
+                        <td class="bg-thead"></td>
+                        <td class="bg-thead bg-last">
+                            <form action="{{ route('house.destroy', $house) }}" method="POST">
+                            @csrf
+                            <button class="btn_medium btn_delete">Istrinti</button> </form>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
 
