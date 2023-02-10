@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="login-form store-form">
-        <h3>Redaguoti Teises:</h3>
+        <h3>Teisė</h3>
 
 
         <div class="login-text">

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="login-form store-form">
-        <h3>Redaguoti Teises:</h3>
+        <h3>Redaguoti rolę</h3>
 
         <form action="{{route('roles.update',$role->id)}}" method="POST">
         @csrf
@@ -28,7 +28,7 @@
         </div>
 
 
-        <input class="btn" type="submit" value="Sukurti rolę">
+        <input class="btn" type="submit" value="Redaguoti rolę">
 
         </form>
     </div>

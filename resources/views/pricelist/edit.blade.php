@@ -93,7 +93,7 @@
             <div class="center">
             @can('pricelist-edit')
                 <a href="{{ route('pricelist.edit', $pricelist) }}">
-                    <button class="btn_medium btn_edit" type="submit">
+                    <button class="btn btn_edit" type="submit">
                         <i class="fa-solid fa-pen-clip"></i>Redaguoti
                     </button>
                 </a>

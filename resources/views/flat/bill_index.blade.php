@@ -76,7 +76,7 @@
 
         </table>
         <div>
-            <input class="btn" id="print-button" value="Spausdinti">
+            <input class="btn btn_edit" id="print-button" value="Spausdinti">
         </div>
 
 

@@ -353,9 +353,12 @@ td a {
 .left {
     text-align: left;
 }
+
+
 .right {
     text-align: right;
 }
+
 @media (max-width: 880px) {
     /* HEADER NAVBAR, IMG, HAMBURGER */
 
@@ -687,10 +690,11 @@ i {
     top: -5px;
     color: var(--loginTextValidInput);
 }
+
 .btn,
 .btn_reg {
     margin-top: 16px;
-    width: 100%;
+    width: 90%;
     height: 50px;
     border: 1px solid;
     background: var(--btn_reg);
@@ -700,10 +704,17 @@ i {
     font-weight: 700;
     cursor: pointer;
     outline: none;
-    margin: 0px, 20px, 0px, 20px;
+    margin: 20px auto;
     margin-bottom: 20px;
     text-align: center;
+    display: block;
+
 }
+
+.login-text input:nth-last-child(){
+    margin-bottom: 50px;
+}
+
 .btn:hover,
 .btn_reg:hover {
     box-shadow: var(--btn_regHover);
@@ -722,6 +733,7 @@ hr {
 .store-form {
     margin-top: 10vh;
 }
+
 
 @media only screen and (max-width: 768px),
     (min-device-width: 400px) and (max-device-width: 768px) {

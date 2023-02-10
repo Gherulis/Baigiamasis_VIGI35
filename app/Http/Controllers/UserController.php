@@ -138,9 +138,9 @@ public function edit(user $user)
 
     public function update(UpdateuserRequest $request,user $user)
     {    $request->validate([
-        'name'=>'required|regex:/^[A-Z][a-zA-Z]+$/',
+        'name'=>'required|string',
         'email'=>'required|email|min:4',
-        'phone'=>'min:9',
+
         ],[],[
             'name'=>'vartotojo vardas',
             'email'=>'vartotojo elektroninis paštas',

@@ -13,9 +13,9 @@
     --navbar-box-hover: rgb(18, 18, 19); /* Navigacijos apdailinimas hover */
     --btn-small: linear-gradient(
         to right,
-        #87a8b8,
-        #86bcce,
-        #6fbcdd
+        #c3d8e1,
+        #91a0a4,
+        #91a8b3
     ); /* mazo mygtuko spalva background*/
     --btn_delete_hover: linear-gradient(
         to right,
@@ -37,6 +37,45 @@
     ); /* show mygtuko hover */
     --iconColor: #499bdd93;
     --theadBGcolor: #5d6d73;
+
+    --iconColor: #3e556993;
+    /* lenteles box seselis */
+    --tableBoxShadow:  rgba(0, 0, 0, 0.15);
+    --textWhite: white;
+    --textBlack: black;
+    --newsText: rgba(0, 0, 0, 0.49) ;
+    --newsHeader: rgba(0, 0, 0, 0.539);
+    --formSelect : #ebe3e393;
+    --buttonBorder : #4c7785;
+    --buttonIcon :  #283539;
+    --tableSecondRowBg : #f3f3f3;
+    --invalidRed : red;
+    --navMenuBorder : #87a8b8;
+    --tableDataAhref : #17314e;
+    --hamburgerMenuIcon: white;
+    --buttonTextColor: #225465;
+    --tableHeadHover : #35fddf93;
+    --ahrefIcon : rgba(56, 56, 56, 0.3);
+    --navbarExpandA : #106b92;
+    --theadTfootBG :  #607a83b5;
+    --tbodyTr : rgba(126, 118, 118, 0.708);
+    --tableContainerOddRow : #becccc;
+    --tableContainerH3 : #6094aa;
+    --aColor : #003a52;
+    --newItemBorder : #d5d5d5;
+    --newsItemBoxShadow : inset 0 0 5px #809696, inset 0 0 10px #5a7b7b;
+    --loginFormBoxShadow : #23627d47;
+    --loginFormH3 : silver;
+    --loginText: silver;
+    --loginTextLabel : #c0b6b6;
+    --loginTextValidInput : #106b92;
+    --btn_reg : linear-gradient(to right, #60696d, #4a5b60, #2f424e);
+    --btn_regHover : inset 0 0 5px #415050, inset 0 0 10px #6e8080;
+    --tableTrasformTrBorder : #467180;
+    --tableTransformBoxShadow : 0 0 20px rgba(0, 0, 0, 0.15);
+    --tableTransformBackground : #44606b;
+    --tableTransformTd : #65767d;
+    --tableTransformTdBorder : 1px solid #47585e;
 }
 #bad_message,
 #good_message {
@@ -52,8 +91,11 @@
     width: 100%;
     height: 40px;
     text-align: center;
-    background: #ebe3e393;
+    background: var(--formSelect);
     border-radius: 5px;
+}
+.page-item.active .page-link {
+    background-color: rgb(173, 172, 172);
 }
 
 .btn_small {
@@ -62,17 +104,17 @@
     width: 2rem;
     border-radius: 2rem;
     border: none;
-    border: 1px solid #4c7785;
+    border: 1px solid var(--buttonBorder);
 }
 /* .navbar .active {
     background-color: #0000;
 } */
 .btn_small i {
     padding-right: 0px;
-    color: #438196;
+    color: var(--buttonIcon);
 }
 .btn_small:hover i {
-    color: #00000093;
+    color: var(--textBlack);
 }
 .flex-container {
     display: flex;
@@ -85,13 +127,13 @@
     padding-bottom: 10px;
 }
 .tablerow_bg {
-    background-color: #f3f3f3;
+    background-color: var(--tableSecondRowBg);
 }
 .textCenter{
     text-align: center;
 }
 .invalid{
-    border: 1px solid red;
+    border: 1px solid var(--invalidRed);
 }
 .btn_edit:hover,
 .btn_create:hover {
@@ -111,13 +153,13 @@
     width: 10rem;
     border-radius: 2rem;
     border: none;
-    border: 1px solid #4c7785;
-    color: #225465;
+    border: 1px solid var(--buttonBorder);
+    color: var(--buttonTextColor);
     margin: 5px 0 5px 0;
 }
 .btn_medium i {
     padding-right: 5px;
-    color: #438196;
+    color: var(--buttonIcon);
 }
 .postShow {
     padding-top: 20px;
@@ -129,13 +171,13 @@
     width: 50rem;
     border-radius: 2rem;
     border: none;
-    border: 1px solid #4c7785;
-    color: #225465;
+    border: 1px solid var(--buttonBorder);
+    color: var(--buttonTextColor);
     margin: 5px;
 }
 .btn_large i {
     padding-right: 5px;
-    color: #438196;
+    color: var(--buttonIcon);
 }
 
 * {
@@ -151,11 +193,11 @@ body {
 
 }
 th a {
-    color: white;
+    color: var(--textWhite);
 }
 
 th a:hover {
-    color: #35fddf93;
+    color: var(--tableHeadHover);
     text-decoration: none;
 }
 
@@ -186,7 +228,7 @@ i {
 }
 
 a i {
-    color: rgba(56, 56, 56, 0.3);
+    color: var(--ahrefIcon);
 }
 .dropDown {
     position: absolute;
@@ -242,7 +284,7 @@ li {
 }
 
 .navbar-expand-md a {
-    color: #106b92;
+    color: var(----navbarExpandA);
 }
 
 .nav-menu {
@@ -284,7 +326,7 @@ select {
     margin: 5px auto;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    background-color: white;
+    background-color: var(--hamburgerMenuIcon)
 }
 ul li ul {
     display: none;
@@ -305,7 +347,7 @@ tr td {
     font-weight: 400;
 }
 td a {
-    color: #17314e;
+    color: var(--tableDataAhref);
 }
 .FloatLeft {
     float: left;
@@ -317,9 +359,12 @@ td a {
 .left {
     text-align: left;
 }
+
+
 .right {
     text-align: right;
 }
+
 @media (max-width: 880px) {
     /* HEADER NAVBAR, IMG, HAMBURGER */
 
@@ -337,7 +382,7 @@ td a {
     }
 
     .nav-menu {
-        border-top: 1px solid #87a8b8;
+        border-top: 1px solid var(--navMenuBorder);
         position: fixed;
         left: -100%;
         top: 50px;
@@ -401,7 +446,7 @@ input::-webkit-inner-spin-button {
     margin: 0 auto;
     border-radius: 5px 5px 5px 5px;
     overflow: scroll;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px var(--tableBoxShadow);
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;
@@ -423,8 +468,8 @@ table {
 
 thead,
 tfoot {
-    background-color: var(--theadBGcolor);
-    color: white;
+    background-color: var(--theadTfootBG);
+    color: var(--textWhite);
     text-align: left;
 }
 
@@ -433,14 +478,21 @@ th:first-child {
 }
 
 tbody tr {
-    border-bottom: 1px solid rgba(126, 118, 118, 0.708);
+    border-bottom: 1px solid var(--tbodyTr);
 }
 
 tr:last-child {
     border-bottom: none;
 }
 .bg-thead{
-    background-color: var(--theadBGcolor);
+    background-color: var(--theadTfootBG);
+    border: none;
+}
+.bg-thead p {
+    margin: 0;
+}
+.bg-last{
+    padding-top:0;
 }
 td,
 th {
@@ -455,11 +507,10 @@ td:first-child {
 }
 
 .table_container tbody tr:nth-of-type(odd) {
-    background-color: #f3f3f3;
+    background-color: var(--tableContainerOddRow);
 }
-
 .table_container h3 {
-    color: #6094aa;
+    color: var(--tableContainerH3);
     padding-left: 5px;
 }
 
@@ -509,13 +560,13 @@ input {
     grid-gap: 15px 15px;
 
 }
-a{color: #003a52;}
+a{color: var(--aColor)}
 a:hover {
     text-decoration: none;
 }
 
 .news-item {
-    border: 1px solid #d5d5d5;
+    border: 1px solid var(--newItemBorder);
     padding: 50px;
     height: auto;
     border-radius: 10px;
@@ -535,7 +586,7 @@ a:hover {
     top: 90%;
 }
 .postShowPost {
-    border: 1px solid #d5d5d5;
+    border: 1px solid var(--newItemBorder);
     padding: 25px;
     height: auto;
     border-radius: 10px;
@@ -547,7 +598,7 @@ a:hover {
 }
 
 .news-item:hover {
-    box-shadow: inset 0 0 5px #33ffff, inset 0 0 10px #66ffff;
+    box-shadow:var(--newsItemBoxShadow);
     border: none;
 }
 
@@ -564,7 +615,7 @@ a:hover {
 }
 .newsHeader {
     font-size: 24px;
-    color: rgba(0, 0, 0, 0.539);
+    color: var(--newsHeader);
 }
 .newsText:hover {
     text-decoration: none;
@@ -576,7 +627,7 @@ a:hover {
     font-size: 16px;
     word-break: break-all;
     overflow-wrap: break-word;
-    color: rgba(0, 0, 0, 0.49);
+    color: var(--newsTextColor);
     text-decoration: none;
     min-height: 160px;
     text-decoration: none;
@@ -588,13 +639,13 @@ a:hover {
     background: white;
     border-radius: 10px;
     margin-top: 15vh;
-    box-shadow: 5px 5px #23627d47;
+    box-shadow: 5px 5px var(--loginFormBoxShadow);
 }
 
 .login-form h3 {
     text-align: center;
     padding: 20px 0 20px 0;
-    border-bottom: 1px solid silver;
+    border-bottom: 1px solid var(--loginFormH3);
 }
 
 .login-form form {
@@ -604,7 +655,7 @@ a:hover {
 
 form .login-text {
     position: relative;
-    border-bottom: 2px solid silver;
+    border-bottom: 2px solid var(--loginText);
     margin: 30px 0;
 }
 
@@ -622,7 +673,7 @@ form .login-text {
     position: absolute;
     top: 50%;
     left: 5px;
-    color: #c0b6b6;
+    color: var(--loginTextLabel);
     transform: translateY(-50%);
     font-size: 16px;
     pointer-events: none;
@@ -643,28 +694,36 @@ i {
 .login-text input:focus ~ label,
 .login-text input:valid ~ label {
     top: -5px;
-    color: #106b92;
+    color: var(--loginTextValidInput);
 }
+
 .btn,
 .btn_reg {
     margin-top: 16px;
-    width: 100%;
+    width: 90%;
     height: 50px;
     border: 1px solid;
-    background: linear-gradient(to right, #4c859e, #437686, #407b94);
+    background: var(--btn_reg);
     border-radius: 25px;
     font-size: 16px;
     color: rgb(255, 238, 238);
     font-weight: 700;
     cursor: pointer;
     outline: none;
-    margin: 0px, 20px, 0px, 20px;
+    margin: 20px auto;
     margin-bottom: 20px;
     text-align: center;
+    display: block;
+
 }
+
+.login-text input:nth-last-child(){
+    margin-bottom: 50px;
+}
+
 .btn:hover,
 .btn_reg:hover {
-    box-shadow: inset 0 0 5px #33ffff, inset 0 0 10px #66ffff;
+    box-shadow: var(--btn_regHover);
     border: none;
     transition: 0.5s;
 }
@@ -680,6 +739,7 @@ hr {
 .store-form {
     margin-top: 10vh;
 }
+
 
 @media only screen and (max-width: 768px),
     (min-device-width: 400px) and (max-device-width: 768px) {
@@ -708,16 +768,16 @@ hr {
     }
 
     .tabletransform1 tr {
-        border: 1px solid #467180;
+        border: 1px solid var(--tableTrasformTrBorder);
         margin-bottom: 10px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        box-shadow: var(--tableTransformBoxShadow);
         border-radius: 10px;
-        background-color: #6094aa;
+        background-color: var(--tableTransformBackground);
     }
 
     .tabletransform1 td {
         border: none;
-        border-bottom: 1px solid #467180;
+        border-bottom: var(--tableTransformTdBorder);
 
         position: relative;
         padding-left: 50%;
@@ -817,6 +877,9 @@ hr {
         max-width: 40%;
         min-width: 200px;
     }
+
+    /* Suspaustu lenteliu teksto pakeitimai */
+
     .pricelistInfo td:nth-of-type(1)::before {
         content: "Mėnuo";
     }
@@ -1001,4 +1064,6 @@ hr {
     .roleInfo td:nth-of-type(3)::before {
         content: "Veiksmai";
     }
+
+
 }

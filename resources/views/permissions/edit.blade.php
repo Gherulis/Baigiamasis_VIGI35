@@ -12,7 +12,7 @@
         </div>
 
 
-        <input class="btn" type="submit" value="Sukurti teisę">
+        <input class="btn" type="submit" value="Redaguoti teisę">
 
         </form>
     </div>

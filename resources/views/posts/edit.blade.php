@@ -1,7 +1,7 @@
 @extends('includes.layout')
 
 @section('content')
-    <div class="login-form store-form">
+    <div class=" login-form store-form  ">
 
         <h3>Redaguoti skelbima</h3>
 
@@ -15,7 +15,7 @@
         </div>
         <div >
 
-            <textarea name="postBody" cols="35" rows="4" placeholder="Straispnis"> {{$posts->postBody}}</textarea>
+            <textarea name="postBody" cols="35" rows="10" placeholder="Straispnis"> {{$posts->postBody}}</textarea>
 
         </div>
 
