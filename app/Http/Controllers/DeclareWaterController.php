@@ -35,11 +35,17 @@ class DeclareWaterController extends Controller
     {
         //na ir pvz cia
 
-        {
+        {   $house_id = request('house_id');
+            $declareWater = declareWater::whereHas('forFlat', function($query) use ($house_id) {
+            $query->whereHas('belongsHouse', function($query) use ($house_id) {
+                $query->where('house_id', $house_id);
+            });
+        })->sortable()->orderBy('created_at','desc')->paginate(30);
+        // dd($declareWater);
 
         $flatController = new FlatController;
 
-        $declareWater = declareWater::sortable()->orderBy('created_at','desc')->paginate(30);
+        // $declareWater = declareWater::sortable()->orderBy('created_at','desc')->paginate(30);
 
         foreach($declareWater as $listitem) {
             // $year = Carbon::parse($listitem->created_at)->format('Y');

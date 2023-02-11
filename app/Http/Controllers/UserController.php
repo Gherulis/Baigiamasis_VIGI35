@@ -34,8 +34,11 @@ class UserController extends Controller
         }
 
     public function index(){
+        $house_id = request('house_id');
 
-        $user = User::where('id', '!=', auth()->user()->id)->where('id', '!=',1)->with('usersFlat.belongsHouse')->get();
+        $user = User::where('id', '!=', auth()->user()->id)->where('id', '!=',1)->whereHas('usersFlat.belongsHouse', function($house) use ($house_id) {
+            $house->where('id', $house_id);
+        })->get();
 
 
         return view('user.index',['user' => $user ]);

@@ -54,7 +54,7 @@ class PricelistController extends Controller
         $filter = $request->filter ;
 
         if(!empty($filter )){
-            $pricelist = pricelist::sortable()->where('house_id', $filter)->paginate(30);
+            $pricelist = pricelist::sortable()->where('house_id', $filter)->paginate(50);
         }
              else {$pricelist = pricelist::sortable()->get();};
 

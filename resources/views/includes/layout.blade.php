@@ -41,39 +41,6 @@
                                     class="fa-thin fa-hashtag icon"></i>Pirmininkas</a>
 
                             <ul class="dropDown">
-                                @can('declare-view')
-                                    <li>
-                                        <a class="nav-link" href="{{ route('declare.index') }}">
-                                            <i class="fa-solid fa-faucet"></i>Deklaravimas
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('pricelist-view')
-                                    <li>
-                                        <a class="nav-link" href="{{ route('pricelist.index') }}">
-                                            <i class="fa-solid fa-money-check-dollar icon"></i>Saskaitos
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('invoices-view')
-                                    <li>
-                                        <a class="nav-link" href="{{ route('invoices.index') }}">
-                                            <i class="fa-solid fa-key"></i>B. Saskaitos
-                                        </a>
-                                    </li>
-                                @endcan
-                                @can('user-view')
-                                    <li>
-                                        <a class="nav-link" href="{{ route('user.index') }}"><i
-                                                class="fa-solid fa-person"></i>Gyventojai</a>
-                                    </li>
-                                @endcan
-                                @can('flat-view')
-                                    <li>
-                                        <a class="nav-link" href="{{ route('flat.index') }}"><i
-                                                class="fa-solid fa-suitcase"></i>Butai</a>
-                                    </li>
-                                @endcan
                                 @can('house-view')
                                     <li>
                                         <a class="nav-link" href="{{ route('house.index') }}"><i
@@ -86,18 +53,43 @@
                                                 class="fa-solid fa-piggy-bank"></i>NKF</a>
                                     </li>
                                 @endcan
-
+                                @can('role-view')
+                                <li>
+                                    <a class="nav-link" href="{{ route('roles.index') }}">
+                                        <i class="fa-solid fa-palette"></i>Roles
+                                    </a>
+                                </li>
+                                @endcan
+                                @can('permission-view')
+                                <li>
+                                    <a class="nav-link" href="{{ route('permissions.index') }}">
+                                        <i class="fa-solid fa-scale-balanced"></i>Leidimai
+                                    </a>
+                                </li>
+                                @endcan
 
                             </ul>
                         @endcan
                     </li>
-                    @can('post-view')
+                    <li id="dropDown" class="nav-item ">
+                        @can('post-view')
                         <li class="nav-item">
                             <a href="{{ route('posts.index') }}"
                                 class="nav-link {{ Request::is('home') ? 'active_nav' : '' }}"><i
                                     class="fa-regular fa-comment icon"></i>Naujienos</a>
+
+                            <ul class="dropDown">
+                                @can('house-view')
+                                    <li>
+                                        <a class="nav-link" href="{{ route('house.index') }}">
+                                            <i class="fa-solid fa-thumbtack"></i>N.Skelbimas</a>
+                                    </li>
+                                @endcan
+                            </ul>
                         </li>
-                    @endcan
+                        @endcan
+                    </li>
+
                     @can('declare-indexFlat')
                         <li id="dropDown" class="nav-item ">
                             <a href="{{ route('declare.indexFlat') }}"
@@ -167,20 +159,7 @@
                                 </a>
                             </li>
                             @endcan
-                            @can('role-view')
-                            <li>
-                                <a class="nav-link" href="{{ route('roles.index') }}">
-                                    <i class="fa-solid fa-palette"></i>Roles
-                                </a>
-                            </li>
-                            @endcan
-                            @can('permission-view')
-                            <li>
-                                <a class="nav-link" href="{{ route('permissions.index') }}">
-                                    <i class="fa-solid fa-scale-balanced"></i>Leidimai
-                                </a>
-                            </li>
-                            @endcan
+
 
                             <li>
                                 <a class="nav-link" href="{{ route('logout') }}"
