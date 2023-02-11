@@ -79,9 +79,9 @@
                                     class="fa-regular fa-comment icon"></i>Naujienos</a>
 
                             <ul class="dropDown">
-                                @can('house-view')
+                                @can('post-create')
                                     <li>
-                                        <a class="nav-link" href="{{ route('house.index') }}">
+                                        <a class="nav-link" href="{{ route('post.create') }}">
                                             <i class="fa-solid fa-thumbtack"></i>N.Skelbimas</a>
                                     </li>
                                 @endcan

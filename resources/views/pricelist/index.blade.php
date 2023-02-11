@@ -1,7 +1,34 @@
 @extends('includes.layout')
 
 @section('content')
+<div class="table_container filter">
+    <form action="{{ route('pricelist.index') }}" method="GET">
+        <table>
+            <thead>
+                <tr>
+                    <input type="filter" name="filter" id="" value="{{ request()->filter }}" hidden>
+                    <th>Viso sąskaitų už : {{ $totalInvoiceAmount }}  Eur</th>
+                    <th>Viso NKF: {{ $totalNKF }} Eur</th>
 
+                    <th><label for="dateFilter">Metai : </label>
+                        <select name="dateFilter" id="" value="{{ request()->input('dateFilter') }}">
+                            @foreach ($selectFilterDatas->unique('formatedDate') as $selectFilterData)
+
+                                <option value="{{ $selectFilterData->created_at}}"
+                                    {{ request()->input('dateFilter') == $selectFilterData->created_at ? 'selected' : '' }}>
+                                   {{ $selectFilterData->formatedDate }}
+
+                                </option>
+                         @endforeach
+
+                        </select>
+
+                    <th><button class="btn_medium btn_edit" type="submit">Filtruoti</button></th>
+                </tr>
+            </thead>
+        </table>
+    </form>
+</div>
 
 
 

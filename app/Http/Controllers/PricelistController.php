@@ -52,11 +52,23 @@ class PricelistController extends Controller
             'December' => 'Gruodis',
         ];
         $filter = $request->filter ;
+        $dateFilter = $request->dateFilter;
+        $yearFilter = Carbon::parse($dateFilter)->format('Y');
+
+        // dd($yearFilter,$monthFilter);
+        $selectFilterDatas = pricelist::where('house_id', $filter)->get();
+        foreach($selectFilterDatas as $selectFilterData) {
+            $year = Carbon::parse($selectFilterData->created_at)->format('Y');
+            $selectFilterData->formatedDate =  $year;
+        }
+
 
         if(!empty($filter )){
-            $pricelist = pricelist::sortable()->where('house_id', $filter)->paginate(50);
+            $pricelist = pricelist::sortable()->where('house_id', $filter)->orderBy('created_at','desc')
+            ->whereYear('created_at',$yearFilter)
+            ->get();
         }
-             else {$pricelist = pricelist::sortable()->get();};
+             else {$pricelist = pricelist::sortable()->orderBy('created_at','desc')->get();};
 
         foreach($pricelist as $listitem) {
             $year = Carbon::parse($listitem->created_at)->format('Y');
@@ -64,10 +76,17 @@ class PricelistController extends Controller
             $month = str_replace(array_keys($ltMonths), array_values($ltMonths), $month);
             $monthName = $year.'-'.$month;
             $listitem->formatedDate =  $monthName;
+            $listitem->visoSaskaita = $listitem->saltas_vanduo + $listitem->karstas_vanduo + $listitem->sildymas + $listitem->silumos_mazg_prieziura+$listitem->gyvatukas+
+            $listitem->salto_vandens_abon+$listitem->elektra_bendra+$listitem->ukio_islaid+$listitem->nkf;
         }
+        $totalInvoiceAmount = $pricelist->sum('visoSaskaita');
+        $totalNKF = $pricelist->sum('nkf');
+
+        // dd($pricelist);
+
         $houses = house::all();
 
-        return view('pricelist.index',['pricelist' => $pricelist, 'houses'=>$houses]);
+        return view('pricelist.index',['pricelist' => $pricelist, 'houses'=>$houses, 'selectFilterDatas'=>$selectFilterDatas, 'totalInvoiceAmount'=>$totalInvoiceAmount, 'totalNKF'=>$totalNKF]);
 
     }
 

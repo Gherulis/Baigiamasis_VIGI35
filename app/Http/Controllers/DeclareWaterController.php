@@ -33,15 +33,23 @@ class DeclareWaterController extends Controller
      */
     public function index()
     {
-        //na ir pvz cia
+        {   $house_id = request('filter');
+            $dateFilter = request ('dateFilter');
+            if($dateFilter== null){
+                $dateFilter = today();
+                $year = Carbon::parse($dateFilter)->format('Y');
+                $month = Carbon::parse($dateFilter)->format('m');
+                $month = $month-1;
+                $dateFilter = $year.'-'.$month;
+            }
+            $yearFilter = Carbon::parse($dateFilter)->format('Y');
+            $monthFilter = Carbon::parse($dateFilter)->format('m');
 
-        {   $house_id = request('house_id');
             $declareWater = declareWater::whereHas('forFlat', function($query) use ($house_id) {
             $query->whereHas('belongsHouse', function($query) use ($house_id) {
                 $query->where('house_id', $house_id);
             });
-        })->sortable()->orderBy('created_at','desc')->paginate(30);
-        // dd($declareWater);
+        })->whereYear('created_at',$yearFilter)->whereMonth('created_at',$monthFilter)->sortable()->orderBy('created_at','desc')->paginate();
 
         $flatController = new FlatController;
 
@@ -53,6 +61,8 @@ class DeclareWaterController extends Controller
             // $month = str_replace(array_keys($ltMonths), array_values($ltMonths), $month);
             // $monthName = $year.'-'.$month;
             $listitem->formatedDate =  $flatController->dateToLt($listitem->created_at);
+            $listitem->waterUsage = $listitem->kitchen_cold_usage + $listitem->kitchen_hot_usage + $listitem->bath_cold_usage + $listitem->bath_hot_usage;
+            $listitem->hotWaterUsage = $listitem->kitchen_hot_usage + $listitem->bath_hot_usage;
             //i skliaustelius pasiduoda pilna data kuria gauni is duombazes!!!
             //grizta paversta pagal tavo formatavima
             //pratestuok dabar pratestuok
@@ -65,9 +75,23 @@ class DeclareWaterController extends Controller
             // supratau o kodel flat kontroleryje tiek kartu tai naudojot tiek virsuj tiek apacioj ?
             // virsuje itraukiamaa KLASE
             //kad butu galima naudotis metodais reika sukurti OBJEKTA pagal itraukta klase
-        }}
+        }
+        $filterDateData = declareWater::whereHas('forFlat', function($query) use ($house_id) {
+            $query->whereHas('belongsHouse', function($query) use ($house_id) {
+                $query->where('house_id', $house_id);
+            });})->get();
+        foreach ($filterDateData as $dataItem){
+            $dataItem->formatedDate =  $flatController->dateToLt($dataItem->created_at);
 
-        return view('declare.index',['declareWater' => $declareWater]);
+        }}
+        $filterDateData=$filterDateData->unique('formatedDate');
+        $totalWater = $declareWater->sum('waterUsage');
+        $totalHotWater = $declareWater->sum('hotWaterUsage');
+
+
+
+
+        return view('declare.index',['declareWater' => $declareWater, 'filterDateData'=>$filterDateData, 'totalWater'=>$totalWater, 'totalHotWater'=>$totalHotWater ]);
    }
 
     /**

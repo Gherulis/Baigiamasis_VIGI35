@@ -11,7 +11,7 @@ class declareWater extends Model
 {
     use HasFactory, Sortable;
 
-    public $sortable = ['id','flat_id','kitchen_cold','kitchen_hot','bath_cold','bath_hot','declaredBy','created_at','formatedDate'];
+    public $sortable = ['id','flat_id','kitchen_cold','kitchen_hot','bath_cold','bath_hot','declaredBy','created_at','formatedDate',];
 
 
     public function forFlat(){

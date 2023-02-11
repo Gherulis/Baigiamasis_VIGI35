@@ -63,7 +63,7 @@
 
                         <td colspan='2'class="bg-thead">
                             @can('declare-view')
-                            <p class="mssg"><a href="{{ route('declare.index',  ['house_id'=>$house->id]) }}"><button
+                            <p class="mssg"><a href="{{ route('declare.index',  ['filter'=>$house->id]) }}"><button
                                         class="btn_medium btn_edit">
                                         <i class="fa-solid fa-faucet"></i>Namo deklaracijos</button></a></p>
                             @endcan

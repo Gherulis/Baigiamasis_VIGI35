@@ -575,6 +575,12 @@ a:hover {
     margin-top: 16px;
     height: auto;
 }
+.borderLeft {
+    border-left: solid 1px #67bde1;
+}
+.borderRight {
+    border-right: solid 1px #67bde1;
+}
 
 .postShowContainer small {
     top: 90%;
