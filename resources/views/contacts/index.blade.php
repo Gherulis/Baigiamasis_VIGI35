@@ -34,12 +34,13 @@
                                                 class="fa-solid fa-pen-clip"></i></button>
                                     </a>
                                     @endcan
-
+                                    @can('contact-delete')
                                     <form action="{{ route('contact.destroy', $contact) }}" method="POST">
                                         @csrf
                                         <button class="btn_small btn_delete" value="submit" title="Trinti kontaktą"><i
                                                 class="fa-solid fa-trash-can red"></i></button>
                                     </form>
+                                    @endcan
                                 </div>
                             </td>
                     </div>

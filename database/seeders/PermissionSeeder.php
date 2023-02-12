@@ -75,6 +75,7 @@ class PermissionSeeder extends Seeder
         'invoices-create',
         'invoices-store',
         'invoices-edit',
+        'invoices-show',
         'bills-index',
         'bills-indexLast',
         'nkf-views',

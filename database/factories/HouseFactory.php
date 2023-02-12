@@ -21,6 +21,7 @@ class HouseFactory extends Factory
             'house_nr' => $this->faker->numberBetween(1,100),
             'city' => $this->faker->numberBetween(10,180),
             'house_size' => $this->faker->numberBetween(2000,5000),
+            'admin_id' => '2',
 
         ];
     }

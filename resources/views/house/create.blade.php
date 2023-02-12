@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="login-form store-form">
-        <h3>Pridėti nauja namas</h3>
+        <h3>Pridėti naują namą</h3>
 
         <form action="{{route('house.store')}}" method="POST">
         @csrf
@@ -43,6 +43,12 @@
             @enderror
         </div>
 
+        <label for="houseAdmin">Pirmininkas</label>
+        <select name="houseAdmin" id="" class="w-100 text-center">
+            @foreach ($houseAdmins as $houseAdmin )
+            <option value="{{ $houseAdmin->id }}" >{{ $houseAdmin->name }}</option>
+            @endforeach
+        </select>
         <input class="btn" type="submit" value="Pridėti">
 
         </form>

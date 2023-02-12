@@ -24,8 +24,8 @@
                     @enderror
                     <label for="username">Elektroninis Paštas</label>
                 </div>
-                <div class="login-text">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                <div class="login-text ">
+                    <input id="password" class="txt_center" type="password" class="form-control @error('password') is-invalid @enderror"
                         name="password" required autocomplete="current-password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -34,8 +34,7 @@
                     @enderror
                     <label for="password">Slaptažodis</label>
                 </div>
-                <a href="register" class="small-grey">Registruotis</a>
-                <a href="password/reset" class="small-grey">Pamiršau slaptažodį</a>
+
 
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="remember" id="remember"
@@ -44,6 +43,10 @@
                         {{ __('Prisimink mane') }}
                     </label>
                 </div>
+                <div class="flex-container login_spc center">
+                <a href="register" class="small-grey">Registruotis</a>
+                <a href="password/reset" class="small-grey">Pamiršau slaptažodį</a>
+            </div>
                 <input class="btn" type="submit" value="Prisijungti">
             </form>
         </div>

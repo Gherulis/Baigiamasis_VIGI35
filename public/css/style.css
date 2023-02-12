@@ -466,6 +466,9 @@ table {
     font-family: "Gill Sans", "Candara";
     table-layout: fixed;
 }
+.login_spc {
+    justify-content: space-between;
+}
 
 thead,
 tfoot {
@@ -783,7 +786,7 @@ hr {
     }
 
     .small-grey {
-        color: rgb(186, 180, 180);
+        color: rgb(208 202 202);
     }
 
     .tabletransform1 table,

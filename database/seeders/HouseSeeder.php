@@ -21,6 +21,7 @@ class HouseSeeder extends Seeder
         $house->house_nr = '11';
         $house->city = 'Palanga';
         $house->house_size = '2362.5';
+        $house->admin_id = '2';
         $house->save();
 
         $house = new House();
@@ -29,6 +30,7 @@ class HouseSeeder extends Seeder
         $house->house_nr = '14';
         $house->city = 'Vilnius';
         $house->house_size = '2676.5';
+        $house->admin_id = '2';
         $house->save();
 
     }

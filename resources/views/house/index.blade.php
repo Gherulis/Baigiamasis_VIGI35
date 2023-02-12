@@ -31,6 +31,14 @@
                         <td colspan="3">{{ $house->house_size }} m<sup>2</sup></td>
                     </tr>
                     <tr>
+                        <td colspan="3"><i class="fa-solid fa-shield-cat"></i>Namo pirmininkas</td>
+                        <td colspan="3">{{ $house->pirmininkasName }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"><i class="fa-regular fa-envelope"></i></i>Kontaktai</td>
+                        <td colspan="3">{{ $house->pirmininkasEmail }}</td>
+                    </tr>
+                    <tr>
                         <td colspan="3"><i class="fa-solid fa-piggy-bank"></i>Namo kaupimo fondas </td>
                         <td colspan="3">
                             {{ number_format($house->nkfSukaupta,2) }} Eur,

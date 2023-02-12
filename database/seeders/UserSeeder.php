@@ -40,9 +40,18 @@ class UserSeeder extends Seeder
         ]);
         $user->save();
         $role = Role::find('3');
-        $permission = Permission::pluck('id','id')->all();
-        $role->syncPermissions($permission);
         $user->assignRole($role->id);
+
+        $user = User::create([
+            'name' => 'Agnė',
+            'email' => 'pirmininkasAgnė@namas.lt',
+            'password' => Hash::make('123456'),
+
+        ]);
+        $user->save();
+        $role = Role::find('3');
+        $user->assignRole($role->id);
+
 
         $user = User::create([
             'name' => 'Rolas',
@@ -51,7 +60,7 @@ class UserSeeder extends Seeder
 
         ]);
         $user->save();
-        $role = Role::find('3');
+        $role = Role::find('4');
         $permission = Permission::pluck('id','id')->all();
         $role->syncPermissions($permission);
         $user->assignRole($role->id);

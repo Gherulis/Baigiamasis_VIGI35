@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('house_nr');
             $table->string('city');
             $table->decimal('house_size');
+            $table->integer('admin_id');
             $table->timestamps();
         });
     }

@@ -30,6 +30,14 @@
                     <th><i class="fa-solid fa-maximize"></i>Bendras plotas</th>
                     <td>{{$house->house_size}} m<sup>2</sup></td>
                 </tr>
+                <tr>
+                    <th><i class="fa-solid fa-shield-cat"></i>Namo pirmininkas</th>
+                    <td>{{ $house->pirmininkasName }}</td>
+                </tr>
+                <tr>
+                    <th><i class="fa-regular fa-envelope"></i></i>Kontaktai</td>
+                    <td>{{ $house->pirmininkasEmail }}</td>
+                </tr>
 
                 <tr>
                     <th><i class="fa-solid fa-piggy-bank"></i>Namo kaupimo fondas </th>

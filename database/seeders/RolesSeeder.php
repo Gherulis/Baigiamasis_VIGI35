@@ -74,6 +74,7 @@ class RolesSeeder extends Seeder
             'pricelist-lastbill',
             'pricelist-delete',
             'invoices-view',
+            'invoices-show',
             'invoices-indexFlat',
             'invoices-create',
             'invoices-store',
@@ -141,6 +142,7 @@ class RolesSeeder extends Seeder
                 'invoices-indexFlat',
                 'invoices-create',
                 'invoices-store',
+                'invoices-show',
                 'invoices-edit',
                 'bills-index',
                 'bills-indexLast',
@@ -202,6 +204,7 @@ class RolesSeeder extends Seeder
                 'pricelist-edit',
                 'pricelist-lastbill',
                 'invoices-view',
+                'invoices-show',
                 'invoices-indexFlat',
                 'invoices-create',
                 'invoices-store',
@@ -249,11 +252,13 @@ class RolesSeeder extends Seeder
                 'pricelist-showPrices',
                 'pricelist-lastbill',
                 'invoices-indexFlat',
+                'invoices-show',
                 'bills-index',
                 'bills-indexLast',
                 'nkf-views',
                 'nkf-view',
                 'nkf-show',
+
 
 
               ]

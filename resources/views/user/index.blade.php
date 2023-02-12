@@ -39,7 +39,6 @@
             </thead>
             <tbody>
 
-
                     @foreach ( $user as $user )
                        <div>
                         <tr>
@@ -54,7 +53,7 @@
                                 {{ $user->roles->pluck('name')[0] }}</td>
                                 @endif
                             <td >
-                                <div class="flex-container">
+                                <div class="flex-container ">
                                 @can('user-show')
                                 <a href="{{route('user.show', $user)}}"><button class="btn_small btn_show" type="submit"><i class="fa-regular fa-eye"></i></button></a>
                                 @endcan

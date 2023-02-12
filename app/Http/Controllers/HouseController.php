@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\house;
 use App\Models\Nkf;
 use App\Models\flat;
+use App\Models\user;
+use App\Models\Role;
 use App\Http\Requests\StorehouseRequest;
 use App\Http\Requests\UpdatehouseRequest;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +38,8 @@ class HouseController extends Controller
             $house->nkfIslaiduSuma = Nkf::where('house_id', $house->id)->where('type','islaidos')->sum('amountPayed');
             $house->nkfPlanuSuma = Nkf::where('house_id', $house->id)->where('type','planas')->sum('amountPayed');
             $house->nkfSukaupta = $house->nkfIplaukuSuma-$house->nkfIslaiduSuma;
-
+            $house->pirmininkasName = user::where('id',$house->admin_id)->pluck('name')->first();
+            $house->pirmininkasEmail = user::where('id',$house->admin_id)->pluck('email')->first();
         };
 
         return view ('house.index',['houses' =>$houses, 'title'=>$title]);
@@ -49,7 +52,11 @@ class HouseController extends Controller
      */
     public function create()
     {   $title='Sukurti nama';
-        return view('house.create',['title'=>$title]);
+        $houseAdmins= User::role('Pirmininkas')->get();
+
+
+        return view('house.create',['title'=>$title, 'houseAdmins'=>$houseAdmins]);
+
     }
 
     /**
@@ -78,6 +85,7 @@ class HouseController extends Controller
                 $house->house_nr= request('house_nr');
                 $house->city = request('city');
                 $house->house_size = request('house_size');
+                $house->admin_id = request('houseAdmin');
                 $house->save();
 
 
@@ -108,6 +116,8 @@ class HouseController extends Controller
          $house->nkfPlanuSuma = Nkf::where('house_id', $house->id)->where('type','planas')->sum('amountPayed');
          $house->nkfSukaupta = $house->nkfIplaukuSuma-$house->nkfIslaiduSuma;
         $title='Vartotojo namas';
+        $house->pirmininkasName = user::where('id',$house->admin_id)->pluck('name')->first();
+        $house->pirmininkasEmail = user::where('id',$house->admin_id)->pluck('email')->first();
 
         return view ('house.userHouse', ['house' => $house, 'title'=>$title]);
     }
@@ -119,7 +129,8 @@ class HouseController extends Controller
      */
     public function edit(house $house)
     {   $title = 'Redaguoti nama';
-        return view ('house.edit',['house'=>$house, 'title'=>$title]);
+        $houseAdmins= User::role('Pirmininkas')->get();
+        return view ('house.edit',['house'=>$house, 'title'=>$title,'houseAdmins'=>$houseAdmins]);
     }
 
     /**
@@ -146,6 +157,7 @@ class HouseController extends Controller
         $house->house_nr= $request->house_nr;
         $house->city = $request->city;
         $house->house_size = $request->house_size;
+        $house->admin_id = $request->houseAdmin;
         $house->save();
 
         return redirect()->route('house.index')->with('good_message', 'Sėkmingai redaguotas namas');

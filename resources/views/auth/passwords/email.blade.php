@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('/layouts.app')
 
 @section('content')
     <div class="container">
@@ -37,7 +37,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Send Password Reset Link') }}
+                                        {{ __('Siųsti elektroniniu paštu') }}
                                     </button>
                                 </div>
                             </div>
