@@ -52,19 +52,20 @@
                                 @if(isset( $user->roles->pluck('name')[0]))
                                 {{ $user->roles->pluck('name')[0] }}</td>
                                 @endif
-                            <td >
-                                <div class="flex-container ">
+
+                                <div class="flex-container">
+                                    <td class="mx-auto" >
                                 @can('user-show')
-                                <a href="{{route('user.show', $user)}}"><button class="btn_small btn_show" type="submit"><i class="fa-regular fa-eye"></i></button></a>
+                                <a href="{{route('user.show', $user)}}"><button class="btn_small btn_show" type="submit" title="Peržiūrėti"><i class="fa-regular fa-eye"></i></button></a>
                                 @endcan
                                 @can('user-edit')
-                                <a href="{{route('user.edit', $user)}}"><button class="btn_small btn_edit" type="submit"><i class="fa-solid fa-pen-clip"></i></button></a>
+                                <a href="{{route('user.edit', $user)}}"><button class="btn_small btn_edit" type="submit" title="Redaguoti"><i class="fa-solid fa-pen-clip"></i></button></a>
                                 @endcan
                                 @can('user-delete')
                                 <form action="{{route('user.destroy',$user)}}" method="POST">
                                     @csrf
 
-                                    <button class="btn_small btn_delete" value="submit"><i class="fa-solid fa-trash-can red"></i></button>
+                                    <button class="btn_small btn_delete" value="submit" title="Trinti"><i class="fa-solid fa-trash-can red"></i></button>
                                     @endcan
                                 </form>
                             </div>
