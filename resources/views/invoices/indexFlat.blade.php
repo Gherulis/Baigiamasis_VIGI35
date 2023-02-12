@@ -1,6 +1,8 @@
 @extends('includes.layout')
 
 @section('content')
+
+
     <div class="table_container tabletransform1 pricelistIndexFlat">
         <table class="lentele">
             <thead>
@@ -25,6 +27,8 @@
                 </tr>
             </thead>
             <tbody>
+                @if ($invoices->count() > 0)
+
                 @foreach ($invoices as $invoice)
                     <tr>
                         <td name="flat_id">Butas {{ $invoice->flat_id }}</td>
@@ -46,6 +50,8 @@
                         <td name="sumoketa">{{ $invoice->Sumoketa }}</td>
                     </tr>
                 @endforeach
+                @else <td colspan="17">Sąskaitų kolkas nėra</td>
+                @endif
             </tbody>
         </table>
     </div>

@@ -10,5 +10,5 @@ class contacts extends Model
 {
     use HasFactory, Sortable;
 
-    public $sortable = ['id','vardas','pastas','tel','created_at'];
+    public $sortable = ['id','vardas','pastas','tel','created_at','komentaras'];
 }

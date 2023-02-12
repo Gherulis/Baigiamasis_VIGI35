@@ -17,6 +17,11 @@
                 <input type="text" name="phone" value="{{ $contacts->tel }}">
                 <label for="text">Tel.Nr</label>
             </div>
+            <div class="login-text">
+                <input type="text" name="comment" value="{{ $contacts->komentaras }}">
+                <label for="text">Komentaras</label>
+            </div>
+
             <input class="btn" type="submit" value="Redaguoti">
         </form>
     </div>

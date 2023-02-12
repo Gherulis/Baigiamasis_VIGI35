@@ -22,9 +22,9 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   $title = 'Rolės';
         $roles=Role::where('id','!=',1)->get();
-        return view ('roles.index',['roles'=> $roles]);
+        return view ('roles.index',['roles'=> $roles ,'title'=>$title]);
     }
 
     /**

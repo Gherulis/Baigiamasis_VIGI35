@@ -3,7 +3,7 @@
 @section('content')
     <div class=" login-form store-form  ">
 
-        <h3>Redaguoti skelbima</h3>
+        <h3>Redaguoti skelbimą</h3>
 
         <form action="{{route('post.update',$posts)}}" method="POST", enctype="multipart/form-data">
         @csrf

@@ -36,7 +36,7 @@
 
                 <tr>
                     <th colspan="2">Vandens deklaravimas</th>
-                    <th colspan="4" class="borderLeft borderRight">Skaitliukų rodmenys</th>
+                    <th colspan="4" class="borderLeft borderRight">Skaitiklių rodmenys</th>
                     <th colspan="2" class="borderRight">Vandens suvartota</th>
                     <th colspan="2"></th>
                 </tr>
@@ -71,9 +71,12 @@
                     <td>{{$declare->declaredBy}}</td>
 
                     <td>
-                        <a href="{{route('declare.show', $declare)}}"><button class="btn_small btn_show"  type="submit" title="Peržiūrėti deklaracija"><i class="fa-regular fa-eye"></i></button></a>
+                        <a href="{{route('declare.show',['declareWater'=>$declare])}}"><button class="btn_small btn_show"  type="submit" title="Peržiūrėti deklaracija"><i class="fa-regular fa-eye"></i></button></a>
                         <a href="{{route('declare.edit', $declare)}}"><button class="btn_small btn_edit"  type="submit" title="Redaguoti deklaracija"><i class="fa-solid fa-pen-clip"></i></button></a>
+                        <form action="{{route('declare.destroy', $declare)}}" method="POST">
+                            @csrf
                         <a href="{{route('declare.destroy', $declare)}}"><button class="btn_small btn_delete"  type="submit" title="Trinti deklaracija"><i class="fa-solid fa-trash-can"></i></button></a>
+                        </form>
                     </td>
                   </tr>
               @endforeach

@@ -248,7 +248,7 @@ class DeclareWaterController extends Controller
     public function destroy(declareWater $declareWater)
     {
         $declareWater->delete();
-        return view ('declareWater.index')->with('good_message', 'Deklaracija sėkmingai ištrinta');;
+        return back()->with('good_message', 'Deklaracija sėkmingai ištrinta');;
     }
     public function calculate(Request $request)
 {
@@ -262,12 +262,9 @@ class DeclareWaterController extends Controller
 public function indexFlat()
 {
     {    $flatController = new FlatController;
-
-
     $declareWater = declareWater::sortable()->where('flat_id', Auth::user()->flat_id)
     ->orderBy('created_at', 'desc')
     ->paginate(25);
-
     foreach($declareWater as $listitem) {
 
         $listitem->formatedDate =  $flatController->dateToLt($listitem->created_at);

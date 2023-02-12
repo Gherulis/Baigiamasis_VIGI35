@@ -26,7 +26,7 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   $title = 'Naujienos';
         $user = auth::user();
 
         $house_id = flat::where('id',auth::user()->flat_id)->pluck('house_id');
@@ -44,7 +44,7 @@ class PostsController extends Controller
             $item->base_url = $urlHost;
         }
 
-        return view('posts.index', ['posts' => $posts, 'nkfLastFive'=>$nkfLastFive]);
+        return view('posts.index', ['posts' => $posts, 'nkfLastFive'=>$nkfLastFive, 'title' => $title]);
     }
 
     /**
@@ -53,8 +53,8 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view ('posts.create');
+    {   $title = 'Pridėti naujieną';
+        return view ('posts.create',['title'=>$title]);
     }
 
     /**

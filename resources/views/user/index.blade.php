@@ -11,7 +11,8 @@
 
             <thead>
                 <tr>
-                <th colspan="7" class="right">
+                <th>Namo gyventojai</th>
+                <th colspan="6" class="right">
                     <a href="{{route('user.create')}}">
                         @can('user-create')
                         <button class="btn_medium btn_create">
@@ -26,7 +27,7 @@
                 <tr>
                 <th>ID</th>
                 <th><i class="fa-solid fa-person"></i>Vardas</th>
-                <th><i class="fa-regular fa-envelope"></i>El.Pastas</th>
+                <th><i class="fa-regular fa-envelope"></i>El. pašto adresas</th>
                 <th><i class="fa-solid fa-house"></i>Adresas</th>
                 <th><i class="fa-solid fa-suitcase"></i>Buto Nr.</th>
                 <th><i class="fa-solid fa-palette"></i>Rolė</th>

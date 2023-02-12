@@ -37,7 +37,8 @@
         <table>
             <thead>
                 <tr>
-                    <th colspan='8'>
+                    <th>NKF</th>
+                    <th colspan='7'>
                         <p class="mssg">{{ session('mssg') }}{{ session('mssg_edit') }}</p>
                     </th>
                     <th colspan="2">

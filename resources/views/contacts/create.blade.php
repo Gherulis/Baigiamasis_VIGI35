@@ -35,6 +35,16 @@
                     </span>
                 @enderror
             </div>
+            <div class="login-text">
+                <input type="text" name="comment" value="{{ old('comment') }}"
+                    class="form-control @error('comment') is-invalid @enderror">
+                <label for="comment">Komentaras</label>
+                @error('comment')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
             <input class="btn" type="submit" value="Pridėti">
         </form>
     </div>

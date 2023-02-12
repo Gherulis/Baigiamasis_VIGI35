@@ -46,7 +46,7 @@ class UserController extends Controller
 
 
 public function show(){
-
+        $title = 'Apie mane';
         $flat_id = Auth::user()->flat_id;
         $flats = flat::with('belongsHouse')->with('flatUsers')->findorfail($flat_id);
         $invoices = Invoices::where('flat_id',Auth::user()->flat_id)->orderBy('created_at','desc')->get();
@@ -81,7 +81,7 @@ public function show(){
         $declarationLastDate=date('Y-m-d',strtotime( $declaration->created_at));
 
 
-        return view('user.show', ['flats' => $flats, 'invoices'=>$invoices, 'lastinvoiceCreated'=>$lastinvoiceCreated,'lastInvoice'=>$lastInvoice,'difference'=>$difference, 'differenceAmount'=>$differenceAmount,'declarationLastDate'=>$declarationLastDate]);
+        return view('user.show', ['flats' => $flats, 'invoices'=>$invoices, 'lastinvoiceCreated'=>$lastinvoiceCreated,'lastInvoice'=>$lastInvoice,'difference'=>$difference, 'differenceAmount'=>$differenceAmount,'declarationLastDate'=>$declarationLastDate,'title'=>$title]);
     }
     public function create(){
 
@@ -128,10 +128,11 @@ public function show(){
         return view('user.show', ['flats' => $flats]);}
     }
     public function destroy(user $user)
-    {
+    {   $flat_id=auth::user()->flat_id;
+        $house_id=flat::where('id',$flat_id)->pluck('house_id');
 
         $user->delete();
-        return redirect()->route('user.index')->with('good_message', 'Vartotojas sėkmingai ištrintas!');
+        return back()->with('good_message', 'Vartotojas sėkmingai ištrintas!');
 }
 public function edit(user $user)
     {

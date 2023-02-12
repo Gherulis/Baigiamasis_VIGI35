@@ -42,7 +42,7 @@
                 <ul class="nav-menu">
                     <li id="dropDown" class="nav-item ">
                         @can('pirmininkas-view')
-                            <a href="{{ route('declare.index') }}" class="nav-link "><i
+                            <a href="{{ route('user.show') }}" class="nav-link "><i
                                     class="fa-thin fa-hashtag icon"></i>Pirmininkas</a>
 
                             <ul class="dropDown">
@@ -61,7 +61,7 @@
                                 @can('role-view')
                                 <li>
                                     <a class="nav-link" href="{{ route('roles.index') }}">
-                                        <i class="fa-solid fa-palette"></i>Roles
+                                        <i class="fa-solid fa-palette"></i>Rolės
                                     </a>
                                 </li>
                                 @endcan
@@ -114,7 +114,7 @@
                     @endcan
                     @can('pricelist-view')
                         <li class="nav-item ">
-                            <a href="{{ route('pricelist.index') }}"
+                            <a href="{{ route('invoices.indexFlat') }}"
                                 class="nav-link {{ Request::is('pricelist/index') ? 'active_nav' : '' }}"><i
                                     class="fa-solid fa-money-check-dollar icon"></i>Sąskaitos</a>
                             <ul class="dropDown">

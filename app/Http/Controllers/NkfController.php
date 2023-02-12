@@ -25,9 +25,8 @@ class NkfController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(request $request)
-    {  $filterData=house::all();
-
-
+    {   $title='NKF';
+        $filterData=house::all();
         $houseId = request('filter') ? request('filter') : '1' ;
         $nkfs = Nkf::sortable()->where('house_id',$houseId)->join('houses', 'houses.id', '=', 'nkfs.house_id')
         ->select('nkfs.*', 'houses.address', 'houses.house_nr')
@@ -37,7 +36,7 @@ class NkfController extends Controller
         $nkfs->totalPlanned = Nkf::where('house_id',$houseId)->where('type','Planuojamos išlaidos')->get()->sum('amountPayed'); //susiskaiciuoju visas planuojamas islaidas
         $nkfs->totalSaved = $totalMoney - $totalSpendings; // susiskaiciuoju likuti is sukauptu atimu islaidas
 
-        return view('nkf.index', compact('nkfs','filterData'));
+        return view('nkf.index', compact('nkfs','filterData','title'));
     }
 
     /**

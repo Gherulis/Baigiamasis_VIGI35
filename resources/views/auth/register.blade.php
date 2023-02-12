@@ -17,7 +17,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <label for="name">{{ __('Vardas') }}</label>
+                                <label for="name">{{ __('Vartotojo vardas') }}</label>
                             </div>
                             <div class="login-text">
                                 <input id="email" type="email" name="email" value="{{ old('email') }}" required
@@ -52,7 +52,7 @@
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
-                                            <label for="invitation" >{{ __('Pakvietimas') }}</label>
+                                            <label for="invitation" >{{ __('Pakvietimo kodas') }}</label>
                                         </div>
                                             <div >
                                                 <button class="btn_reg" type="submit">

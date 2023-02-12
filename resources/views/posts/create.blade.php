@@ -12,7 +12,7 @@
         </div>
         <div >
 
-            <textarea name="postBody" cols="35" rows="4" placeholder="Straispnis"></textarea>
+            <textarea name="postBody" cols="35" rows="4" placeholder="Tekstas"></textarea>
 
         </div>
         <div class="login-text">
@@ -24,7 +24,7 @@
         </div>
 
         @can('post-create')
-        <input class="btn" type="submit" value="Įkelti skelbima">
+        <input class="btn" type="submit" value="Įkelti skelbimą">
         @endcan
         </form>
     </div>

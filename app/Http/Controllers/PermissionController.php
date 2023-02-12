@@ -23,10 +23,10 @@ class PermissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   $title = 'Leidimai';
         $permissions = Permission::all();
 
-        return view ('permissions.index', ['permissions' => $permissions]);
+        return view ('permissions.index', ['permissions' => $permissions, 'title'=>$title]);
     }
 
     /**

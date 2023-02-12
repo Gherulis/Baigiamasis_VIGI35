@@ -14,7 +14,7 @@
                 @csrf
                 <thead>
                     <td colspan="2">
-                        Saskaita namui : {{ $house->address }} g. {{ $house->house_nr }}
+                        Sąskaita namui: {{ $house->address }} g. {{ $house->house_nr }}
                     </td>
                 </thead>
                 <tbody>

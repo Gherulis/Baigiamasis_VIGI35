@@ -37,14 +37,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3"><i class="fa-solid fa-hammer"></i>Namo planuojamų darbų už </td>
+                        <td colspan="3"><i class="fa-solid fa-hammer"></i>Namo planuojamų darbų už sumą</td>
                         <td colspan="3">
 
                             {{ $house->nkfPlanuSuma }} Eur,
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3"><i class="fa-solid fa-money-bill-wave"></i>Paskutinė saskaita pateikta</td>
+                        <td colspan="3"><i class="fa-solid fa-money-bill-wave"></i>Paskutinė sąskaita pateikta</td>
                         <td colspan="3">
                             @if (isset($house->pricelists->last()->created_at))
                                 {{ $house->pricelists->last()->created_at->format('Y-m-d') }}
@@ -113,7 +113,7 @@
                             <form action="{{ route('house.destroy', $house) }}" method="POST">
                             @csrf
                             <button class="btn_medium btn_delete">
-                                <i class="fa-solid fa-trash-can"></i>Istrinti</button> </form>
+                                <i class="fa-solid fa-trash-can"></i>Ištrinti</button> </form>
                             @endcan
                         </td>
                     </tr>

@@ -53,10 +53,15 @@ class PricelistController extends Controller
         ];
         $filter = $request->filter ;
         $dateFilter = $request->dateFilter;
-        $yearFilter = Carbon::parse($dateFilter)->format('Y');
+        if(empty($dateFilter)){
+            $dateFilter = pricelist::where('house_id', $filter)->orderBy('created_at','desc')
+            ->pluck('created_at')->first();
+            $dateFilter=Carbon::parse($dateFilter)->format('Y');}
 
+        // $yearFilter = Carbon::parse($dateFilter)->format('Y');
+        // dd($yearFilter);
         // dd($yearFilter,$monthFilter);
-        $selectFilterDatas = pricelist::where('house_id', $filter)->get();
+        $selectFilterDatas = pricelist::where('house_id', $filter)->orderBy('created_at','desc')->get();
         foreach($selectFilterDatas as $selectFilterData) {
             $year = Carbon::parse($selectFilterData->created_at)->format('Y');
             $selectFilterData->formatedDate =  $year;
@@ -65,7 +70,7 @@ class PricelistController extends Controller
 
         if(!empty($filter )){
             $pricelist = pricelist::sortable()->where('house_id', $filter)->orderBy('created_at','desc')
-            ->whereYear('created_at',$yearFilter)
+            ->whereYear('created_at',$dateFilter)
             ->get();
         }
              else {$pricelist = pricelist::sortable()->orderBy('created_at','desc')->get();};
@@ -86,7 +91,7 @@ class PricelistController extends Controller
 
         $houses = house::all();
 
-        return view('pricelist.index',['pricelist' => $pricelist, 'houses'=>$houses, 'selectFilterDatas'=>$selectFilterDatas, 'totalInvoiceAmount'=>$totalInvoiceAmount, 'totalNKF'=>$totalNKF]);
+        return view('pricelist.index',['pricelist' => $pricelist, 'houses'=>$houses, 'selectFilterDatas'=>$selectFilterDatas, 'totalInvoiceAmount'=>$totalInvoiceAmount, 'totalNKF'=>$totalNKF, 'dateFilter'=>$dateFilter]);
 
     }
 

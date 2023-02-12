@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('vardas');
             $table->string('pastas');
             $table->integer('tel');
+            $table->string('komentaras');
 
             $table->timestamps();
         });

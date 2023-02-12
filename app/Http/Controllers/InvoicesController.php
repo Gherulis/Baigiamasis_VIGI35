@@ -124,7 +124,7 @@ class InvoicesController extends Controller
 
 
         }
-        return redirect()->route('invoices.index')->with('good_message', 'Jūs sėkmingai sukūrėte saskaitą!');
+        return redirect()->route('invoices.index')->with('good_message', 'Jūs sėkmingai sukūrėte sąskaitą!');
         // return redirect()->route('house.index', ['invoicesData'=>$invoicesData])->with('good_message', 'Dėkui, Jūs sėkmingai pateikėte sąskaitą');
     }
 
@@ -152,7 +152,7 @@ class InvoicesController extends Controller
     {
         $lastInvoice = invoices::where('flat_id', Auth::user()->flat_id)->orderBy('created_at', 'desc')->first();
         if(!$lastInvoice){
-            return redirect()->route('posts.index')->with('bad_message','Paskutinė saskaita nerasta');
+            return redirect()->route('posts.index')->with('bad_message','Paskutinė sąskaita nerasta');
         } else {
             $suma=$lastInvoice->sum = $lastInvoice->saltas_vanduo + $lastInvoice->karstas_vanduo + $lastInvoice->sildymas + $lastInvoice->silumos_mazg_prieziura+$lastInvoice->gyvatukas+
             $lastInvoice->salto_vandens_abon+$lastInvoice->elektra_bendra+$lastInvoice->ukio_islaid+$lastInvoice->nkf-$lastInvoice->Kompensacija+$lastInvoice->Skola-$lastInvoice->Permoka
@@ -319,7 +319,7 @@ class InvoicesController extends Controller
                   $invoice->save();
                 }
 
-   return redirect(route('invoices.index'))->with('good_message', 'Whoop Whoop Sėkmingai pridėta');
+   return redirect(route('invoices.index'))->with('good_message', 'Whoop Whoop sėkmingai pridėta');
 }
 
         }

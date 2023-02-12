@@ -14,8 +14,8 @@
                         <select name="dateFilter" id="" value="{{ request()->input('dateFilter') }}">
                             @foreach ($selectFilterDatas->unique('formatedDate') as $selectFilterData)
 
-                                <option value="{{ $selectFilterData->created_at}}"
-                                    {{ request()->input('dateFilter') == $selectFilterData->created_at ? 'selected' : '' }}>
+                                <option value="{{ substr($selectFilterData->created_at, 0, 4) }}"
+                                    {{ request()->input('dateFilter') == substr($selectFilterData->created_at, 0, 4) ? 'selected' : '' }}>
                                    {{ $selectFilterData->formatedDate }}
 
                                 </option>
@@ -29,28 +29,12 @@
         </table>
     </form>
 </div>
-
-
-
-
-
-
    <div class="table_container tabletransform1 pricelistInfo">
         <table class="lentele">
             <thead>
                 <tr>
-                    <td colspan="4">
-                        {{-- <form method="GET" action="{{ route('pricelist.index') }}">
-                            <select class="input" id="filter" >
-                                @foreach ($houses as $house )
-                                <option value="{{ $house -> id }}">Saskaita namui : {{ $house -> address }}g. Nr. {{ $house -> house_nr }}  </option>
-                                @endforeach
-                            </select>
-                            <button type="submit" class="button" id="filtras">Filter</button>
-                        </form> --}}
-
-
-
+                    <td>Namo sąskaitos</td>
+                    <td colspan="3">
                     </td>
                     <td colspan="5"></td>
                     <td colspan="2">Suma su PVM, Eur</td>

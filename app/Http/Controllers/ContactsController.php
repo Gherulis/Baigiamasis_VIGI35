@@ -24,10 +24,10 @@ class ContactsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   $title = 'Kontaktai';
         $contacts = Contacts::Sortable()->paginate(15);
 
-        return view('Contacts/index', ['contacts' => $contacts]);
+        return view('Contacts/index', ['contacts' => $contacts, 'title'=>$title]);
     }
 
     /**
@@ -51,10 +51,12 @@ class ContactsController extends Controller
         'name'=>'required|regex:/^[A-Z][a-zA-Z]+$/',
         'email'=>'email|min:8',
         'phone'=>'required|min:9',
+        'comment'=> 'required|string|min:5'
         ],[],[
             'name'=>'vartotojo vardas',
             'email'=>'vartotojo elektroninis paštas',
             'phone'=>'telefono numeris',
+            'comment'=>'komentaras'
 
         ]);
 
@@ -62,6 +64,7 @@ class ContactsController extends Controller
         $contacts->vardas = request('name');
         $contacts->pastas = request('email');
         $contacts->tel = request('phone');
+        $contacts->komentaras = request('comment');
 
         $contacts->save();
         return redirect ('contacts/index')->with('good_message', 'Naujas kontaktas sėkmingai pridėtas');
@@ -104,15 +107,18 @@ class ContactsController extends Controller
         'name'=>'required|regex:/^[A-Z][a-zA-Z]+$/',
         'email'=>'email|min:8',
         'phone'=>'required|min:9',
+        'comment'=>'required|string|min:5',
         ],[],[
             'name'=>'vartotojo vardas',
             'email'=>'vartotojo elektroninis paštas',
             'phone'=>'telefono numeris',
+            'comment'=> 'komentaras'
         ]);
 
         $contacts->vardas = $request->name;
         $contacts->pastas = $request->email;
         $contacts->tel = $request->phone;
+        $contacts->komentaras = $request->comment;
         $contacts->save();
         return redirect()->route('contacts.index')->with('good_message', 'Kontaktas sėkmingai redaguotas');
     }

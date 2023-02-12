@@ -109,6 +109,7 @@
     padding-right: 0px;
     color: var(--buttonIcon);
 }
+
 .btn_small:hover i {
     color: var(--textBlack);
 }
@@ -355,7 +356,9 @@ td a {
 .left {
     text-align: left;
 }
-
+.btn_create {
+    margin-right: 10px;
+}
 
 .right {
     text-align: right;
@@ -366,6 +369,7 @@ td a {
 
     .hamburger {
         display: block;
+
     }
     .hamburger.active .bar:nth-child(2) {
         opacity: 0;
@@ -378,6 +382,7 @@ td a {
     }
 
     .nav-menu {
+        display: block;
         border-top: 1px solid var(--navMenuBorder);
         position: fixed;
         left: -100%;
@@ -532,7 +537,9 @@ input {
     border-radius: 3px;
     padding-left: 2px;
 }
-
+.just-center{
+    justify-content: center;
+}
 
 .news-container {
     margin: 0 auto;
@@ -856,8 +863,11 @@ hr {
     .contact_info td:nth-of-type(3)::before {
         content: "Telefonas";
     }
-
     .contact_info td:nth-of-type(4)::before {
+        content: "Komentaras";
+    }
+
+    .contact_info td:nth-of-type(5)::before {
         content: "Veiksmai";
     }
 

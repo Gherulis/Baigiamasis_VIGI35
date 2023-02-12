@@ -17,7 +17,7 @@ class PricelistFactory extends Factory
     public function definition()
     {
         return [
-        'house_id' => '1',
+        'house_id' => $this->faker->numberBetween(1,2),
         'saltas_vanduo' => $this->faker->numberBetween(10,180),
         'karstas_vanduo' => $this->faker->numberBetween(10,180),
         'sildymas' => $this->faker->numberBetween(10,180),
@@ -27,7 +27,7 @@ class PricelistFactory extends Factory
         'elektra_bendra' => $this->faker->numberBetween(10,180),
         'ukio_islaid' => $this->faker->numberBetween(10,180),
         'nkf'=> $this->faker->numberBetween(10,180),
-        'created_at'=> $this->faker->date(),
+        'created_at'=> $this->faker->dateTimeInInterval('-2 year','+2 year'),
         'saltas_vanduo_price' =>'0',
         'karstas_vanduo_price' => '0',
         'sildymas_price' => '0',

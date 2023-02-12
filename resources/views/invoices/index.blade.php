@@ -6,7 +6,6 @@
             <table>
                 <thead>
                     <tr>
-
                         <th>Bendra sąskaitų suma : {{ $totalInvoicesSum }} Eur</th>
                         <th>Bendra apmokėta suma: {{ $totalPaidSum }} Eur</th>
                         <th>{!! $difference !!}</th>
@@ -16,7 +15,6 @@
                                     <option value="{{ $filterDate->created_at }}"
                                         {{ request()->input('filter') == $filterDate->created_at ? 'selected' : '' }}>
                                         {{ $filterDate->data }}
-
                                     </option>
                                 @endforeach
                                 <option value="*" {{ request()->input('filter') == '*' ? 'selected' : '' }}>Visos</option>
@@ -24,18 +22,9 @@
                         <th><button class="btn_medium btn_edit" type="submit">Filtruoti</button></th>
                     </tr>
                 </thead>
-    </form>
-    </table>
-
-
-
+            </form>
+        </table>
     </div>
-
-
-
-
-
-
     <div class="table_container tabletransform1 pricelistIndexFlat">
         <table class="lentele">
             <thead>
@@ -67,10 +56,7 @@
                     <th>Delspinigiai</th>
                     <th>Saskaitos suma</th>
                     <th>Apmokėta suma</th>
-
-
                 </tr>
-
             </thead>
             <tbody>
 
@@ -78,7 +64,6 @@
                     <tr>
                         <td name="flat_id">Butas {{ $invoice->flat_id }}</td>
                         <td name="data">{{ $invoice->data }}</td>
-
                         <td name="saltas_vanduo">{{ $invoice->saltas_vanduo }}</td>
                         <td name="karstas_vanduo">{{ $invoice->karstas_vanduo }} </td>
                         <td name="sildymas">{{ $invoice->sildymas }} </td>
@@ -100,7 +85,5 @@
             </tbody>
         </table>
     </div>
-
-
     <script src="{{ asset('js/invoiceEditable.js') }}"></script>
 @endsection

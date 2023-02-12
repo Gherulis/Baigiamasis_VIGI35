@@ -16,11 +16,11 @@
                     <td>{{ Auth::user()->name }}</td>
                 </tr>
                 <tr>
-                    <th><i class="fa-regular fa-envelope"></i>El. Paštas</th>
+                    <th><i class="fa-regular fa-envelope"></i>Elektroninis Paštas</th>
                     <td>{{ Auth::user()->email }}</td>
                 </tr>
                 <tr>
-                    <th><i class="fa-regular fa-envelope"></i>Tel. numeris</th>
+                    <th><i class="fa-regular fa-envelope"></i>Telefono numeris</th>
                     @if(!empty( Auth::user()->phone))
                     <td>{{ Auth::user()->phone }}</td>
                     @else <td>Nenurodytas</td>
@@ -31,7 +31,7 @@
                     <td> Nr. {{ $flats->flat_nr }}</td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-maximize"></i>Buto kvadratūra </th>
+                    <th><i class="fa-solid fa-maximize"></i>Buto kvadratūra</th>
                     <td>{{ $flats->flat_size }} m<sup>2</sup></td>
                 </tr>
                 <tr>
@@ -39,7 +39,7 @@
                     <td>{{ $flats->belongsHouse->address }} g. {{ $flats->belongsHouse->house_nr }}, {{ $flats->belongsHouse->city }}</td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-face-smile-beam"></i>Buto vartotojų kiekis </th>
+                    <th><i class="fa-solid fa-face-smile-beam"></i>Buto vartotojų skaičius </th>
                     <td>{{ $flats->flatUsers->count() }}</td>
                 </tr>
                 <tr>
@@ -65,7 +65,7 @@
                     <td>{{ $declarationLastDate }}</td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-faucet"></i>Spalvu tema</th>
+                    <th><i class="fa-solid fa-faucet"></i>Spalvų tema</th>
                     <td>{{ auth::user()->color }}</td>
 
 

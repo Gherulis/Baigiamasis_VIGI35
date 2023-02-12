@@ -19,7 +19,7 @@
                 </tr>
 
                 <tr>
-                    <th><i class="fa-solid fa-list-ol"></i>Butu skaicius</th>
+                    <th><i class="fa-solid fa-list-ol"></i>Butu skaičius</th>
                     <td>{{$house->houseFlat->count()}}</td>
                 </tr>
                 <tr>
@@ -32,24 +32,24 @@
                 </tr>
 
                 <tr>
-                    <th><i class="fa-solid fa-piggy-bank"></i>Namo kaupimo fondas : </th>
+                    <th><i class="fa-solid fa-piggy-bank"></i>Namo kaupimo fondas </th>
                     <td>
                         {{ number_format($house->nkfSukaupta,2) }} Eur,
                     </td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-hammer"></i>Namo planuojamų darbų už : </th>
+                    <th><i class="fa-solid fa-hammer"></i>Namo planuojamų darbų už</th>
                     <td>
                         {{ $house->nkfPlanuSuma }} Eur,
                     </td>
                 </tr>
                 <tr>
-                    <th><i class="fa-solid fa-money-bill-wave"></i>Paskutines saskaita pateikta:</th>
+                    <th><i class="fa-solid fa-money-bill-wave"></i>Paskutinė sąskaita pateikta</th>
                     <td>
                         @if(isset($house->pricelists->last()->created_at))
                         {{$house->pricelists->last()->created_at->format('Y-m-d')}}
                     @else
-                        Nera duomenu
+                        Nėra duomenų
                     @endif
                          </td>
                 </tr>
