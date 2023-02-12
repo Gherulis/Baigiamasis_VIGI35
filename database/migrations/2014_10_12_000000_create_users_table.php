@@ -32,6 +32,7 @@ return new class extends Migration
             $table->foreign('flat_id')->references('id')->on('flats');
             $table->integer('phone')->nullable();
 
+
         });
     }
 

@@ -73,6 +73,8 @@
     --tableTransformBackground : #6094aa;
     --tableTransformTd : #467180;
     --tableTransformTdBorder : 1px solid #467180;
+    --buttonsBackForward :  #106b92;
+    --tableInsideBorders : #67bde1;
 }
 #bad_message,
 #good_message {
@@ -531,9 +533,11 @@ input {
     padding-left: 2px;
 }
 
+
 .news-container {
     margin: 0 auto;
     width: 90%;
+    margin-top: 16px;
 
     padding-top: 0px;
     display: grid;
@@ -576,11 +580,34 @@ a:hover {
     height: auto;
 }
 .borderLeft {
-    border-left: solid 1px #67bde1;
+    border-left: solid 1px var(--tableInsideBorders);
 }
 .borderRight {
-    border-right: solid 1px #67bde1;
+    border-right: solid 1px var(--tableInsideBorders);
 }
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .back-button, .forward-button {
+    background-color: transparent;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    /* cursor: pointer; */
+
+  }
+
+  .back-button:disabled, .forward-button:disabled {
+    background-color: transparent;
+    cursor: default;
+  }
+  .buttons button i {
+    color: var(--buttonsBackForward);
+    padding: 0;
+  }
 
 .postShowContainer small {
     top: 90%;

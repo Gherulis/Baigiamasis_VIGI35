@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string ('description')->nullable();
             $table->integer('house_id');
             $table->timestamps();
+            $table->integer('like')->nullable();
+            $table->integer('dislike')->nullable();
         });
     }
 

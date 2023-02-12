@@ -42,9 +42,9 @@
     /* lenteles box seselis */
     --tableBoxShadow:  rgba(0, 0, 0, 0.15);
     --textWhite: white;
-    --textBlack: black;
-    --newsText: rgba(0, 0, 0, 0.49) ;
-    --newsHeader: rgba(0, 0, 0, 0.539);
+    --textBlack: rgb(255, 255, 255);
+    --newsText: rgba(204, 200, 200, 0.49) ;
+    --newsHeader: rgba(221, 210, 210, 0.539);
     --formSelect : #ebe3e393;
     --buttonBorder : #4c7785;
     --buttonIcon :  #283539;
@@ -76,6 +76,8 @@
     --tableTransformBackground : #44606b;
     --tableTransformTd : #65767d;
     --tableTransformTdBorder : 1px solid #47585e;
+    --buttonsBackForward :  #106b92;
+    --tableInsideBorders : #67bde1;
 }
 #bad_message,
 #good_message {
@@ -86,6 +88,9 @@
 #bad_message.hide,
 #good_message.hide {
     display: none;
+}
+table {
+    color: rgb(54, 54, 54);
 }
 .form-select {
     width: 100%;
@@ -540,7 +545,7 @@ input {
 .news-container {
     margin: 0 auto;
     width: 90%;
-
+    margin-top: 16px;
     padding-top: 0px;
     display: grid;
     height: 100%;
@@ -575,6 +580,36 @@ a:hover {
     pointer-events: auto;
 }
 
+
+.borderLeft {
+    border-left: solid 1px var(--tableInsideBorders);
+}
+.borderRight {
+    border-right: solid 1px var(--tableInsideBorders);
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .back-button, .forward-button {
+    background-color: transparent;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    /* cursor: pointer; */
+
+  }
+
+  .back-button:disabled, .forward-button:disabled {
+    background-color: transparent;
+    cursor: default;
+  }
+  .buttons button i {
+    color: var(--buttonsBackForward);
+    padding: 0;
+  }
 .postShowContainer {
     width: 90%;
     margin: 0 auto;

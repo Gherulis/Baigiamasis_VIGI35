@@ -20,7 +20,6 @@
 
                                 </option>
                          @endforeach
-
                         </select>
 
                     <th><button class="btn_medium btn_edit" type="submit">Filtruoti</button></th>
@@ -80,6 +79,8 @@
               @endforeach
             </tbody>
         </table>
+
+
         <div class="center" >{{$declareWater->appends(\Request::except('page'))->links()}}  </div>
     </div>
 

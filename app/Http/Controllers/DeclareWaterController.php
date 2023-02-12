@@ -34,6 +34,7 @@ class DeclareWaterController extends Controller
     public function index()
     {
         {   $house_id = request('filter');
+
             $dateFilter = request ('dateFilter');
             if($dateFilter== null){
                 $dateFilter = today();

@@ -75,6 +75,12 @@
             </thead>
             <tbody>
 
+                @if ($pricelist->count() < 1)
+                    <td colspan="11">Sąskaitų nėra</td>
+                @else
+
+
+
               @foreach ($pricelist as $pricelist )
                 <tr>
                     <td>{{$pricelist->formatedDate}}</td>
@@ -100,6 +106,7 @@
                     </td>
                 </tr>
               @endforeach
+            @endif
             </tbody>
         </table>
     </div>

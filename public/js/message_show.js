@@ -22,4 +22,51 @@
     });
 
 
+function goBack() {
+  window.history.back();
+}
+
+function goForward() {
+  window.history.forward();
+}
+
+function goBack() {
+    window.history.back();
+  }
+
+  function goForward() {
+    window.history.forward();
+  }
+
+  function goBack() {
+    window.history.back();
+  }
+
+  function goForward() {
+    window.history.forward();
+  }
+
+  window.onload = function() {
+    const backButton = document.getElementById("backButton");
+    const forwardButton = document.getElementById("forwardButton");
+
+    backButton.disabled = !window.history.length;
+    forwardButton.disabled = !window.history.length;
+
+    window.onpopstate = function() {
+      backButton.disabled = !window.history.length;
+      forwardButton.disabled = !window.history.length;
+    };
+  };
+
+
+  $(document).ready(function(){
+    $('#postImage').on('click',function(e){
+        $("#postImageModalImage") = $(this).attr("src", $(this).attr("src"));
+        console.log(this);
+
+
+        $('#postImageModal').modal('show');
+
+    });});
 

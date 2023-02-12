@@ -31,8 +31,13 @@
         <img class="logo" src="{{ asset('img/logo.png') }}" alt="Logo">
     </div>
     <header>
-        <div class="nav_container">
+        <div class="nav_container buttons">
+
+                <button class="back-button" onclick="goBack()" id="backButton"><i class="fa-solid fa-angle-left"></i></button>
+
+
             <nav class="navbar">
+
 
                 <ul class="nav-menu">
                     <li id="dropDown" class="nav-item ">
@@ -177,6 +182,7 @@
                 <script src="/resources/js/app.js"></script>
                 <script src="{{ asset('js/hamburger.js') }}" defer></script>
             </nav>
+            <button class="forward-button" onclick="goForward()" id="forwardButton"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
         @if (session()->has('bad_message'))
             <div id="bad_message" class="message_show alert alert-danger"><i

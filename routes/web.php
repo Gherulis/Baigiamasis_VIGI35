@@ -220,4 +220,5 @@ Route::prefix('nkf')->group(function(){
     Route::post('/destroy/{nkf}', [NkfController::class, 'destroy'])->name('nkf.destroy')->middleware('auth');
     Route::post('/update/{nkf}', [NkfController::class, 'update'])->name('nkf.update')->middleware('auth');
     Route::post('/store/addAmount', [NkfController::class, 'addAmount'])->name('nkf.addAmount')->middleware(['auth', 'csrf']);
+    Route::post('/update/likes/{nkf}', [NkfController::class, 'updateLikes'])->name('nkf.updateLikes')->middleware('auth');
 });

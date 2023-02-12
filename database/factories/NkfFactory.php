@@ -21,7 +21,8 @@ class NkfFactory extends Factory
             'amountPayed' => $this->faker->unique()->numberBetween(1,30),
             'description' => $this->faker->numberBetween(27,100),
             'type' => $this->faker->numberBetween(1,100),
-
+            'like'=> '0',
+            'dislike'=> '0',
         ];
     }
 }

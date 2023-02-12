@@ -1,7 +1,7 @@
 @extends('includes.layout')
 
 @section('content')
-    <a href="{{ route('house.create') }}"><button type="submit" class="btn btn_edit">Prideti nauja nama</button></a>
+    <a href="{{ route('house.create') }}"><button type="submit" class="btn btn_edit"><i class="fa-solid fa-house"></i>Pridėti naują namą</button></a>
     @foreach ($houses as $house)
         <div class="table_container  ">
             <table class="lentele">
@@ -19,7 +19,7 @@
                         <td colspan="3">{{ $house->address }} g. {{ $house->house_nr }}</td>
                     </tr>
                     <tr>
-                        <td colspan="3"><i class="fa-solid fa-list-ol"></i>Butu skaicius</td>
+                        <td colspan="3"><i class="fa-solid fa-list-ol"></i>Butų skaičius</td>
                         <td colspan="3">{{ $house->houseFlat->count() }}</td>
                     </tr>
                     <tr>
@@ -31,20 +31,20 @@
                         <td colspan="3">{{ $house->house_size }} m<sup>2</sup></td>
                     </tr>
                     <tr>
-                        <td colspan="3"><i class="fa-solid fa-piggy-bank"></i>Namo kaupimo fondas : </td>
+                        <td colspan="3"><i class="fa-solid fa-piggy-bank"></i>Namo kaupimo fondas </td>
                         <td colspan="3">
                             {{ number_format($house->nkfSukaupta,2) }} Eur,
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3"><i class="fa-solid fa-hammer"></i>Namo planuojamų darbų už: </td>
+                        <td colspan="3"><i class="fa-solid fa-hammer"></i>Namo planuojamų darbų už </td>
                         <td colspan="3">
 
                             {{ $house->nkfPlanuSuma }} Eur,
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="3"><i class="fa-solid fa-money-bill-wave"></i>Paskutines saskaita pateikta:</td>
+                        <td colspan="3"><i class="fa-solid fa-money-bill-wave"></i>Paskutinė saskaita pateikta</td>
                         <td colspan="3">
                             @if (isset($house->pricelists->last()->created_at))
                                 {{ $house->pricelists->last()->created_at->format('Y-m-d') }}
@@ -81,14 +81,14 @@
                             @can('pricelist-view')
                             <p class="mssg"><a href="{{ route('pricelist.index', ['filter'=>$house->id]) }}"><button
                             class="btn_medium btn_edit">
-                            <i class="fa-solid fa-money-check dollar"></i>Namo saskaitos</button></a></p>
+                            <i class="fa-solid fa-money-check dollar"></i>Namo sąskaitos</button></a></p>
                             @endcan
                         </td>
                         <td colspan='2'class="bg-thead bg-last">
                             @can('pricelist-create')
                             <p class="mssg"><a href="{{ route('pricelist.create',['house_id'=>$house->id]) }}"><button
                                         class="btn_medium btn_edit">
-                                        <i class="fa-solid fa-file-invoice-dollar"></i>Pateikti saskaitą</button></a></p>
+                                        <i class="fa-solid fa-file-invoice-dollar"></i>Pateikti sąskaitą</button></a></p>
                             @endcan
                         </td>
                         <td colspan='2'class="bg-thead bg-last">

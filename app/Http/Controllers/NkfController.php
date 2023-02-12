@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Nkf;
 use App\Models\House;
 use App\Models\pricelist;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreNkfRequest;
 use App\Http\Requests\UpdateNkfRequest;
 use Illuminate\Support\Facades\DB;
@@ -92,7 +93,7 @@ class NkfController extends Controller
      */
     public function show(Nkf $nkf)
     {
-        //
+
     }
 
     /**
@@ -163,5 +164,29 @@ class NkfController extends Controller
         $nkf->amountPayed=$iplauka;
         $nkf->save();
         return redirect()->route('invoices.index')->with('good_message', 'Dėkui, Jūs sėkmingai sukūrėte namo sąskaita ir butams sąskaitas.Sėkmingai papildėte NKF $iplauka fondą');
+    }
+    public function updateLikes(UpdateNkfRequest $request, Nkf $nkf)
+    {   $voted=DB::table('votes')->where('user_id', auth::user()->id)->where('nkf_id', $nkf->id)->count();
+        if($voted>'0'){
+            return back()->with('bad_message', 'Jūs jau esate balsavęs');
+        } else {
+        if ($request->vote_type == 'like') {
+           DB::table('votes')->insert([
+            'nkf_id' => $nkf->id,
+            'like' =>'1',
+            'user_id' => auth::user()->id,
+           ]);
+
+        } elseif ($request->vote_type == 'dislike') {
+            DB::table('votes')->insert([
+                'nkf_id' => $nkf->id,
+                'dislike' =>'1',
+                'user_id' => auth::user()->id,
+               ]);
+        }}
+
+
+
+        return back()->with('good_message', 'Dėkui, Jūs sėkmingai pateikėte nuomonę');
     }
 }

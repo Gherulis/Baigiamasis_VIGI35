@@ -7,13 +7,10 @@
         #0f2f3c
     ); /* Viso Puslapio */
     --navbar-background:linear-gradient(
-        to right,
-        #a2a4a5,
-        #286677,
-        #0f2f3c
+        rgba(1, 49, 93, 0.654)
     ); /* Navigacijos backgroundas */
     --hamburger-menu-background:
-        #0f2f3c;/* Hamburgerio backgroundas islendantis */
+    rgba(1, 49, 93, 0.654);/* Hamburgerio backgroundas islendantis */
     --navbar-text-color: rgba(255, 255, 255, 0.8); /* Navigacijos teksto */
     --navbar-text-hover: rgba(0, 204, 235, 0.774); /* Navigacijos Hover teksto */
     --navbar-box-hover: rgb(30, 161, 161); /* Navigacijos apdailinimas hover */
@@ -59,7 +56,7 @@
     --buttonTextColor: #225465;
     --tableHeadHover : #35fddf93;
     --ahrefIcon : rgba(56, 56, 56, 0.3);
-    --navbarExpandA : #106b92;
+    --navbarExpandA : rgba(1, 49, 93, 0.654);
     --theadTfootBG : #055575;
     --tbodyTr : rgba(126, 118, 118, 0.708);
     --tableContainerOddRow : #0f2f3c;
@@ -79,6 +76,8 @@
     --tableTransformBackground : #6094aa;
     --tableTransformTd : #0f2f3c;
     --tableTransformTdBorder : 1px solid #467180;
+    --buttonsBackForward :  #106b92;
+    --tableInsideBorders : #67bde1;
 }
 #bad_message,
 #good_message {
@@ -282,6 +281,8 @@ li {
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 0rem;
+    background-color: rgba(1, 49, 93, 0.654);
+    border-radius: 5px;
 }
 
 .navbar-expand-md a {
@@ -541,7 +542,7 @@ input {
 .news-container {
     margin: 0 auto;
     width: 90%;
-
+    margin-top: 16px;
     padding-top: 0px;
     display: grid;
     height: 100%;
@@ -576,6 +577,35 @@ a:hover {
     pointer-events: auto;
 }
 
+.borderLeft {
+    border-left: solid 1px var(--tableInsideBorders);
+}
+.borderRight {
+    border-right: solid 1px var(--tableInsideBorders);
+}
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .back-button, .forward-button {
+    background-color: transparent;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    /* cursor: pointer; */
+
+  }
+
+  .back-button:disabled, .forward-button:disabled {
+    background-color: transparent;
+    cursor: default;
+  }
+ .buttons button i {
+    color: var(--buttonsBackForward);
+    padding: 0;
+  }
 .postShowContainer {
     width: 90%;
     margin: 0 auto;

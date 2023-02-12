@@ -230,6 +230,14 @@ class FlatSeeder extends Seeder
         // $flat->gyv_mok_suma = '100';
         // $flat->save();
 
+        $flat = new Flat();
+        $flat->house_id = '2';
+        $flat->flat_nr = '1';
+        $flat->flat_size = '73.59';
+        $flat->gyv_mok_suma = '100';
+        $flat->invitation = 'B001';
+        $flat->save();
+
 
     }
 }

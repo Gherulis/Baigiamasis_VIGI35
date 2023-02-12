@@ -6,7 +6,7 @@
     <div class="postShowPost">
         <p class="newsHeader">{{$posts->postName}}</p>
         <hr>
-        <div class="postImage_container"> <a href="/storage/cover_images/{{$posts->postImage}}"><img class="newsPhoto"
+        <div class="postImage_container" > <a href="/storage/cover_images/{{$posts->postImage}}"><img class="newsPhoto" id="postImage"
                 src="/storage/cover_images/{{$posts->postImage}}"
                 alt="IMG"></a></div>
         <div >

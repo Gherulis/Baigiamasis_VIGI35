@@ -23,5 +23,13 @@ class HouseSeeder extends Seeder
         $house->house_size = '2362.5';
         $house->save();
 
+        $house = new House();
+
+        $house->address = 'Liepkalnio';
+        $house->house_nr = '14';
+        $house->city = 'Vilnius';
+        $house->house_size = '2676.5';
+        $house->save();
+
     }
 }

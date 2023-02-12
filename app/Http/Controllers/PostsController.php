@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\posts;
+use App\Models\Nkf;
+use App\Models\flat;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StorepostsRequest;
 use App\Http\Requests\UpdatepostsRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class PostsController extends Controller
@@ -22,13 +27,24 @@ class PostsController extends Controller
      */
     public function index()
     {
+        $user = auth::user();
+
+        $house_id = flat::where('id',auth::user()->flat_id)->pluck('house_id');
+        $nkfLastFive=Nkf::where('house_id',$house_id)->where('type','planas')->orderBy('nkfs.id','desc')->take(5)->get();
+        foreach ($nkfLastFive as $listitem){
+        $likes = DB::table('votes')->where('nkf_id', $listitem->id)->sum('like');
+        $dislikes = DB::table('votes')->where('nkf_id', $listitem->id)->sum('dislike');
+        $listitem->likes = $likes;
+        $listitem->dislikes = $dislikes;}
+
+
         $posts = Posts::orderBy('created_at', 'desc')->get();
         foreach ($posts as $item){
             $urlHost = parse_url($item->postLink);
             $item->base_url = $urlHost;
         }
 
-        return view('posts.index', ['posts' => $posts]);
+        return view('posts.index', ['posts' => $posts, 'nkfLastFive'=>$nkfLastFive]);
     }
 
     /**
