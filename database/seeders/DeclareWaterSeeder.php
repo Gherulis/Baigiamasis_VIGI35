@@ -17,16 +17,16 @@ class DeclareWaterSeeder extends Seeder
     {
         $declareWater = new DeclareWater();
         $declareWater->flat_id = '1';
-        $declareWater->kitchen_cold ='446';
-        $declareWater->kitchen_hot = '224';
-        $declareWater->bath_hot = '235';
-        $declareWater->bath_cold ='211';
-        $declareWater->kitchen_cold_usage = '9';
-        $declareWater->kitchen_hot_usage = '1';
-        $declareWater->bath_cold_usage ='3';
-        $declareWater->bath_hot_usage ='9';
+        $declareWater->kitchen_cold ='521';
+        $declareWater->kitchen_hot = '321';
+        $declareWater->bath_hot = '244';
+        $declareWater->bath_cold ='235';
+        $declareWater->kitchen_cold_usage = '19';
+        $declareWater->kitchen_hot_usage = '12';
+        $declareWater->bath_cold_usage ='31';
+        $declareWater->bath_hot_usage ='98';
         $declareWater->declaredBy = "Laura";
-        $declareWater->created_at = '2022-06-11';
+        $declareWater->created_at = '2022-12-11';
         $declareWater->save();
 
         $declareWater = new DeclareWater();

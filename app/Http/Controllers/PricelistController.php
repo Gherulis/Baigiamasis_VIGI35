@@ -258,7 +258,7 @@ class PricelistController extends Controller
         $nkf->amountPayed=$nkfForNkf;
         $nkf->save();
 
-        return redirect()->route('invoices.create')->with('good_message', 'Jūs sėkmingai sukūrėte saskaitą!');;
+        return redirect()->route('invoices.create')->with('good_message', 'Jūs sėkmingai sukūrėte saskaitą!');
 
 
 

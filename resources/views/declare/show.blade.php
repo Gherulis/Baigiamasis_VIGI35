@@ -6,7 +6,7 @@
 </div>
 
    <div class="table_container tabletransform1 decl">
-   <h3>Buto Nr. - {{ Auth::user()->flat_id }}</h3>
+
 
         <table>
             <thead>

@@ -268,15 +268,15 @@ class InvoicesController extends Controller
             // //Saskaitos skaiciavimai
             $date = $nextMonthBill->created_at;
 
-            $coldWaterBill = round( $waterAll * $nextMonthBill->saltas_vanduo_price ,2);   //saltas vanduo
-            $hotWaterBill = round( $hotAll * $nextMonthBill->karstas_vanduo_price  ,2);  // susiskaiciuoju karsto vandens pasildyma
-            $heatingBill = round( $nextMonthBill->sildymas_price * $flat->flat_size ,2);   // susiskaiciuoju sildymo mokesti Suma / Butu bendras plotas * buto plotas
-            $heatingServiceMonthlyBill = round($nextMonthBill->silumos_mazg_prieziura_price  * $flat->flat_size ,2);   // susiskaiciuoju silumos mazgo prieziuros mokesti Suma / Butu bendras plotas * buto plotas
-            $bathHeaterBill = round($nextMonthBill->gyvatukas_price * $bathHeaterPayable ,2); // gyvatuko mokestis Suma dalinta is bendro mokamo procento padauginta is buto procento
-            $coldWaterMonthlyBill = round( $nextMonthBill->salto_vandens_abon_price ,2) ;  // susiskaiciuoju salto vandens abonimento mokesti   Suma / Butu skaiciaus
-            $electricityForAllBill = round( $nextMonthBill-> elektra_bendra_price  ,2) ; // susiskaiciuoju bendros elektros mokesti   Suma / Butu skaiciaus
-            $houseSpendingsBill = round( $nextMonthBill-> ukio_islaid_price  ,2); // susiskaiciuoju namo ukio islaidu mokesti  Suma / Butu skaiciaus
-            $houseSavingBill = round(  $nextMonthBill->nkf_price  * $flat->flat_size ,2); // namo kaupimo fondas
+            $coldWaterBill = round( $waterAll * $nextMonthBill->saltas_vanduo_price ,8);   //saltas vanduo
+            $hotWaterBill = round( $hotAll * $nextMonthBill->karstas_vanduo_price  ,8);  // susiskaiciuoju karsto vandens pasildyma
+            $heatingBill = round( $nextMonthBill->sildymas_price * $flat->flat_size ,8);   // susiskaiciuoju sildymo mokesti Suma / Butu bendras plotas * buto plotas
+            $heatingServiceMonthlyBill = round($nextMonthBill->silumos_mazg_prieziura_price  * $flat->flat_size ,8);   // susiskaiciuoju silumos mazgo prieziuros mokesti Suma / Butu bendras plotas * buto plotas
+            $bathHeaterBill = round($nextMonthBill->gyvatukas_price * $bathHeaterPayable ,8); // gyvatuko mokestis Suma dalinta is bendro mokamo procento padauginta is buto procento
+            $coldWaterMonthlyBill = round( $nextMonthBill->salto_vandens_abon_price ,8) ;  // susiskaiciuoju salto vandens abonimento mokesti   Suma / Butu skaiciaus
+            $electricityForAllBill = round( $nextMonthBill-> elektra_bendra_price  ,8) ; // susiskaiciuoju bendros elektros mokesti   Suma / Butu skaiciaus
+            $houseSpendingsBill = round( $nextMonthBill-> ukio_islaid_price  ,8); // susiskaiciuoju namo ukio islaidu mokesti  Suma / Butu skaiciaus
+            $houseSavingBill = round(  $nextMonthBill->nkf_price  * $flat->flat_size ,8); // namo kaupimo fondas
             $flatSum=$coldWaterBill + $hotWaterBill + $heatingBill + $heatingServiceMonthlyBill + $bathHeaterBill + $coldWaterMonthlyBill +  $electricityForAllBill +  $houseSpendingsBill +  $houseSavingBill; // bendra saskaitos suma
 
             $ltdate = $this->dateToLt($date);
@@ -297,6 +297,7 @@ class InvoicesController extends Controller
                 'houseSpendingsBill'=>$houseSpendingsBill,
                 'houseSavingBill'=>$houseSavingBill,
             ];
+
         }
         return $invoicesData;
     }

@@ -80,7 +80,7 @@ class DeclareWaterController extends Controller
         $filterDateData = declareWater::whereHas('forFlat', function($query) use ($house_id) {
             $query->whereHas('belongsHouse', function($query) use ($house_id) {
                 $query->where('house_id', $house_id);
-            });})->get();
+            });})->orderBy('created_at','desc')->get();
         foreach ($filterDateData as $dataItem){
             $dataItem->formatedDate =  $flatController->dateToLt($dataItem->created_at);
 

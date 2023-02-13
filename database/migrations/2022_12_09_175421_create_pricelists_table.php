@@ -26,15 +26,15 @@ return new class extends Migration
             $table->decimal('elektra_bendra');
             $table->decimal('ukio_islaid');
             $table->decimal('nkf');
-            $table->decimal('saltas_vanduo_price');
-            $table->decimal('karstas_vanduo_price');
-            $table->decimal('sildymas_price');
-            $table->decimal('silumos_mazg_prieziura_price');
-            $table->decimal('gyvatukas_price');
-            $table->decimal('salto_vandens_abon_price');
-            $table->decimal('elektra_bendra_price');
-            $table->decimal('ukio_islaid_price');
-            $table->decimal('nkf_price');
+            $table->decimal('saltas_vanduo_price',10,5);
+            $table->decimal('karstas_vanduo_price',10,5);
+            $table->decimal('sildymas_price',10,5);
+            $table->decimal('silumos_mazg_prieziura_price',10,5);
+            $table->decimal('gyvatukas_price',10,5);
+            $table->decimal('salto_vandens_abon_price',10,5);
+            $table->decimal('elektra_bendra_price',10,5);
+            $table->decimal('ukio_islaid_price',10,5);
+            $table->decimal('nkf_price',10,5);
             $table->timestamps();
         });
     }
