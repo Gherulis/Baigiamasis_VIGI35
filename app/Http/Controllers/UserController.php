@@ -35,6 +35,11 @@ class UserController extends Controller
 
     public function index(){
         $house_id = request('house_id');
+        if (empty($house_id)){
+        $flat_id = auth::user()->flat_id;
+        $flat = flat::where('id', $flat_id)->first();
+        $house_id = $flat->house_id;}
+
 
         $user = User::where('id', '!=', auth()->user()->id)->where('id', '!=',1)->whereHas('usersFlat.belongsHouse', function($house) use ($house_id) {
             $house->where('id', $house_id);
@@ -112,6 +117,7 @@ public function show(){
                 ->with('bad_message','Toks elektroninis paštas egzistuoja');
         } else {
 
+
         $user = new User();
         $user -> name = $request->name;
         $user -> email = $request->email;
@@ -122,11 +128,8 @@ public function show(){
 
         $user->assignRole($request->role);
         return redirect()->route('user.index')->with('good_message', 'Vartotojas sėkmingai sukurtas!');
-
-
-
-        return view('user.show', ['flats' => $flats]);}
     }
+    return view('user.show', ['flats' => $flats,'house_id'=>$house_id]);}
     public function destroy(user $user)
     {   $flat_id=auth::user()->flat_id;
         $house_id=flat::where('id',$flat_id)->pluck('house_id');
