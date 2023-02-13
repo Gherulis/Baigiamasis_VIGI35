@@ -28,15 +28,14 @@
 
 
 </div>
-   <div class="table_container tabletransform1 contact_info">
+   <div class="table_container tabletransform1 paymentInfo">
         <table class="lentele">
             <thead>
                 <tr>
-                    <td colspan="2">
-
-
+                    <td colspan="1">
+                        Mokėjimai
                     </td>
-                    <td colspan="5"></td>
+                    <td colspan="6"></td>
                     <td colspan="1">Suma su PVM, Eur</td>
 
                 </tr>
@@ -73,12 +72,14 @@
                          <input type="hidden" name="invoice_id[]" value="{{$invoice->id}}">
                       </tr>
                    @endforeach
-
+                      <tr>
+                        <td colspan="6" class="bg-thead"></td>
+                        <td colspan="2" class="bg-thead"><button class="btn_medium bnt_edit" type="submit">Išsaugoti</button></td></tr>
                 </tbody>
 
 
         </table>
-        <button class="btn_medium bnt_edit" type="submit">Išsaugoti</button>
+
 
 
     </form>

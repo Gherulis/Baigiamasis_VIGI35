@@ -1,6 +1,7 @@
 @extends('includes.layout')
 
 @section('content')
+
     <a href="{{ route('house.create') }}"><button type="submit" class="btn btn_edit"><i class="fa-solid fa-house"></i>Pridėti naują namą</button></a>
     @foreach ($houses as $house)
         <div class="table_container  ">
@@ -108,7 +109,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2" class="bg-thead"></td>
+
+                        <td colspan='2'class="bg-thead bg-last">
+                            @can('nkf-view')
+                            <p class="mssg"><a href="{{ route('invoices.editInvoices', ['filter'=>"*"]) }}"><button
+                                        class="btn_medium btn_edit">
+                                        <i class="fa-solid fa-dollar"></i>Mokėjimai</button></a></p>
+                            @endcan
+                        </td>
+
                         <td colspan='2'class="bg-thead bg-last" >
                             @can('house-edit')
                             <p class="mssg"><a href="{{ route('house.edit', $house) }}"><button
